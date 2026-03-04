@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import pokhara from "../images/pokhara.jpg";
 import chitwan from "../images/chitwan.jpeg";
 import lumbini from "../images/lumbin.jpeg"
-import annapurna from "../images/annapurna.jpeg";
+import annapurna from "../images/Annapurna.jpeg";
 import bhaktapur from "../images/bhaktapur.jpeg";
 import nagarkot from "../images/nagarkot.jpeg";
 import mustang from "../images/mustang.jpeg";
