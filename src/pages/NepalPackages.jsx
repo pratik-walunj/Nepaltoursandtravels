@@ -8,7 +8,7 @@ import bhaktapur from "../images/bhaktapur.jpeg";
 import nagarkot from "../images/nagarkot.jpeg";   
 import mustang from "../images/mustang.jpeg";     
 import patan from "../images/patan.jpeg";         
-
+import { useNavigate } from 'react-router-dom';
 // Mock data for exactly 5 Nepal destinations
 const destinations = [
   { id: 1, name: "Kathmandu", region: "Kathmandu Valley", packages: "Starting From ₹...", image: "https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
@@ -26,6 +26,7 @@ const MIDDLE_START_INDEX = destinations.length;  // 5
 const TrendingNepalDestinations = () => {
   const sliderRef = useRef(null);
   
+  const navigate =useNavigate()
   // Naya State-driven Approach
   const [currentIndex, setCurrentIndex] = useState(MIDDLE_START_INDEX);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -213,7 +214,7 @@ const TrendingNepalDestinations = () => {
 
         {/* View All Packages Button */}
         <div className="flex justify-center mt-6">
-          <button className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full hover:bg-blue-400 active:bg-blue-500 hover:shadow-lg transition-all duration-300">
+          <button  onClick={()=>{navigate("nepalallpackages")}}    className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full hover:bg-blue-400 active:bg-blue-500 hover:shadow-lg transition-all duration-300">
             View All Packages
           </button>
         </div>

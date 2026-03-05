@@ -301,19 +301,19 @@
 
 
 
-
 import React, { useState, useEffect } from 'react';
 import { 
   Menu, X, Search, Globe, PhoneCall, MapPin, ChevronDown, 
   Plane, Building2, Map, CreditCard, Palmtree, Bike, FileText
 } from 'lucide-react';
+// 1. React Router DOM se Link import karein
+import { Link } from 'react-router-dom';
 
 const TravelNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMobileMenu, setActiveMobileMenu] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle Scroll to change Navbar from Transparent to Solid
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -326,38 +326,58 @@ const TravelNavbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 2. Data Structure update kiya - subItems me 'name' aur 'path' add kiya
   const navLinks = [
     { 
       name: 'Holidays', 
       icon: <Palmtree size={22} />,
-      subItems: ['Nepal Tour Packages', 'Bhutan Tour Packages', 'Ayodhya Tour Packages', 'Kashi Tour Packages', 'Gorakhpur Tour Packages'] 
+      subItems: [
+        { name: 'Nepal Tour Packages', path: '/packages/nepal' },
+        { name: 'Bhutan Tour Packages', path: '/packages/bhutan' },
+        { name: 'Ayodhya Tour Packages', path: '/packages/ayodhya' },
+        { name: 'Kashi Tour Packages', path: '/packages/kashi' },
+        { name: 'Gorakhpur Tour Packages', path: '/packages/gorakhpur' }
+      ] 
     },
     { 
       name: 'Flights', 
       icon: <Plane size={22} />,
+      path: '/flights' // Agar iska sub menu nahi h to direct path de diya
     },
     { 
       name: 'Hotels', 
       icon: <Building2 size={22} />,
+      path: '/hotels'
     },
     { 
       name: 'Forex', 
       icon: <CreditCard size={22} />,
-      subItems: ['Currency Exchange in Nepal', 'Sim card in Nepal'] 
+      subItems: [
+        { name: 'Currency Exchange in Nepal', path: '/services/currency-exchange' },
+        { name: 'Sim card in Nepal', path: '/services/sim-card' }
+      ] 
     },
     { 
-      name: 'Packages', 
+      name: 'Activities', 
       icon: <Bike size={22} />,
-      subItems: ['Paragliding in Nepal', 'Mountain flight', 'Bungee jumping', 'Trekking in Nepal'] 
+      subItems: [
+        { name: 'Paragliding in Nepal', path: '/activities/paragliding' },
+        { name: 'Mountain flight', path: '/activities/mountain-flight' },
+        { name: 'Bungee jumping', path: '/activities/bungee' },
+        { name: 'Trekking in Nepal', path: '/activities/trekking' }
+      ] 
     },
     { 
       name: 'Services', 
       icon: <Map size={22} />,
-      subItems: ['Nepal taxi and cab services'] 
+      subItems: [
+        { name: 'Nepal taxi and cab services', path: '/services/taxi' }
+      ] 
     },
     { 
       name: 'Visa', 
       icon: <FileText size={22} />,
+      path: '/visa'
     }
   ];
 
@@ -374,7 +394,7 @@ const TravelNavbar = () => {
   return (
     <header className="fixed w-full font-sans top-0 z-50 transition-all duration-300">
       
-      {/* Top Utility Bar */}
+      {/* Top Utility Bar (Unchanged) */}
       <div className={`hidden lg:flex justify-between items-center px-6 py-2 text-[11px] transition-colors duration-300 border-b ${
         isSolid ? 'bg-gray-100 text-gray-600 border-gray-200' : 'bg-black/40 backdrop-blur-sm text-gray-200 border-white/20'
       }`}>
@@ -386,7 +406,6 @@ const TravelNavbar = () => {
             <MapPin size={12} className="mr-1.5" /> Find Nearest Stores
           </a>
         </div>
-        
         <div className="flex items-center space-x-4 font-medium">
           <button className="flex items-center hover:text-blue-600 transition-colors duration-200">
             <Globe size={12} className="mr-1.5" /> EN | English
@@ -404,56 +423,73 @@ const TravelNavbar = () => {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 md:h-24">
             
-            {/* Logo Area */}
+            {/* Logo */}
             <div className="flex-shrink-0 flex items-center cursor-pointer mr-8">
-               <span className={`text-2xl md:text-3xl font-black tracking-tight transition-colors duration-300 ${
-                  isSolid ? 'text-blue-800' : 'text-white'
-                }`}>
-                  Nepal<span className={isSolid ? "text-yellow-500" : "text-yellow-400"}>Tour</span>
-                </span>
+               <Link to="/"> {/* Logo par click karne par home page par jaye */}
+                 <span className={`text-2xl md:text-3xl font-black tracking-tight transition-colors duration-300 ${
+                    isSolid ? 'text-blue-800' : 'text-white'
+                  }`}>
+                    Nepal<span className={isSolid ? "text-yellow-500" : "text-yellow-400"}>Tour</span>
+                  </span>
+               </Link>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden xl:flex items-center justify-center flex-1 space-x-2">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative group px-2 py-4 cursor-pointer">
-                  <a
-                    href="#"
-                    className={`flex flex-col items-center justify-center text-sm font-semibold transition-all duration-200 ${
+                  {/* Agar subItems hain to normal div/button, warna direct Link */}
+                  {link.subItems ? (
+                    <div className={`flex flex-col items-center justify-center text-sm font-semibold transition-all duration-200 ${
                       isSolid ? 'text-gray-700 group-hover:text-blue-600' : 'text-white group-hover:text-yellow-400'
-                    }`}
-                  >
-                    <span className={`mb-1 transition-transform duration-200 group-hover:-translate-y-1 ${
-                       isSolid ? 'text-gray-500 group-hover:text-blue-600' : 'text-gray-200 group-hover:text-yellow-400'
                     }`}>
-                      {link.icon}
-                    </span>
-                    <div className="flex items-center mt-1">
-                      {link.name}
-                      {link.subItems && (
+                      <span className={`mb-1 transition-transform duration-200 group-hover:-translate-y-1 ${
+                         isSolid ? 'text-gray-500 group-hover:text-blue-600' : 'text-gray-200 group-hover:text-yellow-400'
+                      }`}>
+                        {link.icon}
+                      </span>
+                      <div className="flex items-center mt-1">
+                        {link.name}
                         <ChevronDown size={12} className="ml-1 opacity-70" />
-                      )}
+                      </div>
                     </div>
-                  </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className={`flex flex-col items-center justify-center text-sm font-semibold transition-all duration-200 ${
+                        isSolid ? 'text-gray-700 group-hover:text-blue-600' : 'text-white group-hover:text-yellow-400'
+                      }`}
+                    >
+                      <span className={`mb-1 transition-transform duration-200 group-hover:-translate-y-1 ${
+                         isSolid ? 'text-gray-500 group-hover:text-blue-600' : 'text-gray-200 group-hover:text-yellow-400'
+                      }`}>
+                        {link.icon}
+                      </span>
+                      <div className="flex items-center mt-1">
+                        {link.name}
+                      </div>
+                    </Link>
+                  )}
 
                   {/* Active Underline Indicator */}
                   <div className={`absolute bottom-0 left-0 w-full h-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
                     isSolid ? 'bg-yellow-500' : 'bg-yellow-400'
                   }`}></div>
 
-                  {/* Desktop Dropdown Menu */}
+                  {/* Desktop Dropdown Menu (With Links) */}
                   {link.subItems && (
                     <div className="absolute left-1/2 -translate-x-1/2 top-[90%] w-64 bg-white border border-gray-200 shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:top-full transition-all duration-300 z-50 pt-2">
                       <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-t border-l border-gray-200 rotate-45"></div>
                       <div className="py-2 relative bg-white rounded-lg z-10">
                         {link.subItems.map((subItem, index) => (
-                          <a 
+                          // 3. <a> tag replaced with <Link to={...}>
+                          <Link 
                             key={index} 
-                            href="#" 
+                            to={subItem.path} 
                             className="block px-6 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors border-b border-gray-50 last:border-0"
                           >
-                            {subItem}
-                          </a>
+                            {subItem.name}
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -513,7 +549,6 @@ const TravelNavbar = () => {
                       className="w-full flex items-center justify-between px-2 py-4 text-base font-semibold text-gray-700 hover:text-blue-600 transition-colors group"
                     >
                       <div className="flex items-center">
-                        {/* Clean Thomas Cook Mobile Icon (No Background) */}
                         <span className="text-gray-400 group-hover:text-blue-600 transition-colors mr-4">
                           {link.icon}
                         </span>
@@ -527,31 +562,33 @@ const TravelNavbar = () => {
                     
                     {/* Submenu Dropdown */}
                     <div className={`overflow-hidden transition-all duration-300 bg-gray-50 rounded-b-lg ${activeMobileMenu === link.name ? 'max-h-[800px] opacity-100 mb-2' : 'max-h-0 opacity-0'}`}>
-                      {/* pl-11 aligns the subtext perfectly with the parent text above it */}
                       <div className="flex flex-col pl-11 pr-2 py-2 space-y-1">
                         {link.subItems.map((subItem, index) => (
-                          <a 
+                          // 4. Mobile me bhi <Link> tag use kiya
+                          <Link 
                             key={index} 
-                            href="#" 
+                            to={subItem.path} 
+                            onClick={() => setIsOpen(false)} // Link click hone par mobile menu close ho jayega
                             className="py-2.5 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors border-b border-gray-200 last:border-0"
                           >
-                            {subItem}
-                          </a>
+                            {subItem.name}
+                          </Link>
                         ))}
                       </div>
                     </div>
                   </>
                 ) : (
-                  // Link without Submenu
-                  <a
-                    href="#"
+                  // Link without Submenu for Mobile
+                  <Link
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
                     className="w-full flex items-center px-2 py-4 text-base font-semibold text-gray-700 hover:text-blue-600 transition-colors group"
                   >
                     <span className="text-gray-400 group-hover:text-blue-600 transition-colors mr-4">
                       {link.icon}
                     </span>
                     {link.name}
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}
@@ -562,7 +599,6 @@ const TravelNavbar = () => {
             <button className="w-full flex items-center justify-center bg-blue-600 text-white px-4 py-3.5 rounded-xl font-bold shadow-md hover:bg-blue-700 transition-colors">
               Login / Register
             </button>
-            
             <div className="grid grid-cols-2 gap-4 text-sm font-medium text-gray-600">
               <a href="#" className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:text-blue-600 hover:bg-blue-50 transition-colors border border-gray-200 group">
                 <PhoneCall size={18} className="mr-2 text-gray-400 group-hover:text-blue-500"/> Call Us

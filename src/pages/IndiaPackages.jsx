@@ -296,6 +296,7 @@ import React, { useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import pokhara from "../images/pokhara.jpg";
 import chitwan from "../images/chitwan.jpeg";
+import {useNavigate  } from "react-router-dom";
 
 // Mock data (7 items)
 const destinations = [
@@ -314,6 +315,9 @@ const extendedDestinations = [...destinations, ...destinations, ...destinations]
 const TrendingDestinations = () => {
   const sliderRef = useRef(null);
   const isAutoScrolling = useRef(false);
+
+
+  const navigate=useNavigate();
 
   // 1. Initial Load pe slider ko middle set par set karein
   useEffect(() => {
@@ -461,7 +465,7 @@ const TrendingDestinations = () => {
 
         {/* View All Packages Button */}
         <div className="flex justify-center mt-6">
-          <button className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full hover:bg-blue-400 active:bg-blue-500 hover:shadow-lg transition-all duration-300">
+          <button   onClick={()=>{navigate("indianepalallpackages")}} className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full hover:bg-blue-400 active:bg-blue-500 hover:shadow-lg transition-all duration-300">
             View All Packages
           </button>
         </div>
