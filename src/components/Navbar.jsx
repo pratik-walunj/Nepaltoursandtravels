@@ -332,11 +332,14 @@ const TravelNavbar = () => {
       name: 'Holidays', 
       icon: <Palmtree size={22} />,
       subItems: [
-        { name: 'Nepal Tour Packages', path: '/packages/nepal' },
-        { name: 'Bhutan Tour Packages', path: '/packages/bhutan' },
-        { name: 'Ayodhya Tour Packages', path: '/packages/ayodhya' },
-        { name: 'Kashi Tour Packages', path: '/packages/kashi' },
-        { name: 'Gorakhpur Tour Packages', path: '/packages/gorakhpur' }
+        { name: 'Nepal Tour Packages', path: 'nepalallpackages' },
+        { name: 'Bhutan Tour Packages', path: 'bhutan-tour-packages' },
+        { name: 'Ayodhya Tour Packages', path: 'ayodhya-packages' },
+        { name: 'Kashi Tour Packages', path: 'kashi-tour-packages' },
+        { name: 'Gorakhpur Tour Packages', path: 'gorakhpur-tour-packages' },
+        { name: 'Prayagraj Tour Packages', path: 'prayagraj-tour-packages' },
+        { name: 'BodhGaya Tour Packages', path: 'bodhGaya-tour-packages' },
+        { name: 'School Trip Nepal', path: 'school-trip-nepal' }
       ] 
     },
     { 
@@ -361,9 +364,10 @@ const TravelNavbar = () => {
       name: 'Activities', 
       icon: <Bike size={22} />,
       subItems: [
-        { name: 'Paragliding in Nepal', path: '/activities/paragliding' },
-        { name: 'Mountain flight', path: '/activities/mountain-flight' },
-        { name: 'Bungee jumping', path: '/activities/bungee' },
+        { name: 'Paragliding in Nepal', path: 'paragliding-nepal' },
+        { name: 'Mountain flight', path: 'mountain-flight-nepal' },
+        { name: 'Mountain Helicopter in Nepal', path: 'mountain-helicopter-tour-nepal' },
+        { name: 'Bungee jumping', path: 'bungee-jumping-nepal' },
         { name: 'Trekking in Nepal', path: '/activities/trekking' }
       ] 
     },
