@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 
 import IndiaNepalallPackages from "./pages/IndiaNepalallPackages"
 import NepalAllPackages from "./nepalpackages/NepalAllPackages"
+import Kathmandu from "./nepalpackages/Kathmandu"
 
 import AboutPage from "./pages/About"
 import AyodhyaPackages from "./pages/AyodhyaPackages"
@@ -27,6 +28,7 @@ const App=()=>{
 
       <Route path="indianepalallpackages" element={<IndiaNepalallPackages/>}/>
       <Route path="nepalallpackages" element={<NepalAllPackages/>}/>
+      <Route path="package/kathmandu" element={<Kathmandu/>}/>
 
       <Route path="About" element={<AboutPage/>}/>
       <Route path="AyodhyaPackages" element={<AyodhyaPackages/>}/>

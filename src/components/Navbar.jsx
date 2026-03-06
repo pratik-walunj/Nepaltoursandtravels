@@ -400,7 +400,7 @@ const TravelNavbar = () => {
       }`}>
         <div className="flex items-center space-x-6">
           <a href="#" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
-            <PhoneCall size={12} className="mr-1.5" /> 1800-2099-100
+            <PhoneCall size={12} className="mr-1.5" /> +91 85760 00084
           </a>
           <a href="#" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
             <MapPin size={12} className="mr-1.5" /> Find Nearest Stores
