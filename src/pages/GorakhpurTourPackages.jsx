@@ -1,264 +1,343 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  MapPin, Clock, Car, Star, ShieldCheck, 
-  ChevronRight, Landmark, ArrowUpRight, CheckCircle 
+  MapPin, Clock, Plane, BedDouble, Utensils, Camera, 
+  Star, Filter, ChevronRight, ChevronLeft, Bus, Mountain,
+  ShieldCheck, Zap, Landmark, CheckCircle
 } from 'lucide-react';
 
+// 1. Gorakhpur Banner Carousel Data
+const bannerData = [
+  { 
+    id: 1, 
+    title: "Gorakhpur: Spiritual Gateway", 
+    subtitle: "Explore the divine Gorakhnath Temple and the cultural heart of Eastern UP.", 
+    image: "src/images/gorakhpur.webp" 
+  },
+  { 
+    id: 2, 
+    title: "Scenic Nauka Vihar", 
+    subtitle: "Relax by the beautiful Ramgarh Tal and enjoy the vibrant Marine Drive.", 
+    image: "src/images/Nauka-Vihar-in.jpg" 
+  },
+  { 
+    id: 3, 
+    title: "Gateway to Nepal & Kushinagar", 
+    subtitle: "Your starting point for the Buddhist circuit and Himalayan adventures.", 
+    image: "src/images/kushinagar-banner2.webp" 
+  }
+];
+
+// 2. Gorakhpur Packages Data (Formatted for Filtering)
+const packagesData = [
+  {
+    id: 1,
+    title: "Gorakhpur → Kashi",
+    region: "Spiritual Circuit",
+    image: "src/images/kashi-vishhwanath-temple-varanasi-india.jpg",
+    destinations: "Gorakhpur • Varanasi • Vishwanath Temple",
+    duration: "2 Days / 1 Night",
+    daysValue: 2, 
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 6499, 
+    discount: ".. OFF",
+    rating: 4.9,
+    style: "Spiritual / Pilgrimage", 
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer', 'Guide'],
+    tag: "Bestseller"
+  },
+  {
+    id: 2,
+    title: "Gorakhpur → Ayodhya",
+    region: "Ramayana Circuit",
+    image: "src/images/Ram-Mandir-Ayodhya-Tour.jpg",
+    destinations: "Gorakhpur • Ayodhya • Ram Janmabhoomi",
+    duration: "2 Days / 1 Night",
+    daysValue: 2,
+    originalPrice: "₹...",
+    discountedPrice: "₹...",
+    priceValue: 5999,
+    discount: ".. OFF",
+    rating: 5.0,
+    style: "Spiritual / Pilgrimage",
+    inclusions: ['Hotel', 'Breakfast', 'Sightseeing', 'Transfer'],
+    tag: "Most Popular"
+  },
+  {
+    id: 3,
+    title: "Gorakhpur → Kushinagar",
+    region: "Buddhist Circuit",
+    image: "src/images/kushinagar-banner2.webp",
+    destinations: "Mahaparinirvana Temple • Ramabhar Stupa",
+    duration: "1 Day / 0 Night",
+    daysValue: 1,
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 2499,
+    discount: ".. OFF",
+    rating: 4.8,
+    style: "Spiritual / Pilgrimage",
+    inclusions: ['Sightseeing', 'Transfer', 'Guide'],
+    tag: "Short Trip"
+  },
+  {
+    id: 4,
+    title: "Gorakhpur → Nepal Border",
+    region: "Cross Border Link",
+    image: "src/images/GettyImages-1439040510.webp",
+    destinations: "Sonauli Border • Lumbini Gateway",
+    duration: "2 Days / 1 Night",
+    daysValue: 2,
+    originalPrice: "₹....",
+    discountedPrice: "₹...",
+    priceValue: 7500,
+    discount: ".. OFF",
+    rating: 4.7,
+    style: "Trekking & Adventure",
+    inclusions: ['Hotel', 'Transfer', 'Guide'],
+    tag: "International Link"
+  },
+  {
+    id: 5,
+    title: "Gorakhpur → Prayagraj",
+    region: "Sangam Circuit",
+    image: "src/images/Triveni-Sangam.webp",
+    destinations: "Sangam Darshan • Anand Bhawan",
+    duration: "3 Days / 2 Nights",
+    daysValue: 3,
+    originalPrice: "₹....",
+    discountedPrice: "₹...",
+    priceValue: 9999,
+    discount: ".. OFF",
+    rating: 4.8,
+    style: "Spiritual / Pilgrimage",
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer'],
+    tag: "Cultural"
+  },
+  {
+    id: 6,
+    title: "Gorakhpur → Lucknow",
+    region: "City Link",
+    image: "src/images/luknow.jpg",
+    destinations: "Bara Imambara • Residency • Lucknow City",
+    duration: "3 Days / 2 Nights",
+    daysValue: 3,
+    originalPrice: "₹....",
+    discountedPrice: "₹...",
+    priceValue: 8999,
+    discount: ".. OFF",
+    rating: 4.6,
+    style: "Leisure & Culture",
+    inclusions: ['Hotel', 'Breakfast', 'Sightseeing', 'Transfer'],
+    tag: "Family Choice"
+  }
+];
+
 const GorakhpurTourPackages = () => {
-  
-  const travelRoutes = [
-    { 
-      route: "Gorakhpur → Kashi", 
-      dist: "230 km", 
-      train: "4.5–5h", 
-      car: "5h", 
-      img: "src/images/kashi-vishhwanath-temple-varanasi-india.jpg",
-      tag: "Spiritual Hub"
-    },
-    { 
-      route: "Gorakhpur → Ayodhya", 
-      dist: "260 km", 
-      train: "5–6h", 
-      car: "5–6h", 
-      img: "src/images/Ram-Mandir-Ayodhya-Tour.jpg",
-      tag: "Ram Janmabhoomi"
-    },
-    { 
-      route: "Gorakhpur → Prayagraj", 
-      dist: "340 km", 
-      train: "6–7h", 
-      car: "7h", 
-      img: "src/images/Triveni-Sangam.webp",
-      tag: "Sangam City"
-    },
-    { 
-      route: "Gorakhpur → Lucknow", 
-      dist: "275 km", 
-      train: "5–6h", 
-      car: "6h", 
-      img: "src/images/luknow.jpg",
-      tag: "Capital City"
-    },
-    { 
-      route: "Gorakhpur → Kushinagar", 
-      dist: "55 km", 
-      train: "Direct Bus", 
-      car: "1.5–2h", 
-      img: "src/images/kushinagar-banner2.webp",
-      tag: "Buddhist Path"
-    },
-    { 
-      route: "Gorakhpur → Nepal Border", 
-      dist: "95 km", 
-      train: "Via Sonauli", 
-      car: "3–4h", 
-      img: "src/images/GettyImages-1439040510.webp",
-    //   tag: "International Gateway"
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [filters, setFilters] = useState({ region: [], budget: [], duration: [], style: [] });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === bannerData.length - 1 ? 0 : prev + 1));
+    }, 4000); 
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => setCurrentSlide(currentSlide === bannerData.length - 1 ? 0 : currentSlide + 1);
+  const prevSlide = () => setCurrentSlide(currentSlide === 0 ? bannerData.length - 1 : currentSlide - 1);
+
+  const toggleFilter = (category, value) => {
+    setFilters(prev => {
+      const currentCategory = prev[category];
+      if (currentCategory.includes(value)) {
+        return { ...prev, [category]: currentCategory.filter(item => item !== value) };
+      } else {
+        return { ...prev, [category]: [...currentCategory, value] };
+      }
+    });
+  };
+
+  const resetFilters = () => setFilters({ region: [], budget: [], duration: [], style: [] });
+
+  const filteredPackages = packagesData.filter(pkg => {
+    if (filters.region.length > 0 && !filters.region.includes(pkg.region)) return false;
+    if (filters.style.length > 0 && !filters.style.includes(pkg.style)) return false;
+    
+    if (filters.duration.length > 0) {
+      const matchesDuration = filters.duration.some(range => {
+        if (range === '1 - 3 Days') return pkg.daysValue <= 3;
+        if (range === '4 - 6 Days') return pkg.daysValue >= 4 && pkg.daysValue <= 6;
+        return false;
+      });
+      if (!matchesDuration) return false;
     }
-  ];
 
-  const whyVisit = [
-    "Home of the famous Gorakhnath Temple",
-    "Gateway to Nepal, Kushinagar & Lumbini",
-    "Peaceful lakes and scenic surroundings",
-    "Cultural museums & heritage attractions",
-    "Ideal for pilgrimage, family tours & short trips"
-  ];
+    if (filters.budget.length > 0) {
+      const matchesBudget = filters.budget.some(range => {
+        if (range === 'Below ₹5,000') return pkg.priceValue < 5000;
+        if (range === '₹5,000 - ₹10,000') return pkg.priceValue >= 5000 && pkg.priceValue <= 10000;
+        if (range === 'Above ₹10,000') return pkg.priceValue > 10000;
+        return false;
+      });
+      if (!matchesBudget) return false;
+    }
+    return true;
+  });
 
-  const topAttractions = [
-    "Gorakhnath Temple",
-    "Geeta Press",
-    "Nauka Vihar (Ramgarh Tal)",
-    "Gorakhpur Railway Museum",
-    "Marine Drive Gorakhpur"
-  ];
+  const getInclusionIcon = (item) => {
+    const text = item.toLowerCase();
+    if (text.includes('flight')) return <Plane size={16} />;
+    if (text.includes('transfer') || text.includes('bus')) return <Bus size={16} />;
+    if (text.includes('hotel')) return <BedDouble size={16} />;
+    if (text.includes('meal') || text.includes('breakfast')) return <Utensils size={16} />;
+    return <Camera size={16} />;
+  };
 
   return (
-    <div className="bg-[#FDFDFD] min-h-screen pt-20 lg:pt-28 font-sans overflow-x-hidden">
+    <div className="w-full font-sans bg-gray-50 min-h-screen pb-16">
       
-      {/* 1. TOP HEADING SECTION */}
-      <section className="px-4 lg:px-8 mb-10">
-        <div className="max-w-7xl mx-auto text-center md:text-left border-b border-slate-100 pb-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <nav className="flex items-center justify-center md:justify-start gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
-                <a href="/" className="hover:text-orange-600 transition-colors">Home</a>
-                <span>/</span>
-                <span className="text-slate-900 uppercase">Tour Packages</span>
-              </nav>
-              <h1 className="text-3xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
-                Gorakhpur <br/>
-                <span className="text-orange-600 font-serif italic font-medium normal-case tracking-normal">Tour Packages</span>
-              </h1>
-            </div>
-            <div className="flex items-center justify-center md:justify-end gap-4 bg-white p-3 rounded-2xl shadow-sm border border-slate-50">
-              <div className="text-right">
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1 leading-none">Established Since</p>
-                <p className="text-sm font-black text-slate-900 leading-none">1999</p>
-              </div>
-              <div className="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center text-white shadow-md">
-                <ShieldCheck size={20} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. MULTI-IMAGE HERO SECTION */}
-      <section className="px-2 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-4 h-auto lg:h-[60vh]">
-          <div className="lg:w-2/3 h-[300px] lg:h-full relative overflow-hidden rounded-[2rem] lg:rounded-[3rem] group shadow-xl">
-            <img 
-              src="src\images\gorakhpur.webp" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              alt="Gorakhnath Temple"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-            <div className="absolute bottom-8 left-8 text-white pr-4">
-              <span className="bg-orange-600 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-3 inline-block shadow-lg leading-none">City of Seer</span>
-              <h2 className="text-xl lg:text-3xl font-bold italic tracking-tight uppercase leading-tight">"Spiritual Gateway & Cultural Heritage"</h2>
-            </div>
-          </div>
-
-          <div className="lg:w-1/3 flex flex-row lg:flex-col gap-4">
-            <div className="w-1/2 lg:w-full h-[180px] lg:h-1/2 relative overflow-hidden rounded-2xl lg:rounded-[3rem] shadow-md group border border-slate-100">
-              <img src="src\images\Nauka-Vihar-in.jpg" className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Ramgarh Tal" />
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center text-center p-4">
-                <p className="text-white font-bold uppercase tracking-widest text-sm lg:text-lg">Scenic Nauka Vihar</p>
-              </div>
-            </div>
-            <div className="w-1/2 lg:w-full h-[180px] lg:h-1/2 bg-blue-900 rounded-2xl lg:rounded-[3rem] p-4 lg:p-8 flex flex-col justify-center text-white relative overflow-hidden group">
-               <div className="absolute -top-10 -right-10 w-32 h-32 bg-orange-600 blur-[80px] opacity-30"></div>
-               <Landmark size={32} className="mb-3 text-orange-400 hidden lg:block" />
-               <h3 className="text-xs lg:text-xl font-black leading-tight mb-1 uppercase italic text-white text-left">Local <br/> Experts</h3>
-               <p className="text-[8px] lg:text-[10px] font-bold text-blue-300 tracking-widest uppercase leading-none text-left">Trusted Since 1999</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. CORE SERVICE DESCRIPTION */}
-      <section className="py-12 lg:py-20 px-4 lg:px-6 max-w-7xl mx-auto">
-        <div className="bg-white p-6 lg:p-16 rounded-2xl lg:rounded-[4rem] shadow-sm border border-slate-100">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
-            <div className="lg:col-span-8">
-              <h2 className="text-xl lg:text-3xl font-black text-slate-900 mb-4 lg:mb-6 uppercase tracking-tighter border-l-8 border-orange-600 pl-6 leading-none">
-                Complete Travel Experience
-              </h2>
-              <div className="space-y-4 lg:space-y-6 text-slate-600 font-medium italic leading-relaxed text-xs lg:text-base">
-                <p>
-                  Our Gorakhpur Tour Packages offer a complete travel experience covering spiritual sites, cultural attractions, family-friendly spots, and nearby pilgrimage destinations. From Gorakhnath Temple Darshan to relaxing at Nauka Vihar and exploring heritage locations, we provide smooth travel, clean vehicles, and reliable service for a comfortable journey.
-                </p>
-                <p>
-                  Whether you are traveling solo, with family, or in a group, our Gorakhpur packages are designed for short trips, religious tours, and Nepal border travel. Enjoy affordable pricing, experienced drivers, and well-planned itineraries for a stress-free Gorakhpur sightseeing experience.
-                </p>
-              </div>
-            </div>
-            <div className="lg:col-span-4 flex flex-col gap-4">
-               {["Gorakhnath Darshan", "Nepal Gateway", "Trusted Service"].map((item, i) => (
-                  <div key={i} className="bg-slate-50 p-4 lg:p-6 rounded-xl lg:rounded-3xl border border-slate-100 flex items-center gap-4 group hover:bg-orange-600 transition-colors duration-300">
-                    <CheckCircle className="text-orange-600 group-hover:text-white shrink-0" size={24}/>
-                    <p className="text-[10px] font-black uppercase text-slate-700 group-hover:text-white tracking-widest">{item}</p>
-                  </div>
-               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. WHY VISIT & ATTRACTIONS SPLIT BENTO */}
-      <section className="pb-12 lg:pb-20 px-4 lg:px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-6 lg:gap-10">
-        <div className="bg-white p-6 lg:p-12 rounded-2xl lg:rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col justify-center">
-          <h2 className="text-lg lg:text-2xl font-black text-slate-900 mb-6 border-l-8 border-blue-900 pl-6 uppercase tracking-tighter italic text-left">Why Visit Gorakhpur?</h2>
-          <ul className="space-y-3 lg:space-y-5">
-            {whyVisit.map((item, i) => (
-              <li key={i} className="flex gap-4 text-[10px] lg:text-sm text-slate-600 font-bold italic leading-relaxed">
-                <CheckCircle size={20} className="text-blue-900 shrink-0 mt-0.5" /> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-slate-900 p-6 lg:p-12 rounded-2xl lg:rounded-[2.5rem] shadow-xl text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600 blur-[100px] opacity-20"></div>
-          <h2 className="text-lg lg:text-2xl font-black mb-6 border-l-8 border-orange-600 pl-6 uppercase tracking-tighter italic text-left">Top Attractions</h2>
-          <ul className="space-y-3 lg:space-y-5">
-            {topAttractions.map((item, i) => (
-              <li key={i} className="flex gap-4 text-[10px] lg:text-sm opacity-90 font-bold italic leading-relaxed">
-                <Star size={20} className="text-orange-600 shrink-0 mt-0.5" fill="currentColor" /> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 5. TRAVEL CARDS (IMAGE TOP) */}
-      <section className="py-12 lg:py-24 bg-slate-50 px-4 lg:px-6">
-        <div className="max-w-7xl mx-auto text-center mb-10 lg:mb-16">
-          <h2 className="text-xl lg:text-4xl font-black text-slate-900 tracking-tighter uppercase mb-3">Distance & Transport Information</h2>
-          <p className="text-slate-500 font-bold text-[10px] lg:text-xs uppercase tracking-widest text-center">Major travel routes from Gorakhpur</p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 text-left">
-          {travelRoutes.map((item, i) => (
-            <div key={i} className="group bg-white rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col">
-              <div className="h-[180px] lg:h-[220px] relative overflow-hidden">
-                <img src={item.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={item.route} />
-                <div className="absolute top-3 left-3 lg:top-4 lg:left-4">
-                  <span className="bg-orange-600 text-white px-2 py-0.5 lg:px-3 lg:py-1 rounded-lg text-[8px] lg:text-[9px] font-black uppercase tracking-widest shadow-lg leading-none">{item.tag}</span>
-                </div>
-              </div>
-              <div className="p-6 lg:p-8 flex-1">
-                <h4 className="font-black text-base lg:text-xl text-slate-800 mb-4 lg:mb-6 uppercase tracking-tight flex items-center justify-between">
-                  {item.route}
-                  <ArrowUpRight size={20} className="text-slate-300 group-hover:text-orange-600 transition-colors hidden lg:block"/>
-                </h4>
-                <div className="space-y-3 lg:space-y-4 mb-6 lg:mb-8">
-                  <div className="flex justify-between text-[9px] lg:text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic font-bold"><MapPin size={16} className="text-orange-600"/> Dist</span>
-                    <span className="text-slate-700 font-bold">{item.dist}</span>
-                  </div>
-                  <div className="flex justify-between text-[9px] lg:text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic font-bold"><Clock size={16} className="text-orange-600"/> Train</span>
-                    <span className="text-slate-700 font-bold">{item.train}</span>
-                  </div>
-                  <div className="flex justify-between text-[9px] lg:text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic font-bold"><Car size={16} className="text-orange-600"/> Road</span>
-                    <span className="text-slate-700 font-bold">{item.car}</span>
-                  </div>
-                </div>
-
-                {/* SLATE BY DEFAULT -> ORANGE ON HOVER */}
-                <button className="w-full bg-slate-900 hover:bg-orange-600 text-white py-3 lg:py-4 rounded-xl lg:rounded-2xl font-black text-[8px] lg:text-[10px] tracking-[0.3em] transition-all duration-300 flex items-center justify-center gap-2 lg:gap-3 uppercase shadow-lg group-hover:shadow-orange-900/20">
-                  Book Now <ChevronRight size={16}/>
-                </button>
+      {/* 1. BANNER CAROUSEL */}
+      <div className="relative group w-full h-[300px] md:h-[450px] lg:h-[500px] overflow-hidden bg-gray-900">
+        <div className="flex h-full w-full transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+          {bannerData.map((banner) => (
+            <div key={banner.id} className="min-w-full h-full relative">
+              <img src={banner.image} alt={banner.title} className="w-full h-full object-cover opacity-80" />
+              <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto text-white">
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-3 drop-shadow-md tracking-tight uppercase">{banner.title}</h2>
+                <p className="text-base md:text-xl font-medium text-gray-200 drop-shadow-md max-w-lg mb-6 leading-relaxed italic">"{banner.subtitle}"</p>
+                <button className="bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base font-bold py-3 px-8 rounded-full w-max transition-all shadow-lg">Explore Packages</button>
               </div>
             </div>
           ))}
         </div>
-      </section>
+        <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"><ChevronLeft size={28} /></button>
+        <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"><ChevronRight size={28} /></button>
+      </div>
 
-      {/* 6. CALL TO ACTION FOOTER */}
-      <section className="py-12 lg:py-24 px-4 lg:px-6 text-center">
-        <div className="max-w-5xl mx-auto bg-slate-900 p-8 lg:p-24 rounded-[2.5rem] lg:rounded-[4rem] text-white relative overflow-hidden shadow-2xl">
-           <div className="absolute top-0 right-0 w-48 lg:w-72 h-48 lg:h-72 bg-orange-600 blur-[100px] lg:blur-[150px] opacity-20"></div>
-           <h2 className="text-2xl lg:text-6xl font-black mb-4 lg:mb-8 tracking-tighter uppercase leading-none italic">Plan Your <br/><span className="text-orange-500">Gorakhpur Tour</span></h2>
-           <p className="text-slate-400 text-xs lg:text-lg mb-8 lg:mb-14 italic font-medium opacity-80 leading-relaxed max-w-2xl mx-auto">
-             "Explore the city with trusted local experts since 1999. Contact us 24/7 for bookings!"
-           </p>
-           
-           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-8">
-              {/* WHITE BY DEFAULT -> ORANGE ON HOVER */}
-              <a href="tel:+918576000084" className="w-full sm:w-auto bg-white hover:bg-orange-600 text-slate-900 hover:text-white px-8 lg:px-14 py-4 lg:py-6 rounded-2xl lg:rounded-3xl font-black text-[9px] lg:text-[11px] tracking-[0.2em] transition-all duration-300 hover:scale-105 shadow-2xl uppercase border-2 border-transparent hover:border-orange-600">
-                 Call: +91 8576000084
-              </a>
-              <div className="text-center sm:text-left">
-                 <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest leading-none mb-1 text-slate-500">Nepal Tour & Travels</p>
-                 <p className="font-bold text-[10px] lg:text-xs text-slate-300 italic">Gorakhpur HQ</p>
+      {/* 2. MAIN CONTENT AREA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 md:mt-12 flex flex-col lg:flex-row gap-8">
+        
+        {/* Mobile Filter Toggle */}
+        <button className="lg:hidden flex items-center justify-center w-full bg-white border border-gray-200 py-3 rounded-xl shadow-sm text-indigo-950 font-bold mb-4" onClick={() => setShowMobileFilters(!showMobileFilters)}>
+          <Filter size={20} className="mr-2 text-orange-500" />
+          {showMobileFilters ? "Hide Filters" : "Show Filters"}
+        </button>
+
+        {/* Sidebar Filters */}
+        <aside className={`w-full lg:w-1/4 ${showMobileFilters ? 'block' : 'hidden'} lg:block`}>
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 sticky top-28 shadow-sm">
+            <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-4">
+              <h2 className="text-lg font-extrabold text-indigo-950 flex items-center"><Filter size={18} className="mr-2 text-orange-500" /> Filters</h2>
+              <button onClick={resetFilters} className="text-sm text-orange-500 font-semibold hover:underline">Reset All</button>
+            </div>
+
+            <div className="mb-6">
+              <h3 className="font-bold text-gray-800 mb-3 uppercase text-xs">Region</h3>
+              {['Spiritual Circuit', 'Ramayana Circuit', 'Buddhist Circuit', 'Cross Border Link', 'Sangam Circuit', 'City Link'].map((r, i) => (
+                <label key={i} className="flex items-center space-x-3 cursor-pointer group mb-2">
+                  <input type="checkbox" checked={filters.region.includes(r)} onChange={() => toggleFilter('region', r)} className="w-4 h-4 text-orange-500 border-gray-300 rounded focus:ring-orange-500" />
+                  <span className="text-gray-600 group-hover:text-orange-500 text-sm transition-colors">{r}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className="mb-6 border-t border-gray-100 pt-6">
+              <h3 className="font-bold text-gray-800 mb-3 uppercase text-xs">Budget</h3>
+              {['Below ₹5,000', '₹5,000 - ₹10,000', 'Above ₹10,000'].map((b, i) => (
+                <label key={i} className="flex items-center space-x-3 cursor-pointer group mb-2">
+                  <input type="checkbox" checked={filters.budget.includes(b)} onChange={() => toggleFilter('budget', b)} className="w-4 h-4 text-orange-500 rounded" />
+                  <span className="text-gray-600 group-hover:text-orange-500 text-sm transition-colors">{b}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className="bg-blue-900 rounded-2xl p-5 text-white mt-8 shadow-xl">
+               <Zap size={20} className="text-orange-400 mb-2"/>
+               <p className="text-[10px] font-black uppercase tracking-widest opacity-70">Gorakhpur HQ</p>
+               <p className="text-xs font-bold mt-1 leading-relaxed">Trusted local expertise since 1999.</p>
+            </div>
+          </div>
+        </aside>
+
+        {/* Package Grid Area */}
+        <div className="w-full lg:w-3/4">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-950 mb-2 uppercase tracking-tight">Gorakhpur Tour Packages</h1>
+            <p className="text-gray-600 text-base max-w-3xl italic">Our Gorakhpur Tour Packages offer a complete travel experience covering spiritual sites, cultural attractions, family-friendly spots, and nearby pilgrimage destinations. From Gorakhnath Temple Darshan to relaxing at Nauka Vihar and exploring heritage locations, we provide smooth travel, clean vehicles, and reliable service for a comfortable journey.</p>
+          </div>
+
+          <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <h2 className="text-lg md:text-xl font-extrabold text-indigo-950 uppercase tracking-tighter">Showing {filteredPackages.length} Packages</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredPackages.map((pkg) => (
+              <div key={pkg.id} className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                <div className="relative h-56 overflow-hidden">
+                  <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded shadow-md">{pkg.discount}</div>
+                  <div className="absolute top-4 right-4 bg-blue-600/90 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-md uppercase">{pkg.region}</div>
+                </div>
+
+                <div className="p-5 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-extrabold text-indigo-950 leading-tight group-hover:text-orange-600 transition-colors uppercase">{pkg.title}</h3>
+                    <div className="flex items-center bg-green-100 px-1.5 py-0.5 rounded text-green-700 text-xs font-bold">{pkg.rating} <Star size={12} className="ml-1 fill-current" /></div>
+                  </div>
+
+                  <div className="text-sm text-gray-500 font-medium space-y-2 mb-4">
+                    <div className="flex items-center"><MapPin size={16} className="text-orange-500 mr-2 shrink-0" /> <span className="truncate">{pkg.destinations}</span></div>
+                    <div className="flex items-center"><Clock size={16} className="text-orange-500 mr-2 shrink-0" /> {pkg.duration}</div>
+                  </div>
+
+                  <div className="border-t border-b border-gray-100 py-3 mb-4 mt-auto">
+                    <div className="flex flex-wrap gap-4">
+                      {pkg.inclusions.map((inc, idx) => (
+                        <div key={idx} className="flex flex-col items-center">
+                          <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center mb-1 text-indigo-600">{getInclusionIcon(inc)}</div>
+                          <span className="text-[10px] font-semibold text-gray-500 uppercase">{inc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <p className="text-xs text-gray-400 font-semibold line-through mb-0.5">{pkg.originalPrice}</p>
+                      <div className="flex items-baseline">
+                        <span className="text-2xl font-black text-indigo-950">{pkg.discountedPrice}</span>
+                        <span className="text-xs text-gray-500 ml-1">/ person</span>
+                      </div>
+                    </div>
+                    <button className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg text-sm flex items-center">
+                      View Details <ChevronRight size={16} className="ml-1" />
+                    </button>
+                  </div>
+                </div>
               </div>
-           </div>
-        </div>
-      </section>
+            ))}
+          </div>
 
+          {/* Footer CTA Section */}
+          <section className="mt-16 bg-slate-900 p-10 lg:p-16 rounded-[3rem] text-white relative overflow-hidden shadow-2xl text-center">
+             <h2 className="text-3xl lg:text-5xl font-black mb-6 uppercase tracking-tighter italic">Experience Gorakhpur</h2>
+             <p className="text-slate-400 text-lg mb-10 italic opacity-80 max-w-2xl mx-auto leading-relaxed">
+               "Trusted local expertise since 1999. Contact us 24/7 for custom bookings!"
+             </p>
+             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+                <a href="tel:+918576000084" className="bg-orange-500 text-white px-10 py-4 rounded-2xl font-black text-xs tracking-widest uppercase transition-transform hover:scale-105 shadow-xl">
+                   Call: +91 8576000084
+                </a>
+                <div className="text-left text-slate-500">
+                    <p className="text-[10px] font-black uppercase tracking-widest leading-none mb-1">Nepal Tour & Travels</p>
+                    <p className="font-bold text-sm italic text-gray-300">HQ: Gorakhpur (U.P)</p>
+                </div>
+             </div>
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

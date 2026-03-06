@@ -1,246 +1,393 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  MapPin, Star, ShieldCheck, Zap, 
-  ChevronRight, Phone, Globe, Info, 
-  CheckCircle, ArrowUpRight, Send, Award, Headphones 
+  MapPin, Clock, Plane, BedDouble, Utensils, Camera, 
+  Star, Filter, ChevronRight, ChevronLeft, Bus, Mountain,
+  ShieldCheck, Zap, Globe, Award, Headphones, CheckCircle, ArrowUpRight 
 } from 'lucide-react';
 
-const BhutanTourPackages = () => {
+// 1. Banner Data
+const bannerData = [
+  { 
+    id: 1, 
+    title: "Explore the Last Shangri-La", 
+    subtitle: "Discover ancient monasteries, vibrant festivals, and the untouched beauty of Bhutan.", 
+    image: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/pexels-peng-lim-6377-910368.jpg" 
+  },
+  { 
+    id: 2, 
+    title: "Architectural Marvels", 
+    subtitle: "Explore the majestic Punakha Dzong and the cliffside wonders of Paro.", 
+    image: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/palace-2725141_640.jpg" 
+  }
+];
 
-  const destinations = [
-    { 
-      name: "Paro Taktsang", 
-      rating: 5.0, 
-      img: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/pexels-peng-lim-6377-910368.jpg",
-      tag: "Iconic Monastery"
-    },
-    { 
-      name: "Punakha Dzong", 
-      rating: 4.8, 
-      img: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/palace-2725141_640.jpg",
-      tag: "Architectural Marvel"
-    },
-    { 
-      name: "Thimphu", 
-      rating: 4.9, 
-      img: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/Thimphu.jpg",
-      tag: "Capital Heart"
-    },
-    { 
-      name: "Phobjikha Valley", 
-      rating: 4.9, 
-      img: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/phobjikha-valley-in-bhutan-4897677_640.jpg",
-      tag: "Scenic Nature"
+// 2. Bhutan Package Data
+const packagesData = [
+  {
+    id: 1,
+    title: "Paro Taktsang Experience",
+    region: "Paro Region",
+    image: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/pexels-peng-lim-6377-910368.jpg",
+    destinations: "Tiger's Nest • Paro Valley • National Museum",
+    duration: "4 Days / 3 Nights",
+    daysValue: 4, 
+    originalPrice: "₹....",
+    discountedPrice: "₹.....",
+    priceValue: 22500, 
+    discount: ".. OFF",
+    rating: 5.0,
+    style: "Spiritual / Pilgrimage", 
+    inclusions: ['Flight', 'Hotel', 'All Meals', 'Sightseeing', 'Transfer', 'Guide'],
+    tag: "Iconic Monastery"
+  },
+  {
+    id: 2,
+    title: "Punakha Heritage Tour",
+    region: "Punakha Region",
+    image: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/palace-2725141_640.jpg",
+    destinations: "Punakha Dzong • Suspension Bridge • Chimi Lhakhang",
+    duration: "5 Days / 4 Nights",
+    daysValue: 5,
+    originalPrice: "₹....",
+    discountedPrice: "₹......",
+    priceValue: 26999,
+    discount: ".. OFF",
+    rating: 4.8,
+    style: "Leisure & Culture",
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer', 'Guide'],
+    tag: "Architectural Marvel"
+  },
+  {
+    id: 3,
+    title: "Thimphu Capital Heart",
+    region: "Thimphu Region",
+    image: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/Thimphu.jpg",
+    destinations: "Buddha Dordenma • Memorial Chorten • Tashichho Dzong",
+    duration: "3 Days / 2 Nights",
+    daysValue: 3,
+    originalPrice: "₹.....",
+    discountedPrice: "₹.....",
+    priceValue: 14500,
+    discount: ".. OFF",
+    rating: 4.9,
+    style: "Leisure & Culture",
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer'],
+    tag: "Capital Heart"
+  },
+  {
+    id: 4,
+    title: "Phobjikha Scenic Valley",
+    region: "Phobjikha Region",
+    image: "https://nepaltoursandtravels.com/wp-content/uploads/2025/12/phobjikha-valley-in-bhutan-4897677_640.jpg",
+    destinations: "Gangtey Monastery • Black-Necked Crane Valley",
+    duration: "10 Days / 9 Nights",
+    daysValue: 10,
+    originalPrice: "₹.....",
+    discountedPrice: "₹.....",
+    priceValue: 31000,
+    discount: ".. OFF",
+    rating: 4.9,
+    style: "Wildlife Safari",
+    inclusions: ['Flight', 'Hotel', 'All Meals', 'Sightseeing', 'Guide'],
+    tag: "Scenic Nature"
+  }
+];
+
+const BhutanTourPackages = () => {
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // State for Filters (Mirroring Nepal Logic)
+  const [filters, setFilters] = useState({
+    region: [],
+    budget: [],
+    duration: [],
+    style: []
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === bannerData.length - 1 ? 0 : prev + 1));
+    }, 4000); 
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => setCurrentSlide(currentSlide === bannerData.length - 1 ? 0 : currentSlide + 1);
+  const prevSlide = () => setCurrentSlide(currentSlide === 0 ? bannerData.length - 1 : currentSlide - 1);
+
+  const toggleFilter = (category, value) => {
+    setFilters(prev => {
+      const currentCategory = prev[category];
+      if (currentCategory.includes(value)) {
+        return { ...prev, [category]: currentCategory.filter(item => item !== value) };
+      } else {
+        return { ...prev, [category]: [...currentCategory, value] };
+      }
+    });
+  };
+
+  const resetFilters = () => setFilters({ region: [], budget: [], duration: [], style: [] });
+
+  // Filtering Logic (Exact Mirror of Nepal)
+  const filteredPackages = packagesData.filter(pkg => {
+    if (filters.region.length > 0 && !filters.region.includes(pkg.region)) return false;
+    if (filters.style.length > 0 && !filters.style.includes(pkg.style)) return false;
+    
+    if (filters.duration.length > 0) {
+      const matchesDuration = filters.duration.some(range => {
+        if (range === '1 - 3 Days') return pkg.daysValue <= 3;
+        if (range === '4 - 6 Days') return pkg.daysValue >= 4 && pkg.daysValue <= 6;
+        if (range === '7 - 10 Days') return pkg.daysValue >= 7 && pkg.daysValue <= 10;
+        if (range === '11+ Days') return pkg.daysValue >= 11;
+        return false;
+      });
+      if (!matchesDuration) return false;
     }
-  ];
+
+    if (filters.budget.length > 0) {
+      const matchesBudget = filters.budget.some(range => {
+        if (range === 'Below ₹15,000') return pkg.priceValue < 15000;
+        if (range === '₹15,000 - ₹25,000') return pkg.priceValue >= 15000 && pkg.priceValue <= 25000;
+        if (range === '₹25,000 - ₹40,000') return pkg.priceValue >= 25000 && pkg.priceValue <= 40000;
+        if (range === 'Above ₹40,000') return pkg.priceValue > 40000;
+        return false;
+      });
+      if (!matchesBudget) return false;
+    }
+    return true;
+  });
+
+  const getInclusionIcon = (item) => {
+    const text = item.toLowerCase();
+    if (text.includes('flight')) return <Plane size={16} />;
+    if (text.includes('bus') || text.includes('transfer')) return <Bus size={16} />;
+    if (text.includes('hotel')) return <BedDouble size={16} />;
+    if (text.includes('meal')) return <Utensils size={16} />;
+    return <Camera size={16} />;
+  };
 
   const highlights = [
     "Fast & reliable INR → BTN currency exchange",
     "Best rates compared to banks and airports in Bhutan",
     "100% safe, secure & fully transparent service",
-    "Trusted by thousands of India—Bhutan travelers",
     "Instant cash exchange with no hidden fees",
     "Verified & authorized exchange facility"
   ];
 
-  const advantages = [
-    "No long queues—quick and smooth service",
-    "Honest, real-time market rates for major currencies",
-    "Support available for tourists at border areas",
-    "Office pickup & doorstep support for tour customers",
-    "Valid receipts provided for every transaction",
-    "Support available for tourists at border areas"
-  ];
-
   return (
-    <div className="bg-[#F8FAFC] min-h-screen selection:bg-blue-100 pt-20 lg:pt-28 font-sans">
+    <div className="w-full font-sans bg-gray-50 min-h-screen pb-16">
       
-      {/* 1. CLEAR TOP HEADING SECTION */}
-      <section className="px-4 lg:px-8 mb-8">
-        <div className="max-w-7xl mx-auto text-center md:text-left border-b border-slate-100 pb-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <nav className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
-                <a href="/" className="hover:text-blue-600">Home</a>
-                <span>/</span>
-                <span className="text-slate-900">Tour Packages</span>
-              </nav>
-              <h1 className="text-3xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
-                Bhutan <br/>
-                <span className="text-blue-600 font-serif italic font-medium normal-case tracking-normal">Tour Packages</span>
-              </h1>
-            </div>
-            <div className="flex items-center gap-4 bg-white p-3 rounded-2xl shadow-sm border border-slate-50">
-              <div className="text-right">
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">Trusted Partner</p>
-                <p className="text-sm font-black text-slate-900 leading-none">Nepal Tour & Travels</p>
+      {/* 1. BANNER CAROUSEL */}
+      <div className="relative group w-full h-[300px] md:h-[450px] lg:h-[500px] overflow-hidden bg-gray-900">
+        <div className="flex h-full w-full transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+          {bannerData.map((banner) => (
+            <div key={banner.id} className="min-w-full h-full relative">
+              <img src={banner.image} alt={banner.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto text-white">
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-3 drop-shadow-md tracking-tight uppercase">{banner.title}</h2>
+                <p className="text-base md:text-xl font-medium text-gray-200 drop-shadow-md max-w-lg mb-6">{banner.subtitle}</p>
+                <button className="bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base font-bold py-3 px-8 rounded-full w-max shadow-lg">Explore Bhutan</button>
               </div>
-              <div className="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center text-white">
-                <ShieldCheck size={20} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. PREMIUM MULTI-IMAGE HERO SECTION */}
-      <section className="px-4 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-4 h-auto lg:h-[65vh]">
-          <div className="lg:w-2/3 h-[350px] lg:h-full relative overflow-hidden rounded-[2.5rem] lg:rounded-[3rem] group shadow-2xl">
-            <img 
-              src="https://nepaltoursandtravels.com/wp-content/uploads/2025/12/pexels-peng-lim-6377-910368.jpg" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              alt="Paro Taktsang Bhutan"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-            <div className="absolute bottom-10 left-10 text-white">
-              <span className="bg-blue-600 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block">Established 1999</span>
-              <h2 className="text-2xl lg:text-4xl font-bold italic tracking-tight">"Where Tradition Meets Tranquility"</h2>
-            </div>
-          </div>
-
-          <div className="lg:w-1/3 flex flex-col gap-4">
-            <div className="h-[200px] lg:h-1/2 relative overflow-hidden rounded-[2.5rem] lg:rounded-[3rem] shadow-xl group">
-              <img src="https://nepaltoursandtravels.com/wp-content/uploads/2025/12/palace-2725141_640.jpg" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Punakha Dzong" />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <p className="text-white font-black uppercase tracking-widest text-xl text-center px-4">Architectural <br/>Marvels</p>
-              </div>
-            </div>
-            <div className="h-[200px] lg:h-1/2 bg-blue-900 rounded-[2.5rem] lg:rounded-[3rem] p-10 flex flex-col justify-center text-white relative overflow-hidden group">
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-400 blur-[80px] opacity-30 group-hover:opacity-50 transition-opacity"></div>
-              <Zap size={32} className="mb-4 text-blue-400" />
-              <h3 className="text-xl font-black leading-tight mb-2 uppercase italic text-white">Instant <br/> Currency Exchange</h3>
-              <p className="text-[10px] font-bold text-blue-300 tracking-widest uppercase">Best Market Rates</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. NEW INTRODUCTORY DESCRIPTION SECTION */}
-      <section className="py-16 lg:py-24 px-6 max-w-7xl mx-auto">
-        <div className="bg-white p-8 lg:p-16 rounded-[3rem] shadow-sm border border-slate-100 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-2 h-full bg-blue-600"></div>
-          <div className="grid lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-8">
-              <h2 className="text-2xl lg:text-3xl font-black text-slate-900 mb-6 uppercase tracking-tighter">
-                Discover Nature’s Untouched Beauty
-              </h2>
-              <p className="text-slate-600 text-sm lg:text-lg font-medium italic leading-relaxed">
-                Bhutan, the mystical kingdom nestled in the Himalayas, offers a perfect blend of culture, spirituality, and natural beauty. 
-                From ancient monasteries perched on cliffs to serene valleys and vibrant festivals, our Bhutan tours promise an unforgettable journey. 
-                Explore the land where tradition meets tranquility.
-              </p>
-            </div>
-            <div className="lg:col-span-4 flex justify-center">
-               <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 text-center">
-                  <Globe className="text-blue-600 mx-auto mb-3" size={32}/>
-                  <p className="text-[10px] font-black text-blue-900 uppercase tracking-[0.2em]">Himalayan Gateway</p>
-                  <p className="text-xs font-bold text-slate-500 mt-1 uppercase">Customizable Packages</p>
-               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. DESTINATIONS GRID */}
-      <section className="pb-20 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl lg:text-3xl font-black text-slate-900 tracking-tighter uppercase mb-3 text-center">Top Bhutan Destinations</h2>
-          <p className="text-slate-500 font-bold text-xs lg:text-sm uppercase tracking-widest">Explore the mystical kingdom nestled in the Himalayas</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {destinations.map((dest, i) => (
-            <div key={i} className="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500">
-               <div className="h-[250px] relative overflow-hidden">
-                  <img src={dest.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={dest.name} />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
-                     <Star size={12} className="text-orange-500" fill="currentColor"/>
-                     <span className="text-[10px] font-black text-slate-900">{dest.rating}</span>
-                  </div>
-               </div>
-               <div className="p-6">
-                  <h4 className="font-black text-lg text-slate-800 mb-4 uppercase tracking-tight">{dest.name}</h4>
-                  <button className="w-full border-2 border-slate-900 text-slate-900 py-3 rounded-xl font-black text-[10px] tracking-widest uppercase hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center gap-2">
-                     Book Now <ArrowUpRight size={14}/>
-                  </button>
-               </div>
             </div>
           ))}
         </div>
-      </section>
+        <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all"><ChevronLeft size={28} /></button>
+        <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all"><ChevronRight size={28} /></button>
+      </div>
 
-      {/* 5. WHY CHOOSE US / ADVANTAGES SECTION */}
-      <section className="py-24 bg-white px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 uppercase tracking-tighter">Why Choose Us</h2>
-            <p className="text-blue-600 font-bold text-xs tracking-[0.2em] mt-2">ADVANTAGES FOR BHUTAN TOURISTS</p>
-          </div>
+      {/* 2. MAIN CONTENT AREA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 md:mt-12 flex flex-col lg:flex-row gap-8">
+        
+        {/* Mobile Filter Toggle Button */}
+        <button 
+          className="lg:hidden flex items-center justify-center w-full bg-white border border-gray-200 py-3 rounded-xl shadow-sm text-indigo-950 font-bold mb-4"
+          onClick={() => setShowMobileFilters(!showMobileFilters)}
+        >
+          <Filter size={20} className="mr-2 text-orange-500" />
+          {showMobileFilters ? "Hide Filters" : "Show Filters"}
+        </button>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="bg-slate-50 p-10 lg:p-14 rounded-[3rem] border border-slate-100 shadow-inner">
-               <h3 className="text-xl font-black text-slate-900 mb-8 border-l-8 border-blue-600 pl-4 uppercase">Trip Highlights</h3>
-               <ul className="space-y-6">
-                  {highlights.map((text, i) => (
-                    <li key={i} className="flex gap-4 text-sm lg:text-base text-slate-600 font-bold italic leading-relaxed">
-                      <CheckCircle size={22} className="text-blue-600 shrink-0" />
-                      {text}
-                    </li>
-                  ))}
-               </ul>
+        {/* Sidebar Filters (Desktop & Mobile Drawer logic) */}
+        <aside className={`w-full lg:w-1/4 ${showMobileFilters ? 'block' : 'hidden'} lg:block`}>
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 sticky top-28 shadow-sm">
+            <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-4">
+              <h2 className="text-lg font-extrabold text-indigo-950 flex items-center">
+                <Filter size={18} className="mr-2 text-orange-500" /> Filters
+              </h2>
+              <button onClick={resetFilters} className="text-sm text-orange-500 font-semibold hover:underline">Reset All</button>
             </div>
 
-            <div className="flex flex-col justify-between space-y-8">
-               <div className="grid sm:grid-cols-2 gap-6">
-                  <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center group hover:bg-blue-600 transition-colors">
-                     <Award className="text-blue-600 mb-4 group-hover:text-white" size={32} />
-                     <p className="text-xs font-black uppercase text-slate-400 group-hover:text-white opacity-60 mb-2">Experience</p>
-                     <p className="text-sm font-black group-hover:text-white">Trusted since 1999</p>
-                  </div>
-                  <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center group hover:bg-blue-600 transition-colors">
-                     <Headphones className="text-blue-600 mb-4 group-hover:text-white" size={32} />
-                     <p className="text-xs font-black uppercase text-slate-400 group-hover:text-white opacity-60 mb-2">Support</p>
-                     <p className="text-sm font-black group-hover:text-white">24/7 Availability</p>
-                  </div>
-               </div>
-               
-               <div className="bg-blue-900 p-10 rounded-[3rem] text-white shadow-xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-400 blur-[80px] opacity-20"></div>
-                  <h3 className="text-2xl font-black uppercase mb-6 italic">Tourist Advantages</h3>
-                  <ul className="space-y-4">
-                    {advantages.map((text, i) => (
-                      <li key={i} className="flex gap-3 text-sm font-medium opacity-90 italic">
-                        <ArrowUpRight size={18} className="text-blue-400 shrink-0" />
-                        {text}
-                      </li>
-                    ))}
-                  </ul>
-               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. CALL TO ACTION FOOTER */}
-      <section className="py-20 px-6 text-center">
-        <div className="max-w-4xl mx-auto bg-slate-900 p-10 lg:p-16 rounded-[3rem] text-white relative overflow-hidden shadow-xl">
-           <h2 className="text-3xl lg:text-5xl font-black mb-6 tracking-tighter uppercase leading-none">Experience Bhutan</h2>
-           <p className="text-slate-400 text-sm lg:text-base mb-10 italic font-medium opacity-80 leading-relaxed">
-             "Our Bhutan tours promise an unforgettable journey. Contact us 24/7 for bookings!"
-           </p>
-           
-           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a href="tel:+918576000084" className="w-full sm:w-auto bg-blue-600 text-white px-10 py-4 rounded-2xl font-black text-[11px] tracking-widest transition-transform hover:scale-105 shadow-xl uppercase">
-                 Call: +91 8576000084
-              </a>
-              <div className="text-left text-slate-500">
-                 <p className="text-[10px] font-black uppercase tracking-widest leading-none mb-1">Head Office</p>
-                 <p className="font-bold text-xs text-slate-300 italic">Gorakhpur (U.P) - 273001</p>
+            {/* Region Filter */}
+            <div className="mb-6">
+              <h3 className="font-bold text-gray-800 mb-3">Region in Bhutan</h3>
+              <div className="space-y-2">
+                {['Paro Region', 'Punakha Region', 'Thimphu Region', 'Phobjikha Region'].map((r) => (
+                  <label key={r} className="flex items-center space-x-3 cursor-pointer group">
+                    <input type="checkbox" checked={filters.region.includes(r)} onChange={() => toggleFilter('region', r)} className="w-4 h-4 text-orange-500 rounded focus:ring-orange-500" />
+                    <span className="text-gray-600 group-hover:text-orange-500 transition-colors text-sm">{r}</span>
+                  </label>
+                ))}
               </div>
-           </div>
+            </div>
+
+            {/* Budget Filter */}
+            <div className="mb-6 border-t border-gray-100 pt-6">
+              <h3 className="font-bold text-gray-800 mb-3">Budget (Per Person)</h3>
+              <div className="space-y-2">
+                {['Below ₹15,000', '₹15,000 - ₹25,000', '₹25,000 - ₹40,000', 'Above ₹40,000'].map((b) => (
+                  <label key={b} className="flex items-center space-x-3 cursor-pointer group">
+                    <input type="checkbox" checked={filters.budget.includes(b)} onChange={() => toggleFilter('budget', b)} className="w-4 h-4 text-orange-500 rounded focus:ring-orange-500" />
+                    <span className="text-gray-600 group-hover:text-orange-500 transition-colors text-sm">{b}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Duration Filter */}
+            <div className="mb-6 border-t border-gray-100 pt-6">
+              <h3 className="font-bold text-gray-800 mb-3">Duration</h3>
+              <div className="space-y-2">
+                {['1 - 3 Days', '4 - 6 Days', '7 - 10 Days', '11+ Days'].map((d) => (
+                  <label key={d} className="flex items-center space-x-3 cursor-pointer group">
+                    <input type="checkbox" checked={filters.duration.includes(d)} onChange={() => toggleFilter('duration', d)} className="w-4 h-4 text-orange-500 rounded focus:ring-orange-500" />
+                    <span className="text-gray-600 group-hover:text-orange-500 transition-colors text-sm">{d}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Style Filter */}
+            <div className="border-t border-gray-100 pt-6">
+              <h3 className="font-bold text-gray-800 mb-3">Tour Style</h3>
+              <div className="space-y-2">
+                {['Leisure & Culture', 'Trekking & Adventure', 'Wildlife Safari', 'Spiritual / Pilgrimage'].map((s) => (
+                  <label key={s} className="flex items-center space-x-3 cursor-pointer group">
+                    <input type="checkbox" checked={filters.style.includes(s)} onChange={() => toggleFilter('style', s)} className="w-4 h-4 text-orange-500 rounded focus:ring-orange-500" />
+                    <span className="text-gray-600 group-hover:text-orange-500 transition-colors text-sm">{s}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            
+            <div className="bg-indigo-900 p-5 rounded-2xl text-white mt-8">
+               <Zap size={20} className="text-orange-400 mb-2"/>
+               <p className="text-[10px] font-black uppercase tracking-widest opacity-70">Bonus Benefit</p>
+               <p className="text-xs font-bold mt-1">Instant currency exchange available at all offices.</p>
+            </div>
+          </div>
+        </aside>
+
+        {/* Main Grid Area */}
+        <div className="w-full lg:w-3/4">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-950 mb-2">Bhutan Tour Packages</h1>
+            <p className="text-gray-600 text-base max-w-3xl italic">Bhutan, the mystical kingdom nestled in the Himalayas, offers a perfect blend of culture, spirituality, and natural beauty. From ancient monasteries perched on cliffs to serene valleys and vibrant festivals, our Bhutan tours promise an unforgettable journey. Explore the land where tradition meets tranquility.</p>
+          </div>
+
+          <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <h2 className="text-lg md:text-xl font-extrabold text-indigo-950">Showing {filteredPackages.length} Packages</h2>
+            <select className="border border-gray-300 text-gray-700 text-sm rounded-lg p-2.5 outline-none bg-white cursor-pointer font-medium shadow-sm">
+              <option>Sort by: Popularity</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+            </select>
+          </div>
+
+          {filteredPackages.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {filteredPackages.map((pkg) => (
+                <div key={pkg.id} className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                  <div className="relative h-56 overflow-hidden">
+                    <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded shadow-md">{pkg.discount}</div>
+                    <div className="absolute top-4 right-4 bg-indigo-600/90 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-md uppercase">{pkg.region}</div>
+                  </div>
+
+                  <div className="p-5 flex flex-col flex-grow">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-extrabold text-indigo-950 leading-tight group-hover:text-orange-600 transition-colors uppercase">{pkg.title}</h3>
+                      <div className="flex items-center bg-green-100 px-1.5 py-0.5 rounded text-green-700 text-xs font-bold">{pkg.rating} <Star size={12} className="ml-1 fill-current" /></div>
+                    </div>
+
+                    <div className="text-sm text-gray-500 font-medium space-y-2 mb-4">
+                      <div className="flex items-center"><MapPin size={16} className="text-orange-500 mr-2 shrink-0" /> <span className="truncate">{pkg.destinations}</span></div>
+                      <div className="flex items-center"><Clock size={16} className="text-orange-500 mr-2 shrink-0" /> {pkg.duration}</div>
+                    </div>
+
+                    <div className="border-t border-b border-gray-100 py-3 mb-4 mt-auto">
+                      <div className="flex flex-wrap gap-4">
+                        {pkg.inclusions.map((inc, idx) => (
+                          <div key={idx} className="flex flex-col items-center">
+                            <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center mb-1 text-indigo-600">{getInclusionIcon(inc)}</div>
+                            <span className="text-[10px] font-semibold text-gray-500 truncate w-12 text-center">{inc}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <p className="text-xs text-gray-400 font-semibold line-through">{pkg.originalPrice}</p>
+                        <div className="flex items-baseline">
+                          <span className="text-2xl font-black text-indigo-950">{pkg.discountedPrice}</span>
+                          <span className="text-xs text-gray-500 ml-1">/ person</span>
+                        </div>
+                      </div>
+                      <button className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg text-sm flex items-center">
+                        View Details <ChevronRight size={16} className="ml-1" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-white rounded-2xl border border-gray-200">
+              <Filter size={24} className="text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-indigo-950 mb-2">No Packages Found</h3>
+              <p className="text-gray-500 mb-6">Try adjusting your filters to find your Bhutan journey.</p>
+              <button onClick={resetFilters} className="bg-orange-500 text-white px-6 py-2.5 rounded-full font-bold">Clear All Filters</button>
+            </div>
+          )}
         </div>
-      </section>
+      </div>
+
+      {/* Highlights & CTA Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mt-16 bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+          <h3 className="text-2xl font-extrabold text-indigo-950 mb-6 uppercase tracking-tighter border-l-4 border-orange-500 pl-4">Why Choose Nepal Tour & Travels</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <ul className="space-y-4">
+              {highlights.map((h, i) => (
+                <li key={i} className="flex gap-3 text-sm font-bold text-gray-600 italic">
+                  <CheckCircle size={20} className="text-orange-500 shrink-0" /> {h}
+                </li>
+              ))}
+            </ul>
+            <div className="bg-indigo-50 p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+                <Award size={40} className="text-indigo-600 mb-2"/>
+                <p className="font-black text-indigo-950 uppercase tracking-widest text-sm">Trusted Since 1999</p>
+                <p className="text-xs text-gray-500 mt-1">100% Secure & Authorized Himalayan Gateway</p>
+            </div>
+          </div>
+        </div>
+
+        <section className="mt-20">
+          <div className="bg-indigo-950 p-10 lg:p-16 rounded-[3rem] text-center text-white relative overflow-hidden shadow-2xl">
+             <h2 className="text-3xl lg:text-5xl font-black mb-6 uppercase tracking-tighter">Experience the Dragon Kingdom</h2>
+             <p className="text-indigo-200 text-lg mb-10 italic font-medium opacity-80 max-w-2xl mx-auto">Contact us 24/7 for custom bookings and instant support!</p>
+             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                <a href="tel:+918576000084" className="bg-orange-500 text-white px-10 py-4 rounded-2xl font-black text-xs tracking-widest uppercase hover:scale-105 transition-transform shadow-xl">
+                   Call: +91 8576000084
+                </a>
+                <div className="text-left">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-orange-400 mb-1">Head Office</p>
+                    <p className="font-bold text-sm italic text-gray-300">Gorakhpur (U.P) - 273001</p>
+                </div>
+             </div>
+          </div>
+        </section>
+      </div>
 
     </div>
   );

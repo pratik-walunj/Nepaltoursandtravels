@@ -1,62 +1,202 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  MapPin, Clock, Car, Phone, 
-  Send, Star, Waves, ShieldCheck, 
-  ChevronRight, Landmark, Info, ArrowUpRight, CheckCircle 
+  MapPin, Clock, Plane, BedDouble, Utensils, Camera, 
+  Star, Filter, ChevronRight, ChevronLeft, Bus, Mountain,
+  ShieldCheck, Zap, Landmark, CheckCircle 
 } from 'lucide-react';
 
+// 1. Premium Bodh Gaya Banner Carousel Data
+const bannerData = [
+  { 
+    id: 1, 
+    title: "Bodh Gaya: Land of Enlightenment", 
+    subtitle: "Experience the peace and divinity where Lord Buddha attained supreme wisdom.", 
+    image: "src/images/Bodhgaya.jpg" 
+  },
+  { 
+    id: 2, 
+    title: "UNESCO World Heritage Site", 
+    subtitle: "Visit the majestic Mahabodhi Temple and the sacred Bodhi Tree.", 
+    image: "src/images/Bodhgaya banner_2.webp" 
+  },
+ 
+];
+
+// 2. Bodh Gaya 6 Packages Data
+const packagesData = [
+  {
+    id: 1,
+    title: "Bodh Gaya to Varanasi",
+    region: "Spiritual Link",
+    image: "src/images/kashi-vishhwanath-temple-varanasi-india.jpg",
+    destinations: "Mahabodhi Temple • Kashi Vishwanath • Ganga Aarti",
+    duration: "2 Days / 1 Night",
+    daysValue: 2, 
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 7499, 
+    discount: ".. OFF",
+    rating: 5.0,
+    style: "Spiritual / Pilgrimage", 
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer', 'Guide'],
+    tag: "Bestseller"
+  },
+  {
+    id: 2,
+    title: "Bodh Gaya to Rajgir",
+    region: "Short Drive",
+    image: "src/images/Shanti_Stupa_at_Rajgir_(cropped) (2).jpg",
+    destinations: "Shanti Stupa • Griddhakuta Hill • Venu Van",
+    duration: "2 Days / 1 Night",
+    daysValue: 2, 
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 4999,
+    discount: ".. OFF",
+    rating: 4.8,
+    style: "Spiritual / Pilgrimage",
+    inclusions: ['Hotel', 'Breakfast', 'Sightseeing', 'Transfer'],
+    tag: "Peaceful"
+  },
+  {
+    id: 3,
+    title: "Bodh Gaya to Nalanda",
+    region: "Ancient Wisdom",
+    image: "src/images/nalanda-university-ruins.jpg",
+    destinations: "Nalanda University Ruins • Archaeological Museum",
+    duration: "1 Day / 0 Night",
+    daysValue: 1,
+    originalPrice: "₹...",
+    discountedPrice: "₹....",
+    priceValue: 2499,
+    discount: ".. OFF",
+    rating: 4.9,
+    style: "Leisure & Culture",
+    inclusions: ['Sightseeing', 'Transfer', 'Guide'],
+    tag: "Historic"
+  },
+  {
+    id: 4,
+    title: "Bodh Gaya to Patna",
+    region: "State Capital",
+    image: "src/images/patna.webp",
+    destinations: "Mahavir Mandir • Golghar • Patna Museum",
+    duration: "2 Days / 1 Night",
+    daysValue: 2,
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 5999,
+    discount: ".. OFF",
+    rating: 4.7,
+    style: "Leisure & Culture",
+    inclusions: ['Hotel', 'Breakfast', 'Sightseeing', 'Transfer'],
+    tag: "Capital Link"
+  },
+  {
+    id: 5,
+    title: "Bodh Gaya to Kushinagar",
+    region: "Mahaparinirvana",
+    image: "src/images/kushinagar-banner2.webp",
+    destinations: "Parinirvana Temple • Ramabhar Stupa",
+    duration: "3 Days / 2 Nights",
+    daysValue: 3,
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 9999,
+    discount: ".. OFF",
+    rating: 4.9,
+    style: "Spiritual / Pilgrimage",
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer'],
+    tag: "Buddhist Circuit"
+  },
+  {
+    id: 6,
+    title: "Bodh Gaya to Nepal (Lumbini)",
+    region: "Lumbini Border",
+    image: "src/images/GettyImages-1439040510.webp",
+    destinations: "Lumbini (Birthplace) • Sonauli Border • Gorakhpur",
+    duration: "4 Days / 3 Nights",
+    daysValue: 4,
+    originalPrice: "₹....",
+    discountedPrice: "₹.....",
+    priceValue: 14999,
+    discount: ".. OFF",
+    rating: 4.8,
+    style: "Trekking & Adventure",
+    inclusions: ['Hotel', 'Sightseeing', 'Transfer', 'Guide'],
+    tag: "Cross Border"
+  }
+];
+
 const BodhGayaTourPackages = () => {
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   
-  const travelRoutes = [
-    { 
-      route: "Bodh Gaya → Varanasi", 
-      dist: "250 km", 
-      train: "5–6h", 
-      car: "5–6h", 
-      img: "src/images/kashi-vishhwanath-temple-varanasi-india.jpg",
-      tag: "Spiritual Link"
-    },
-    { 
-      route: "Bodh Gaya → Rajgir", 
-      dist: "70 km", 
-      train: "2–2.5h", 
-      car: "2h", 
-      img: "src/images/Shanti_Stupa_at_Rajgir_(cropped) (2).jpg",
-      tag: "Short Drive"
-    },
-    { 
-      route: "Bodh Gaya → Nalanda", 
-      dist: "90 km", 
-      train: "2.5–3h", 
-      car: "2.5h", 
-      img: "src/images/nalanda-university-ruins.jpg",
-      tag: "Ancient Wisdom"
-    },
-    { 
-      route: "Bodh Gaya → Patna", 
-      dist: "110 km", 
-      train: "3–4h", 
-      car: "3h", 
-      img: "src/images/bihartrip_-_mahavir-mandir-patna.jpg",
-      tag: "State Capital"
-    },
-    { 
-      route: "Bodh Gaya → Kushinagar", 
-      dist: "310 km", 
-      train: "Via GKP", 
-      car: "6–7h", 
-      img: "src/images/kushinagar-banner2.webp",
-      tag: "Mahaparinirvana"
-    },
-    { 
-      route: "Bodh Gaya → Nepal", 
-      dist: "350 km", 
-      train: "Via GKP", 
-      car: "7–8h", 
-      img: "src/images/GettyImages-1439040510.webp",
-      tag: "Lumbini Border"
+  const [filters, setFilters] = useState({
+    region: [],
+    budget: [],
+    duration: [],
+    style: []
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === bannerData.length - 1 ? 0 : prev + 1));
+    }, 4000); 
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => setCurrentSlide(currentSlide === bannerData.length - 1 ? 0 : currentSlide + 1);
+  const prevSlide = () => setCurrentSlide(currentSlide === 0 ? bannerData.length - 1 : currentSlide - 1);
+
+  const toggleFilter = (category, value) => {
+    setFilters(prev => {
+      const currentCategory = prev[category];
+      if (currentCategory.includes(value)) {
+        return { ...prev, [category]: currentCategory.filter(item => item !== value) };
+      } else {
+        return { ...prev, [category]: [...currentCategory, value] };
+      }
+    });
+  };
+
+  const resetFilters = () => setFilters({ region: [], budget: [], duration: [], style: [] });
+
+  const filteredPackages = packagesData.filter(pkg => {
+    if (filters.region.length > 0 && !filters.region.includes(pkg.region)) return false;
+    if (filters.style.length > 0 && !filters.style.includes(pkg.style)) return false;
+    
+    if (filters.duration.length > 0) {
+      const matchesDuration = filters.duration.some(range => {
+        if (range === '1 - 3 Days') return pkg.daysValue <= 3;
+        if (range === '4 - 6 Days') return pkg.daysValue >= 4 && pkg.daysValue <= 6;
+        if (range === '7+ Days') return pkg.daysValue >= 7;
+        return false;
+      });
+      if (!matchesDuration) return false;
     }
-  ];
+
+    if (filters.budget.length > 0) {
+      const matchesBudget = filters.budget.some(range => {
+        if (range === 'Below ₹5,000') return pkg.priceValue < 5000;
+        if (range === '₹5,000 - ₹10,000') return pkg.priceValue >= 5000 && pkg.priceValue <= 10000;
+        if (range === 'Above ₹10,000') return pkg.priceValue > 10000;
+        return false;
+      });
+      if (!matchesBudget) return false;
+    }
+    return true;
+  });
+
+  const getInclusionIcon = (item) => {
+    const text = item.toLowerCase();
+    if (text.includes('flight')) return <Plane size={16} />;
+    if (text.includes('transfer') || text.includes('car')) return <Bus size={16} />;
+    if (text.includes('hotel')) return <BedDouble size={16} />;
+    if (text.includes('meal') || text.includes('breakfast')) return <Utensils size={16} />;
+    if (text.includes('guide')) return <Camera size={16} />;
+    return <Mountain size={16} />;
+  };
 
   const whyVisit = [
     "Place where Lord Buddha attained enlightenment",
@@ -75,188 +215,186 @@ const BodhGayaTourPackages = () => {
   ];
 
   return (
-    <div className="bg-[#FDFDFD] min-h-screen selection:bg-orange-100 pt-16 lg:pt-28 font-sans overflow-x-hidden">
+    <div className="w-full font-sans bg-gray-50 min-h-screen pb-16">
       
-      {/* 1. TOP HEADING SECTION */}
-      <section className="px-4 lg:px-8 mb-6 lg:mb-10">
-        <div className="max-w-7xl mx-auto text-center md:text-left border-b border-slate-100 pb-6 lg:pb-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <nav className="flex items-center justify-center md:justify-start gap-2 text-[9px] lg:text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 lg:mb-3">
-                <a href="/" className="hover:text-orange-600 transition-colors">Home</a>
-                <span>/</span>
-                <span className="text-slate-900 uppercase">Tour Packages</span>
-              </nav>
-              <h1 className="text-2xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
-                Bodh Gaya <br className="hidden lg:block"/>
-                <span className="text-orange-600 font-serif italic font-medium normal-case tracking-normal">Tour Packages</span>
-              </h1>
-            </div>
-            <div className="flex items-center justify-center md:justify-end gap-3 lg:gap-4 bg-white p-2 lg:p-3 rounded-2xl shadow-sm border border-slate-50">
-              <div className="text-right">
-                <p className="text-[9px] lg:text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5 leading-none">Established Since</p>
-                <p className="text-xs lg:text-sm font-black text-slate-900 leading-none">1999</p>
-              </div>
-              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-900 rounded-xl flex items-center justify-center text-white shadow-md">
-                <ShieldCheck size={18} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. PREMIUM MULTI-IMAGE HERO SECTION */}
-      <section className="px-2 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-2 lg:gap-4 h-auto lg:h-[60vh]">
-          <div className="lg:w-2/3 h-[250px] lg:h-full relative overflow-hidden rounded-2xl lg:rounded-[3rem] group shadow-xl">
-            <img 
-              src="src\images\Bodhgaya.jpg" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              alt="Mahabodhi Temple"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-            <div className="absolute bottom-4 lg:bottom-8 left-4 lg:left-8 text-white pr-4">
-              <span className="bg-orange-600 px-2 py-0.5 lg:px-3 lg:py-1 rounded-full text-[8px] lg:text-[9px] font-black uppercase tracking-widest mb-2 inline-block shadow-lg leading-none">Pilgrimage Special</span>
-              <h2 className="text-lg lg:text-3xl font-bold italic tracking-tight uppercase leading-tight">"The Land of Enlightenment & Peace"</h2>
-            </div>
-          </div>
-
-          <div className="lg:w-1/3 flex flex-row lg:flex-col gap-2 lg:gap-4 h-[150px] lg:h-auto">
-            <div className="w-1/2 lg:w-full relative overflow-hidden rounded-2xl lg:rounded-[3rem] shadow-md group border border-slate-100">
-              <img src="src\images\137145744_15250086341501n.jpg" className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Buddhist Monks" />
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center text-center p-2 lg:p-4">
-                <p className="text-white font-bold uppercase tracking-widest text-[10px] lg:text-lg">Sacred Rituals</p>
-              </div>
-            </div>
-            <div className="w-1/2 lg:w-full bg-blue-900 rounded-2xl lg:rounded-[3rem] p-4 lg:p-8 flex flex-col justify-center text-white relative overflow-hidden group">
-               <div className="absolute -top-10 -right-10 w-24 lg:w-32 h-24 lg:h-32 bg-orange-600 blur-[80px] opacity-30"></div>
-               <Landmark size={24} className="mb-2 lg:mb-3 text-orange-400 lg:block hidden" />
-               <h3 className="text-xs lg:text-xl font-black leading-tight mb-1 uppercase italic text-white text-left">Mahabodhi <br/> Darshan</h3>
-               <p className="text-[7px] lg:text-[10px] font-bold text-blue-300 tracking-widest uppercase leading-none text-left">Expert Travel Support</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. CORE SERVICE DESCRIPTION (REWRITTEN FROM SOURCE) */}
-      <section className="py-12 lg:py-20 px-4 lg:px-6 max-w-7xl mx-auto">
-        <div className="bg-white p-6 lg:p-16 rounded-2xl lg:rounded-[4rem] shadow-sm border border-slate-100">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
-            <div className="lg:col-span-8">
-              <h2 className="text-xl lg:text-3xl font-black text-slate-900 mb-4 lg:mb-6 uppercase tracking-tighter border-l-4 lg:border-l-8 border-orange-600 pl-4 lg:pl-6 leading-none">
-                Complete Travel Solutions
-              </h2>
-              <div className="space-y-4 lg:space-y-6 text-slate-600 font-medium italic leading-relaxed text-xs lg:text-base">
-                <p>
-                  Our Bodh Gaya Tour Packages offer a complete travel solution for Mahabodhi Temple darshan, Buddhist pilgrimage, local sightseeing, and nearby spiritual destinations like Rajgir, Nalanda, Varanasi, Kushinagar, and Nepal (Lumbini). With experienced drivers, clean vehicles, and trusted service since 1999, we ensure your Bodh Gaya journey is peaceful, safe, and spiritually fulfilling.
-                </p>
-                <p>
-                  Choose from one-day, two-day, multi-day, or customized Bodh Gaya tour itineraries as per your travel needs. We provide affordable Bodh Gaya taxi services, flexible pickup options, and smooth intercity transfers for pilgrims and tourists. Our packages cover all major Buddhist sites for a well-planned and serene experience.
-                </p>
-              </div>
-            </div>
-            <div className="lg:col-span-4 flex flex-col gap-3 lg:gap-4">
-               {["UNESCO Heritage", "Safe Transfers", "Custom Itineraries"].map((item, i) => (
-                  <div key={i} className="bg-slate-50 p-4 lg:p-6 rounded-xl lg:rounded-3xl border border-slate-100 flex items-center gap-3 lg:gap-4 group hover:bg-orange-600 transition-colors duration-300">
-                    <CheckCircle className="text-orange-600 group-hover:text-white shrink-0" size={20}/>
-                    <p className="text-[8px] lg:text-[10px] font-black uppercase text-slate-700 group-hover:text-white tracking-widest">{item}</p>
-                  </div>
-               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. WHY VISIT & ATTRACTIONS (RESTORED SECTION) */}
-      <section className="pb-12 lg:pb-20 px-4 lg:px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-6 lg:gap-10">
-        <div className="bg-white p-6 lg:p-12 rounded-2xl lg:rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col justify-center">
-          <h2 className="text-lg lg:text-2xl font-black text-slate-900 mb-6 border-l-4 lg:border-l-8 border-blue-900 pl-4 lg:pl-6 uppercase tracking-tighter italic text-left">Why Visit Bodh Gaya?</h2>
-          <ul className="space-y-3 lg:space-y-5">
-            {whyVisit.map((item, i) => (
-              <li key={i} className="flex gap-3 lg:gap-4 text-[10px] lg:text-sm text-slate-600 font-bold italic leading-relaxed">
-                <CheckCircle size={18} className="text-blue-900 shrink-0 mt-0.5" /> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-slate-900 p-6 lg:p-12 rounded-2xl lg:rounded-[2.5rem] shadow-xl text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600 blur-[100px] opacity-20"></div>
-          <h2 className="text-lg lg:text-2xl font-black mb-6 border-l-4 lg:border-l-8 border-orange-600 pl-4 lg:pl-6 uppercase tracking-tighter italic text-left">Top Attractions</h2>
-          <ul className="space-y-3 lg:space-y-5">
-            {topAttractions.map((item, i) => (
-              <li key={i} className="flex gap-3 lg:gap-4 text-[10px] lg:text-sm opacity-90 font-bold italic leading-relaxed">
-                <Star size={18} className="text-orange-600 shrink-0 mt-0.5" fill="currentColor" /> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 5. TRAVEL CARDS (IMAGE TOP) */}
-      <section className="py-12 lg:py-24 bg-slate-50 px-4 lg:px-6">
-        <div className="max-w-7xl mx-auto text-center mb-8 lg:mb-16">
-          <h2 className="text-xl lg:text-4xl font-black text-slate-900 tracking-tighter uppercase mb-2 lg:mb-3">Distance & Transport Information</h2>
-          <p className="text-slate-500 font-bold text-[10px] lg:text-xs uppercase tracking-widest">Major routes connected from Bodh Gaya</p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {travelRoutes.map((item, i) => (
-            <div key={i} className="group bg-white rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col">
-              <div className="h-[180px] lg:h-[220px] relative overflow-hidden">
-                <img src={item.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={item.route} />
-                <div className="absolute top-3 left-3 lg:top-4 lg:left-4">
-                  <span className="bg-orange-600 text-white px-2 py-0.5 lg:px-3 lg:py-1 rounded-lg text-[7px] lg:text-[9px] font-black uppercase tracking-widest shadow-lg leading-none">{item.tag}</span>
-                </div>
-              </div>
-              <div className="p-6 lg:p-8 flex-1">
-                <h4 className="font-black text-base lg:text-xl text-slate-800 mb-4 lg:mb-6 uppercase tracking-tight flex items-center justify-between">
-                  {item.route}
-                  <ArrowUpRight size={18} className="text-slate-300 group-hover:text-orange-600 transition-colors lg:block hidden"/>
-                </h4>
-                <div className="space-y-3 lg:space-y-4 mb-6 lg:mb-8">
-                  <div className="flex justify-between text-[9px] lg:text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic font-bold"><MapPin size={14} className="text-orange-600"/> Dist</span>
-                    <span className="text-slate-700 font-bold">{item.dist}</span>
-                  </div>
-                  <div className="flex justify-between text-[9px] lg:text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic font-bold"><Clock size={14} className="text-orange-600"/> Train</span>
-                    <span className="text-slate-700 font-bold">{item.train}</span>
-                  </div>
-                  <div className="flex justify-between text-[9px] lg:text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic font-bold"><Car size={14} className="text-orange-600"/> Road</span>
-                    <span className="text-slate-700 font-bold">{item.car}</span>
-                  </div>
-                </div>
-                <button className="w-full bg-slate-900 hover:bg-orange-600 text-white py-3 lg:py-4 rounded-xl lg:rounded-2xl font-black text-[8px] lg:text-[10px] tracking-[0.3em] transition-all duration-300 flex items-center justify-center gap-2 lg:gap-3 uppercase shadow-lg group-hover:shadow-orange-900/20">
-                  Book Now <ChevronRight size={14}/>
-                </button>
+      {/* 1. FULL WIDTH BANNER CAROUSEL */}
+      <div className="relative group w-full h-[300px] md:h-[450px] lg:h-[500px] overflow-hidden bg-gray-900">
+        <div className="flex h-full w-full transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+          {bannerData.map((banner) => (
+            <div key={banner.id} className="min-w-full h-full relative">
+              <img src={banner.image} alt={banner.title} className="w-full h-full object-cover opacity-80" />
+              <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto text-white">
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-3 drop-shadow-md tracking-tight uppercase">{banner.title}</h2>
+                <p className="text-base md:text-xl font-medium text-gray-200 drop-shadow-md max-w-lg mb-6 italic leading-relaxed">"{banner.subtitle}"</p>
+                <button className="bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base font-bold py-3 px-8 rounded-full w-max transition-all shadow-lg uppercase">Explore Bodh Gaya</button>
               </div>
             </div>
           ))}
         </div>
-      </section>
+        <button onClick={prevSlide} className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white hover:text-indigo-950 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"><ChevronLeft size={28} /></button>
+        <button onClick={nextSlide} className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white hover:text-indigo-950 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"><ChevronRight size={28} /></button>
+      </div>
 
-      {/* 6. CALL TO ACTION FOOTER */}
-      <section className="py-12 lg:py-24 px-4 lg:px-6 text-center">
-        <div className="max-w-5xl mx-auto bg-slate-900 p-8 lg:p-24 rounded-[2.5rem] lg:rounded-[4rem] text-white relative overflow-hidden shadow-2xl">
-           <div className="absolute top-0 right-0 w-48 lg:w-72 h-48 lg:h-72 bg-orange-600 blur-[100px] lg:blur-[150px] opacity-20"></div>
-           <h2 className="text-2xl lg:text-6xl font-black mb-4 lg:mb-8 tracking-tighter uppercase leading-none italic">Plan Your <br/><span className="text-orange-500">Sacred Journey</span></h2>
-           <p className="text-slate-400 text-xs lg:text-lg mb-8 lg:mb-14 italic font-medium opacity-80 leading-relaxed max-w-2xl mx-auto">
-             "For bookings or inquiries, contact us 24/7! We ensure a serene and well-planned pilgrimage."
-           </p>
-           
-           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-8">
-              <a href="tel:+918576000084" className="w-full sm:w-auto bg-white hover:bg-orange-600 text-slate-900 hover:text-white px-8 lg:px-14 py-4 lg:py-6 rounded-2xl lg:rounded-3xl font-black text-[9px] lg:text-[11px] tracking-[0.2em] transition-all duration-300 hover:scale-105 shadow-2xl uppercase border-2 border-transparent">
-                 Call: +91 8576000084
-              </a>
-              <div className="text-center sm:text-left">
-                 <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest leading-none mb-1 text-slate-500">Nepal Tour & Travels</p>
-                 <p className="font-bold text-[10px] lg:text-xs text-slate-300 italic leading-none">Gorakhpur HQ</p>
+      {/* 2. MAIN CONTENT AREA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 md:mt-12 flex flex-col lg:flex-row gap-8">
+        
+        {/* Mobile Filter Toggle */}
+        <button className="lg:hidden flex items-center justify-center w-full bg-white border border-gray-200 py-3 rounded-xl shadow-sm text-indigo-950 font-bold mb-4" onClick={() => setShowMobileFilters(!showMobileFilters)}>
+          <Filter size={20} className="mr-2 text-orange-500" />
+          {showMobileFilters ? "Hide Filters" : "Show Filters"}
+        </button>
+
+        {/* Sidebar Filters */}
+        <aside className={`w-full lg:w-1/4 ${showMobileFilters ? 'block' : 'hidden'} lg:block`}>
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 sticky top-28 shadow-sm">
+            <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-4">
+              <h2 className="text-lg font-extrabold text-indigo-950 flex items-center"><Filter size={18} className="mr-2 text-orange-500" /> Filters</h2>
+              <button onClick={resetFilters} className="text-sm text-orange-500 font-semibold hover:underline outline-none">Reset All</button>
+            </div>
+
+            <div className="mb-6">
+              <h3 className="font-bold text-gray-800 mb-3 text-sm">Region</h3>
+              <div className="space-y-2">
+                {['Spiritual Link', 'Short Drive', 'Ancient Wisdom', 'State Capital', 'Mahaparinirvana', 'Lumbini Border'].map((r) => (
+                  <label key={r} className="flex items-center space-x-3 cursor-pointer group">
+                    <input type="checkbox" checked={filters.region.includes(r)} onChange={() => toggleFilter('region', r)} className="w-4 h-4 text-orange-500 border-gray-300 rounded focus:ring-orange-500" />
+                    <span className="text-gray-600 group-hover:text-orange-500 transition-colors text-sm">{r}</span>
+                  </label>
+                ))}
               </div>
-           </div>
+            </div>
+
+            <div className="mb-6 border-t border-gray-100 pt-6">
+              <h3 className="font-bold text-gray-800 mb-3 text-sm">Budget</h3>
+              <div className="space-y-2">
+                {['Below ₹5,000', '₹5,000 - ₹10,000', 'Above ₹10,000'].map((b) => (
+                  <label key={b} className="flex items-center space-x-3 cursor-pointer group">
+                    <input type="checkbox" checked={filters.budget.includes(b)} onChange={() => toggleFilter('budget', b)} className="w-4 h-4 text-orange-500 rounded" />
+                    <span className="text-gray-600 group-hover:text-orange-500 text-sm font-medium">{b}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-gray-100 pt-6">
+              <h3 className="font-bold text-gray-800 mb-3 text-sm">Tour Style</h3>
+              <div className="space-y-2">
+                {['Leisure & Culture', 'Trekking & Adventure', 'Spiritual / Pilgrimage'].map((s) => (
+                  <label key={s} className="flex items-center space-x-3 cursor-pointer group">
+                    <input type="checkbox" checked={filters.style.includes(s)} onChange={() => toggleFilter('style', s)} className="w-4 h-4 text-orange-500 rounded" />
+                    <span className="text-gray-600 group-hover:text-orange-500 transition-colors text-sm">{s}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        {/* 3. Package Grid Area */}
+        <div className="w-full lg:w-3/4">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-950 mb-2 uppercase tracking-tight">Bodh Gaya Tour Packages</h1>
+            <p className="text-gray-600 text-base max-w-3xl italic">Our Bodh Gaya Tour Packages offer a complete travel solution for Mahabodhi Temple darshan, Buddhist pilgrimage, local sightseeing, and nearby spiritual destinations like Rajgir, Nalanda, Varanasi, Kushinagar, and Nepal (Lumbini). With experienced drivers, clean vehicles, and trusted service since 1999, we ensure your Bodh Gaya journey is peaceful, safe, and spiritually fulfilling.</p>
+          </div>
+
+          <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <h2 className="text-lg md:text-xl font-extrabold text-indigo-950 uppercase tracking-tighter">Showing {filteredPackages.length} Packages</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredPackages.map((pkg) => (
+              <div key={pkg.id} className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                <div className="relative h-56 overflow-hidden">
+                  <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded shadow-md">{pkg.discount}</div>
+                  <div className="absolute top-4 right-4 bg-indigo-600/90 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-md uppercase">{pkg.tag}</div>
+                </div>
+
+                <div className="p-5 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-extrabold text-indigo-950 leading-tight group-hover:text-orange-600 transition-colors uppercase">{pkg.title}</h3>
+                    <div className="flex items-center bg-green-100 px-1.5 py-0.5 rounded text-green-700 text-xs font-bold shrink-0 mt-1">
+                      {pkg.rating} <Star size={12} className="ml-1 fill-current" />
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-gray-500 font-medium space-y-2 mb-4 mt-2">
+                    <div className="flex items-center"><MapPin size={16} className="text-orange-500 mr-2 shrink-0" /> <span className="truncate">{pkg.destinations}</span></div>
+                    <div className="flex items-center"><Clock size={16} className="text-orange-500 mr-2 shrink-0" /> {pkg.duration}</div>
+                  </div>
+
+                  <div className="border-t border-b border-gray-100 py-3 mb-4 mt-auto">
+                    <div className="flex flex-wrap gap-4">
+                      {pkg.inclusions.map((inclusion, idx) => (
+                        <div key={idx} className="flex flex-col items-center justify-center text-gray-500">
+                          <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center mb-1 text-indigo-600">{getInclusionIcon(inclusion)}</div>
+                          <span className="text-[10px] font-semibold text-center leading-tight w-12 truncate uppercase">{inclusion}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <p className="text-xs text-gray-400 font-semibold line-through mb-0.5">{pkg.originalPrice}</p>
+                      <div className="flex items-baseline">
+                        <span className="text-2xl font-black text-indigo-950">{pkg.discountedPrice}</span>
+                        <span className="text-xs text-gray-500 ml-1 font-medium">/ person</span>
+                      </div>
+                    </div>
+                    <button className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg text-sm flex items-center uppercase tracking-wide">
+                      View Details <ChevronRight size={16} className="ml-1" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Why Visit Bodh Gaya & Top Attractions */}
+          <div className="mt-16 grid lg:grid-cols-2 gap-6">
+            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center">
+              <h2 className="text-2xl font-black text-indigo-950 mb-6 border-l-8 border-indigo-900 pl-6 uppercase tracking-tighter italic">Why Visit Bodh Gaya?</h2>
+              <ul className="space-y-4">
+                {whyVisit.map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-slate-600 font-bold italic leading-relaxed">
+                    <CheckCircle size={20} className="text-indigo-900 shrink-0 mt-0.5" /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-indigo-950 p-8 rounded-3xl shadow-xl text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600 blur-[100px] opacity-20"></div>
+              <h2 className="text-2xl font-black mb-6 border-l-8 border-orange-600 pl-6 uppercase tracking-tighter italic">Top Attractions</h2>
+              <ul className="space-y-4">
+                {topAttractions.map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm opacity-90 font-bold italic leading-relaxed">
+                    <Star size={20} className="text-orange-600 shrink-0 mt-0.5" fill="currentColor" /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Call to Action */}
+      <section className="max-w-7xl mx-auto px-4 mt-20">
+        <div className="bg-indigo-950 p-10 lg:p-16 rounded-[3rem] text-center text-white relative overflow-hidden shadow-2xl">
+          <Zap size={48} className="mx-auto text-orange-500 mb-6" />
+          <h2 className="text-3xl lg:text-5xl font-black mb-6 uppercase tracking-tighter italic leading-none">Plan Your Sacred Journey</h2>
+          <p className="text-indigo-200 text-lg mb-10 italic opacity-80 max-w-2xl mx-auto">"For bookings or inquiries, contact us 24/7! We ensure a serene and well-planned pilgrimage."</p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+            <a href="tel:+918576000084" className="bg-orange-500 text-white px-12 py-5 rounded-2xl font-black text-xs tracking-widest uppercase hover:scale-105 transition-transform shadow-xl">
+              Call: +91 8576000084
+            </a>
+            <div className="text-left">
+              <p className="text-[10px] font-black uppercase tracking-widest text-orange-400 mb-1 leading-none">Head Office</p>
+              <p className="font-bold text-sm italic text-gray-300">Gorakhpur (U.P) - 273001</p>
+            </div>
+          </div>
         </div>
       </section>
-
     </div>
   );
 };

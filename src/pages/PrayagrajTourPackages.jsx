@@ -1,262 +1,362 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  MapPin, Clock, Car, Phone, 
-  Send, Star, Waves, ShieldCheck, 
-  ChevronRight, Landmark, Info, ArrowUpRight, CheckCircle 
+  MapPin, Clock, Plane, BedDouble, Utensils, Camera, 
+  Star, Filter, ChevronRight, ChevronLeft, Bus, Mountain,
+  ShieldCheck, Zap, Landmark, CheckCircle
 } from 'lucide-react';
 
+// 1. Prayagraj Banner Carousel Data
+const bannerData = [
+  { 
+    id: 1, 
+    title: "Triveni Sangam: The Holy Confluence", 
+    subtitle: "Experience the spiritual energy where Ganga, Yamuna, and Saraswati meet.", 
+    image: "src/images/Triveni-Sangam.webp" 
+  },
+  { 
+    id: 2, 
+    title: "Historic Prayagraj Heritage", 
+    subtitle: "Discover the legacy of Anand Bhawan and ancient spiritual landmarks.", 
+    image: "src/images/anand-bhawan-prayagraj-uttar-pradesh-2.jpg" 
+  },
+  { 
+    id: 3, 
+    title: "Kumbh Mela Destination", 
+    subtitle: "Join the world's largest spiritual gathering in the heart of Uttar Pradesh.", 
+    image: "src/images/Kumbh Mela Destination.webp" 
+  }
+];
+
+// 2. Prayagraj Packages Data (Formatted for Filtering)
+const packagesData = [
+  {
+    id: 1,
+    title: "Prayagraj → Ayodhya",
+    region: "Temple Circuit",
+    image: "src/images/Ram-Mandir-Ayodhya-Tour.jpg",
+    destinations: "Sangam • Ayodhya • Ram Mandir",
+    duration: "2 Days / 1 Night",
+    daysValue: 2, 
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 6499, 
+    discount: ".. OFF",
+    rating: 5.0,
+    style: "Spiritual / Pilgrimage", 
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer', 'Guide'],
+    tag: "Bestseller"
+  },
+  {
+    id: 2,
+    title: "Prayagraj → Kashi",
+    region: "Spiritual Circuit",
+    image: "src/images/kashi-vishhwanath-temple-varanasi-india.jpg",
+    destinations: "Sangam • Kashi Vishwanath • Dashashwamedh Ghat",
+    duration: "3 Days / 2 Nights",
+    daysValue: 3,
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 9999,
+    discount: ".. OFF",
+    rating: 4.9,
+    style: "Spiritual / Pilgrimage",
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer'],
+    tag: "Holy Sangam"
+  },
+  {
+    id: 3,
+    title: "Prayagraj → Chitrakoot",
+    region: "Ramayana Path",
+    image: "src/images/Chitrakoot2.jpg",
+    destinations: "Sangam • Gupt Godavari • Ram Ghat",
+    duration: "2 Days / 1 Night",
+    daysValue: 2,
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 5999,
+    discount: ".. OFF",
+    rating: 4.8,
+    style: "Leisure & Culture",
+    inclusions: ['Hotel', 'Breakfast', 'Sightseeing', 'Transfer'],
+    tag: "Sacred Forest"
+  },
+  {
+    id: 4,
+    title: "Prayagraj → Gorakhpur",
+    region: "Nepal Gateway",
+    image: "src/images/Visit-Gorakhnath-Temple.jpg",
+    destinations: "Gorakhnath Temple • Maghar • Kushinagar",
+    duration: "4 Days / 3 Nights",
+    daysValue: 4,
+    originalPrice: "₹...",
+    discountedPrice: "₹....",
+    priceValue: 12500,
+    discount: ".. OFF",
+    rating: 4.7,
+    style: "Leisure & Culture",
+    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer', 'Guide'],
+    tag: "Trending"
+  },
+  {
+    id: 5,
+    title: "Prayagraj → Nepal Border",
+    region: "International Link",
+    image: "src/images/GettyImages-1439040510.webp",
+    destinations: "Lumbini • Sonauli • Gorakhpur",
+    duration: "5 Days / 4 Nights",
+    daysValue: 5,
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 18500,
+    discount: ".. OFF",
+    rating: 4.6,
+    style: "Trekking & Adventure",
+    inclusions: ['Hotel', 'Sightseeing', 'Transfer', 'Guide'],
+    tag: "Cross Border"
+  },
+  {
+    id: 6,
+    title: "Prayagraj → Lucknow",
+    region: "Heritage Path",
+    image: "src/images/luknow.jpg",
+    destinations: "Bara Imambara • Rumi Darwaza • Residency",
+    duration: "3 Days / 2 Nights",
+    daysValue: 3,
+    originalPrice: "₹....",
+    discountedPrice: "₹....",
+    priceValue: 8999,
+    discount: ".. OFF",
+    rating: 4.8,
+    style: "Leisure & Culture",
+    inclusions: ['Hotel', 'Breakfast', 'Sightseeing', 'Transfer'],
+    tag: "Nawab City"
+  }
+];
+
 const PrayagrajTourPackages = () => {
-  
-  const travelRoutes = [
-    { 
-      route: "Prayagraj → Ayodhya", 
-      dist: "170 km", 
-      train: "4–5h", 
-      car: "4–4.5h", 
-      img: "src/images/Ram-Mandir-Ayodhya-Tour.jpg",
-      tag: "Temple City"
-    },
-    { 
-      route: "Prayagraj → Kashi", 
-      dist: "120 km", 
-      train: "2.5–3h", 
-      car: "2.5–3h", 
-      img: "src/images/kashi-vishhwanath-temple-varanasi-india.jpg",
-      tag: "Spiritual Ghats"
-    },
-    { 
-      route: "Prayagraj → Gorakhpur", 
-      dist: "270 km", 
-      train: "5–6h", 
-      car: "6h", 
-      img: "src/images/Visit-Gorakhnath-Temple.jpg",
-      tag: "Nepal Gateway"
-    },
-    { 
-      route: "Prayagraj → Lucknow", 
-      dist: "200 km", 
-      train: "4.5–5h", 
-      car: "4.5–5h", 
-      img: "src/images/luknow.jpg",
-      tag: "Nawab City"
-    },
-    { 
-      route: "Prayagraj → Chitrakoot", 
-      dist: "115 km", 
-      train: "3–3.5h", 
-      car: "3–3.5h", 
-      img: "src/images/Chitrakoot2.jpg",
-      tag: "Sacred Forest"
-    },
-    { 
-      route: "Prayagraj → Nepal Border", 
-      dist: "320 km", 
-      train: "Via GKP", 
-      car: "7–8h", 
-      img: "src/images/GettyImages-1439040510.webp",
-      tag: "Cross Border"
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [filters, setFilters] = useState({ region: [], budget: [], duration: [], style: [] });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === bannerData.length - 1 ? 0 : prev + 1));
+    }, 4000); 
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => setCurrentSlide(currentSlide === bannerData.length - 1 ? 0 : currentSlide + 1);
+  const prevSlide = () => setCurrentSlide(currentSlide === 0 ? bannerData.length - 1 : currentSlide - 1);
+
+  const toggleFilter = (category, value) => {
+    setFilters(prev => {
+      const currentCategory = prev[category];
+      if (currentCategory.includes(value)) {
+        return { ...prev, [category]: currentCategory.filter(item => item !== value) };
+      } else {
+        return { ...prev, [category]: [...currentCategory, value] };
+      }
+    });
+  };
+
+  const resetFilters = () => setFilters({ region: [], budget: [], duration: [], style: [] });
+
+  const filteredPackages = packagesData.filter(pkg => {
+    if (filters.region.length > 0 && !filters.region.includes(pkg.region)) return false;
+    if (filters.style.length > 0 && !filters.style.includes(pkg.style)) return false;
+    
+    if (filters.duration.length > 0) {
+      const matchesDuration = filters.duration.some(range => {
+        if (range === '1 - 3 Days') return pkg.daysValue <= 3;
+        if (range === '4 - 6 Days') return pkg.daysValue >= 4 && pkg.daysValue <= 6;
+        return false;
+      });
+      if (!matchesDuration) return false;
     }
-  ];
 
-  const whyVisit = [
-    "Triveni Sangam – confluence of Ganga, Yamuna & Saraswati",
-    "Famous Ardh Kumbh & Maha Kumbh city",
-    "Spiritual temples, ancient forts & sacred ghats",
-    "Ideal for pilgrimage, religious rituals & cultural journeys"
-  ];
+    if (filters.budget.length > 0) {
+      const matchesBudget = filters.budget.some(range => {
+        if (range === 'Below ₹10,000') return pkg.priceValue < 10000;
+        if (range === '₹10,000 - ₹20,000') return pkg.priceValue >= 10000 && pkg.priceValue <= 20000;
+        if (range === 'Above ₹20,000') return pkg.priceValue > 20000;
+        return false;
+      });
+      if (!matchesBudget) return false;
+    }
+    return true;
+  });
 
-  const topAttractions = [
-    "Bade Hanuman Ji Temple",
-    "Akshayavat Tree",
-    "Swaraj Bhawan & Anand Bhawan Museum",
-    "Alopi Devi Temple"
-  ];
+  const getInclusionIcon = (item) => {
+    const text = item.toLowerCase();
+    if (text.includes('flight')) return <Plane size={16} />;
+    if (text.includes('bus') || text.includes('transfer')) return <Bus size={16} />;
+    if (text.includes('hotel')) return <BedDouble size={16} />;
+    if (text.includes('meal') || text.includes('breakfast')) return <Utensils size={16} />;
+    return <Camera size={16} />;
+  };
 
   return (
-    <div className="bg-[#FDFDFD] min-h-screen selection:bg-orange-100 pt-20 lg:pt-28 font-sans">
+    <div className="w-full font-sans bg-gray-50 min-h-screen pb-16">
       
-      {/* 1. TOP HEADING SECTION */}
-      <section className="px-4 lg:px-8 mb-10">
-        <div className="max-w-7xl mx-auto text-center md:text-left border-b border-slate-100 pb-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <nav className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
-                <a href="/" className="hover:text-orange-600">Home</a>
-                <span>/</span>
-                <span className="text-slate-900 uppercase">Tour Packages</span>
-              </nav>
-              <h1 className="text-3xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
-                Prayagraj <br/>
-                <span className="text-orange-600 font-serif italic font-medium normal-case tracking-normal">Tour Packages</span>
-              </h1>
-            </div>
-            <div className="flex items-center gap-4 bg-white p-3 rounded-2xl shadow-sm border border-slate-50">
-              <div className="text-right">
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1 leading-none">Established Since</p>
-                <p className="text-sm font-black text-slate-900 leading-none">1999</p>
-              </div>
-              <div className="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center text-white">
-                <ShieldCheck size={20} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. MULTI-IMAGE HERO SECTION */}
-      <section className="px-4 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-4 h-auto lg:h-[60vh]">
-          <div className="lg:w-2/3 h-[300px] lg:h-full relative overflow-hidden rounded-[2rem] lg:rounded-[3rem] group shadow-xl">
-            <img 
-              src="src/images/Triveni-Sangam.webp" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              alt="Prayagraj Sangam"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-            <div className="absolute bottom-8 left-8 text-white">
-              <span className="bg-orange-600 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-3 inline-block">Best Seller</span>
-              <h2 className="text-xl lg:text-3xl font-bold italic tracking-tight uppercase">"Triveni Sangam & Spiritual Sangam Darshan"</h2>
-            </div>
-          </div>
-
-          <div className="lg:w-1/3 flex flex-col gap-4">
-            <div className="h-[180px] lg:h-1/2 relative overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-md group">
-              <img src="src/images/anand-bhawan-prayagraj-uttar-pradesh-2.jpg" className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Anand Bhawan" />
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center text-center p-4">
-                <p className="text-white font-bold uppercase tracking-widest text-lg">Historic Heritage</p>
-              </div>
-            </div>
-            <div className="h-[180px] lg:h-1/2 bg-blue-900 rounded-[2rem] lg:rounded-[3rem] p-8 flex flex-col justify-center text-white relative overflow-hidden group">
-               <div className="absolute -top-10 -right-10 w-32 h-32 bg-orange-500 blur-[80px] opacity-30"></div>
-               <Landmark size={32} className="mb-3 text-orange-400" />
-               <h3 className="text-xl font-black leading-tight mb-2 uppercase italic text-white">Kumbh Mela <br/> Destination</h3>
-               <p className="text-[10px] font-bold text-blue-300 tracking-widest uppercase">Verified Expert Service</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. NEW DETAILED DESCRIPTION SECTION */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-8">
-            <h2 className="text-2xl lg:text-3xl font-black text-slate-900 mb-6 uppercase tracking-tighter">Complete Sangam Experience</h2>
-            <div className="space-y-6 text-slate-600 font-medium italic leading-relaxed">
-              <p>
-                Our Prayagraj Tour Packages offer a complete spiritual and cultural experience, including Triveni Sangam Darshan, Bade Hanuman Ji Temple visit, and sightseeing across the historic city of Prayagraj. 
-                From sacred rituals to heritage exploration, we provide smooth travel, clean vehicles, and reliable service for a peaceful pilgrimage.
-              </p>
-              <p>
-                Whether you’re traveling solo, with family, or with groups, our packages ensure a comfortable and devotional Prayagraj journey. 
-                We provide affordable Prayagraj taxi services, railway station/airport pick-up, and guided tours covering all major temples, ghats, and historical landmarks.
-              </p>
-              <p>
-                Enjoy customized 1-day, 2-day, and extended Prayagraj tour itineraries designed for Sangam Snan, Darshan, and cultural exploration.
-              </p>
-            </div>
-          </div>
-          <div className="lg:col-span-4 bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 shadow-inner">
-             <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                   <div className="bg-orange-600 p-2 rounded-lg text-white shrink-0"><CheckCircle size={18}/></div>
-                   <p className="text-xs font-bold text-slate-700 uppercase tracking-tight">Sangam Snan & Darshan</p>
-                </div>
-                <div className="flex items-start gap-4">
-                   <div className="bg-orange-600 p-2 rounded-lg text-white shrink-0"><CheckCircle size={18}/></div>
-                   <p className="text-xs font-bold text-slate-700 uppercase tracking-tight">Airport / Station Pickup</p>
-                </div>
-                <div className="flex items-start gap-4">
-                   <div className="bg-orange-600 p-2 rounded-lg text-white shrink-0"><CheckCircle size={18}/></div>
-                   <p className="text-xs font-bold text-slate-700 uppercase tracking-tight">Heritage Sightseeing</p>
-                </div>
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. WHY VISIT & ATTRACTIONS SECTION */}
-      <section className="py-20 px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
-        <div className="bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col justify-center">
-          <h2 className="text-2xl lg:text-3xl font-black text-slate-900 mb-8 border-l-8 border-blue-900 pl-6 uppercase tracking-tighter italic text-center lg:text-left">Why Visit Prayagraj?</h2>
-          <ul className="space-y-5">
-            {whyVisit.map((item, i) => (
-              <li key={i} className="flex gap-4 text-sm lg:text-base text-slate-600 font-bold italic leading-relaxed">
-                <CheckCircle size={22} className="text-blue-900 shrink-0" /> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-slate-900 p-8 lg:p-12 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600 blur-[100px] opacity-20"></div>
-          <h2 className="text-2xl lg:text-3xl font-black mb-8 border-l-8 border-orange-600 pl-6 uppercase tracking-tighter italic text-center lg:text-left">Top Attractions</h2>
-          <ul className="space-y-5">
-            {topAttractions.map((item, i) => (
-              <li key={i} className="flex gap-4 text-sm lg:text-base opacity-90 font-bold italic leading-relaxed text-center lg:text-left">
-                <Star size={22} className="text-orange-600 shrink-0" fill="currentColor" /> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 5. TRAVEL CARDS WITH TOP IMAGES */}
-      <section className="py-24 bg-slate-50 px-6">
-        <div className="max-w-7xl mx-auto text-center mb-16">
-          <h2 className="text-2xl lg:text-4xl font-black text-slate-900 tracking-tighter uppercase mb-3 text-center">Travel Connections</h2>
-          <p className="text-slate-500 font-bold text-xs uppercase tracking-widest text-center">Major routes connected from Prayagraj</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {travelRoutes.map((item, i) => (
-            <div key={i} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col">
-              <div className="h-[220px] relative overflow-hidden">
-                <img src={item.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={item.route} />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-lg">{item.tag}</span>
-                </div>
-              </div>
-              <div className="p-8 flex-1">
-                <h4 className="font-black text-xl text-slate-800 mb-6 uppercase tracking-tight flex items-center justify-between">
-                  {item.route}
-                  <ArrowUpRight size={20} className="text-slate-300 group-hover:text-orange-600 transition-colors"/>
-                </h4>
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-center justify-between text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic"><MapPin size={14} className="text-orange-500"/> Dist</span>
-                    <span className="text-slate-700">{item.dist}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic"><Clock size={14} className="text-blue-600"/> Train</span>
-                    <span className="text-slate-700">{item.train}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                    <span className="flex items-center gap-2 italic"><Car size={14} className="text-orange-600"/> Road</span>
-                    <span className="text-slate-700">{item.car}</span>
-                  </div>
-                </div>
-                <button className="w-full bg-slate-900 text-white py-4 rounded-xl font-black text-[10px] tracking-[0.2em] hover:bg-orange-600 transition-all flex items-center justify-center gap-2 uppercase shadow-lg shadow-slate-200">
-                  Book Now
-                </button>
+      {/* 1. HERO BANNER */}
+      <div className="relative group w-full h-[300px] md:h-[450px] lg:h-[500px] overflow-hidden bg-gray-900">
+        <div className="flex h-full w-full transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+          {bannerData.map((banner) => (
+            <div key={banner.id} className="min-w-full h-full relative">
+              <img src={banner.image} alt={banner.title} className="w-full h-full object-cover opacity-80" />
+              <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-7xl mx-auto text-white">
+                {/* <span className="bg-orange-500 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 w-max">Established 1999</span> */}
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-3 drop-shadow-md tracking-tight uppercase">{banner.title}</h2>
+                <p className="text-base md:text-xl font-medium text-gray-200 drop-shadow-md max-w-lg mb-6">{banner.subtitle}</p>
+                <button className="bg-orange-500 hover:bg-orange-600 text-white text-sm md:text-base font-bold py-3 px-8 rounded-full w-max transition-colors shadow-lg">Explore Prayagraj</button>
               </div>
             </div>
           ))}
         </div>
-      </section>
+        <button onClick={prevSlide} className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all"><ChevronLeft size={28} /></button>
+        <button onClick={nextSlide} className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all"><ChevronRight size={28} /></button>
+      </div>
 
-      {/* 6. CALL TO ACTION FOOTER */}
+      {/* 2. MAIN CONTENT AREA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 md:mt-12 flex flex-col lg:flex-row gap-8">
+        
+        {/* Mobile Filter Toggle */}
+        <button className="lg:hidden flex items-center justify-center w-full bg-white border border-gray-200 py-3 rounded-xl shadow-sm text-indigo-950 font-bold mb-4" onClick={() => setShowMobileFilters(!showMobileFilters)}>
+          <Filter size={20} className="mr-2 text-orange-500" />
+          {showMobileFilters ? "Hide Filters" : "Show Filters"}
+        </button>
+
+        {/* Sidebar Filters */}
+        <aside className={`w-full lg:w-1/4 ${showMobileFilters ? 'block' : 'hidden'} lg:block`}>
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 sticky top-28 shadow-sm">
+            <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-4">
+              <h2 className="text-lg font-extrabold text-indigo-950 flex items-center"><Filter size={18} className="mr-2 text-orange-500" /> Filters</h2>
+              <button onClick={resetFilters} className="text-sm text-orange-500 font-semibold hover:underline">Reset All</button>
+            </div>
+
+            <div className="mb-6">
+              <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase">Region</h3>
+              {['Temple Circuit', 'Spiritual Circuit', 'Ramayana Path', 'Nepal Gateway', 'Heritage Path'].map((region, i) => (
+                <label key={i} className="flex items-center space-x-3 cursor-pointer group mb-2">
+                  <input type="checkbox" checked={filters.region.includes(region)} onChange={() => toggleFilter('region', region)} className="w-4 h-4 text-orange-500 rounded focus:ring-orange-500" />
+                  <span className="text-gray-600 group-hover:text-orange-500 transition-colors text-sm">{region}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className="mb-6 border-t border-gray-100 pt-6">
+              <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase">Budget</h3>
+              {['Below ₹10,000', '₹10,000 - ₹20,000', 'Above ₹20,000'].map((price, i) => (
+                <label key={i} className="flex items-center space-x-3 cursor-pointer group mb-2">
+                  <input type="checkbox" checked={filters.budget.includes(price)} onChange={() => toggleFilter('budget', price)} className="w-4 h-4 text-orange-500 rounded" />
+                  <span className="text-gray-600 group-hover:text-orange-500 transition-colors text-sm">{price}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className="bg-blue-900 rounded-2xl p-5 text-white mt-8">
+               <Zap size={20} className="text-orange-400 mb-2"/>
+               <p className="text-[10px] font-black uppercase tracking-widest opacity-70">Expert Pickup</p>
+               <p className="text-xs font-bold mt-1">Reliable station & airport pickup for all tourists.</p>
+            </div>
+          </div>
+        </aside>
+
+        {/* Package Grid Area */}
+        <div className="w-full lg:w-3/4">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-950 mb-2 uppercase tracking-tight">Prayagraj Tour Packages</h1>
+            <p className="text-gray-600 text-base max-w-3xl italic">
+              "Our Prayagraj Tour Packages offer a complete spiritual and cultural experience, including Triveni Sangam Darshan, Bade Hanuman Ji Temple visit, and sightseeing across the historic city of Prayagraj. From sacred rituals to heritage exploration, we provide smooth travel, clean vehicles, and reliable service for a peaceful pilgrimage.
+            </p>
+          </div>
+
+          <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <h2 className="text-lg md:text-xl font-extrabold text-indigo-950 uppercase tracking-tighter">Showing {filteredPackages.length} Packages</h2>
+            <select className="border border-gray-300 text-gray-700 text-sm rounded-lg p-2.5 outline-none bg-white cursor-pointer font-medium">
+              <option>Sort by: Popularity</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+            </select>
+          </div>
+
+          {filteredPackages.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {filteredPackages.map((pkg) => (
+                <div key={pkg.id} className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                  <div className="relative h-56 overflow-hidden">
+                    <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded shadow-md">{pkg.discount}</div>
+                    <div className="absolute top-4 right-4 bg-blue-600/90 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-md uppercase">{pkg.region}</div>
+                  </div>
+
+                  <div className="p-5 flex flex-col flex-grow">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-extrabold text-indigo-950 leading-tight group-hover:text-orange-600 transition-colors pr-2 uppercase">
+                        {pkg.title}
+                      </h3>
+                      <div className="flex items-center bg-green-100 px-1.5 py-0.5 rounded text-green-700 text-xs font-bold">
+                        {pkg.rating} <Star size={12} className="ml-1 fill-current" />
+                      </div>
+                    </div>
+
+                    <div className="text-sm text-gray-500 font-medium space-y-2 mb-4 mt-2">
+                      <div className="flex items-center"><MapPin size={16} className="text-orange-500 mr-2 shrink-0" /> <span className="truncate">{pkg.destinations}</span></div>
+                      <div className="flex items-center"><Clock size={16} className="text-orange-500 mr-2 shrink-0" /> {pkg.duration}</div>
+                    </div>
+
+                    <div className="border-t border-b border-gray-100 py-3 mb-4 mt-auto">
+                      <div className="flex flex-wrap gap-4">
+                        {pkg.inclusions.map((inclusion, idx) => (
+                          <div key={idx} className="flex flex-col items-center justify-center text-gray-500">
+                            <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center mb-1 text-indigo-600">{getInclusionIcon(inclusion)}</div>
+                            <span className="text-[10px] font-semibold text-center leading-tight w-12 truncate">{inclusion}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <p className="text-xs text-gray-400 font-semibold line-through mb-0.5">{pkg.originalPrice}</p>
+                        <div className="flex items-baseline">
+                          <span className="text-2xl font-black text-indigo-950">{pkg.discountedPrice}</span>
+                          <span className="text-xs text-gray-500 ml-1 font-medium">/ person</span>
+                        </div>
+                      </div>
+                      <button className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg text-sm flex items-center">
+                        View Details <ChevronRight size={16} className="ml-1" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-white rounded-2xl border border-gray-200">
+              <Filter size={24} className="text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-indigo-950 mb-2 uppercase">No Packages Found</h3>
+              <p className="text-gray-500 mb-6">Try adjusting your filters for the Sangam experience.</p>
+              <button onClick={resetFilters} className="bg-orange-500 text-white px-6 py-2.5 rounded-full font-bold">Clear All Filters</button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* FOOTER CTA SECTION */}
       <section className="py-24 px-6 text-center">
         <div className="max-w-4xl mx-auto bg-slate-900 p-12 lg:p-20 rounded-[4rem] text-white relative overflow-hidden shadow-2xl">
-           <h2 className="text-3xl lg:text-5xl font-black mb-6 tracking-tighter uppercase leading-none italic text-center">Experience Prayagraj</h2>
-           <p className="text-slate-400 text-sm lg:text-base mb-10 italic font-medium opacity-80 leading-relaxed max-w-2xl mx-auto text-center">
-             "Our packages offer a complete spiritual experience. Contact us 24/7 for bookings!"
+           <h2 className="text-3xl lg:text-5xl font-black mb-6 tracking-tighter uppercase leading-none italic">Experience Prayagraj</h2>
+           <p className="text-slate-400 text-sm lg:text-base mb-10 italic font-medium opacity-80 leading-relaxed max-w-2xl mx-auto">
+             "Our Prayagraj tours promise an unforgettable spiritual journey. Contact us 24/7 for bookings!"
            </p>
            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a href="tel:+918576000084" className="w-full sm:w-auto bg-orange-600 text-white px-10 py-4 rounded-2xl font-black text-[11px] tracking-widest transition-transform hover:scale-105 shadow-xl uppercase">
+              <a href="tel:+918576000084" className="bg-orange-500 text-white px-10 py-4 rounded-2xl font-black text-[11px] tracking-widest transition-transform hover:scale-105 shadow-xl uppercase">
                  Call: +91 8576000084
               </a>
               <div className="text-left">
-                 <p className="text-[10px] font-black uppercase tracking-widest leading-none mb-1 text-slate-500 text-center lg:text-left">Head Office</p>
-                 <p className="font-bold text-xs text-slate-300 italic text-center lg:text-left">Gorakhpur (U.P) - 273001</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest leading-none mb-1 text-slate-500">Head Office</p>
+                  <p className="font-bold text-xs text-slate-300 italic">Gorakhpur (U.P) - 273001</p>
               </div>
            </div>
         </div>
