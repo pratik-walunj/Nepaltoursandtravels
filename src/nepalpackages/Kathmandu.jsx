@@ -69,6 +69,7 @@ const packageData = {
     "Pokhara: 2 Nights in a lake-view hotel (e.g., Temple Tree Resort or similar).",
     "Nagarkot: 1 Night in a Himalayan view resort (e.g., Club Himalaya or similar)."
   ],
+  
   meals: [
     "Daily buffet breakfast at all hotels.",
     "All meals (Breakfast, Lunch, Dinner) included during the Chitwan stay.",
