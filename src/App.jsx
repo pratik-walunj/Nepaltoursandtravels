@@ -3,6 +3,7 @@ import Layout from "./Layout"
 import Home from "./pages/Home"
 import IndiaNepalallPackages from "./pages/IndiaNepalallPackages"
 import NepalAllPackages from "./nepalpackages/NepalAllPackages"
+import Kathmandu from "./nepalpackages/Kathmandu"
 
 
 import AyodhyaPackages from "./pages/AyodhyaPackages"
@@ -45,6 +46,7 @@ const App=()=>{
 
       <Route path="indianepalallpackages" element={<IndiaNepalallPackages/>}/>
       <Route path="nepalallpackages" element={<NepalAllPackages/>}/>
+      <Route path="package/kathmandu" element={<Kathmandu/>}/>
 
      
 
