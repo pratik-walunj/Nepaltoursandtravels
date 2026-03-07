@@ -7,7 +7,7 @@ import Kathmandu from "./nepalpackages/Kathmandu"
 
 
 import VisaPage from "./pages/VisaPage"
-import AyodhyaPackages from "./pages/AyodhyaPackages"
+
 
 
 import AyodhyaPackages from "./ayodhyapackages/AyodhyaPackages"
