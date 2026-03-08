@@ -1,0 +1,28 @@
+# Nepal Tours and Travels - Robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap location (update with your actual domain)
+Sitemap: https://www.nepaltours.com/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 1
+
+# Disallow admin or private pages (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all images
+User-agent: Googlebot-Image
+Allow: /
+
+# Allow all pages for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
