@@ -26,12 +26,14 @@ import BungeeJumpingNepal from "./adventuresports/bungee-jumping-nepal"
 import TrekkingInNepal from "./adventuresports/trekking-in-nepal"
 import HikingInNepal from "./adventuresports/hiking-in-nepal"
 import MountainBikingInNepalPage from "./adventuresports/mountain-biking-In-Nepal"
+import BikeTourInNepalPage from "./adventuresports/nepal-bike-riding"
 
 
 const App=()=>{
   return(
     <>
     <BrowserRouter>
+  
     <Routes>
       <Route path="/" element={<Layout/>} >
 
@@ -61,6 +63,7 @@ const App=()=>{
       <Route path="trekking-in-nepal" element={<TrekkingInNepal/>}/>
       <Route path="hiking-in-nepal" element={<HikingInNepal/>}/>
       <Route path="mountain-biking-In-Nepal" element={<MountainBikingInNepalPage/>}/>
+      <Route path="nepal-bike-riding" element={<BikeTourInNepalPage/>}/>
 
 
      
