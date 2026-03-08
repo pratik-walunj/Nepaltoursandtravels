@@ -300,19 +300,20 @@
 
 
 
-
 import React, { useState, useEffect } from 'react';
 import { 
   Menu, X, Search, Globe, PhoneCall, MapPin, ChevronDown, 
   Plane, Building2, Map, CreditCard, Palmtree, Bike, FileText
 } from 'lucide-react';
-// 1. React Router DOM se Link import karein
 import { Link } from 'react-router-dom';
 
 const TravelNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMobileMenu, setActiveMobileMenu] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  
+  // NEW STATE: Dropdown ko click karne ke baad hide karne ke liye
+  const [hideDropdown, setHideDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -326,7 +327,6 @@ const TravelNavbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 2. Data Structure update kiya - subItems me 'name' aur 'path' add kiya
   const navLinks = [
     { 
       name: 'Holidays', 
@@ -345,7 +345,7 @@ const TravelNavbar = () => {
     { 
       name: 'Flights', 
       icon: <Plane size={22} />,
-      path: '/flights' // Agar iska sub menu nahi h to direct path de diya
+      path: '/flights'
     },
     { 
       name: 'Hotels', 
@@ -368,7 +368,9 @@ const TravelNavbar = () => {
         { name: 'Mountain flight', path: 'mountain-flight-nepal' },
         { name: 'Mountain Helicopter in Nepal', path: 'mountain-helicopter-tour-nepal' },
         { name: 'Bungee jumping', path: 'bungee-jumping-nepal' },
-        { name: 'Trekking in Nepal', path: '/activities/trekking' }
+        { name: 'Trekking in Nepal', path: 'trekking-in-nepal' },
+        { name: 'Hiking in nepal',path: 'hiking-in-nepal'},
+        { name: 'Mountain biking in nepal',path:'mountain-biking-In-Nepal'}
       ] 
     },
     { 
@@ -393,18 +395,31 @@ const TravelNavbar = () => {
     }
   };
 
+  // NEW FUNCTION: Jab bhi koi link click hoga, ye saare menus ko band kar dega
+  const handleLinkClick = () => {
+    // Mobile menu close karega
+    setIsOpen(false);
+    setActiveMobileMenu(null);
+    
+    // Desktop dropdown ka 'sticky hover' hata dega
+    setHideDropdown(true);
+    setTimeout(() => {
+      setHideDropdown(false); // 300ms baad wapas normal state me le aayega
+    }, 300);
+  };
+
   const isSolid = isScrolled || isOpen;
 
   return (
     <header className="fixed w-full font-sans top-0 z-50 transition-all duration-300">
       
-      {/* Top Utility Bar (Unchanged) */}
+      {/* Top Utility Bar */}
       <div className={`hidden lg:flex justify-between items-center px-6 py-2 text-[11px] transition-colors duration-300 border-b ${
         isSolid ? 'bg-gray-100 text-gray-600 border-gray-200' : 'bg-black/40 backdrop-blur-sm text-gray-200 border-white/20'
       }`}>
         <div className="flex items-center space-x-6">
           <a href="#" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
-            <PhoneCall size={12} className="mr-1.5" /> 1800-2099-100
+            <PhoneCall size={12} className="mr-1.5" /> +91 85760 00084
           </a>
           <a href="#" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
             <MapPin size={12} className="mr-1.5" /> Find Nearest Stores
@@ -429,7 +444,7 @@ const TravelNavbar = () => {
             
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center cursor-pointer mr-8">
-               <Link to="/"> {/* Logo par click karne par home page par jaye */}
+               <Link to="/"> 
                  <span className={`text-2xl md:text-3xl font-black tracking-tight transition-colors duration-300 ${
                     isSolid ? 'text-blue-800' : 'text-white'
                   }`}>
@@ -442,7 +457,6 @@ const TravelNavbar = () => {
             <nav className="hidden xl:flex items-center justify-center flex-1 space-x-2">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative group px-2 py-4 cursor-pointer">
-                  {/* Agar subItems hain to normal div/button, warna direct Link */}
                   {link.subItems ? (
                     <div className={`flex flex-col items-center justify-center text-sm font-semibold transition-all duration-200 ${
                       isSolid ? 'text-gray-700 group-hover:text-blue-600' : 'text-white group-hover:text-yellow-400'
@@ -460,6 +474,7 @@ const TravelNavbar = () => {
                   ) : (
                     <Link
                       to={link.path}
+                      onClick={handleLinkClick} // Added onClick here
                       className={`flex flex-col items-center justify-center text-sm font-semibold transition-all duration-200 ${
                         isSolid ? 'text-gray-700 group-hover:text-blue-600' : 'text-white group-hover:text-yellow-400'
                       }`}
@@ -480,16 +495,21 @@ const TravelNavbar = () => {
                     isSolid ? 'bg-yellow-500' : 'bg-yellow-400'
                   }`}></div>
 
-                  {/* Desktop Dropdown Menu (With Links) */}
+                  {/* Desktop Dropdown Menu (Fixed Sticky Hover Issue) */}
                   {link.subItems && (
-                    <div className="absolute left-1/2 -translate-x-1/2 top-[90%] w-64 bg-white border border-gray-200 shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:top-full transition-all duration-300 z-50 pt-2">
+                    <div className={`absolute left-1/2 -translate-x-1/2 top-[90%] w-64 bg-white border border-gray-200 shadow-2xl rounded-lg transition-all duration-300 z-50 pt-2 ${
+                      // Condition: Agar hideDropdown true hai toh hover classes hata do
+                      hideDropdown 
+                        ? 'opacity-0 invisible pointer-events-none' 
+                        : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:top-full'
+                    }`}>
                       <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-t border-l border-gray-200 rotate-45"></div>
                       <div className="py-2 relative bg-white rounded-lg z-10">
                         {link.subItems.map((subItem, index) => (
-                          // 3. <a> tag replaced with <Link to={...}>
                           <Link 
                             key={index} 
                             to={subItem.path} 
+                            onClick={handleLinkClick} // Trigger the hide function
                             className="block px-6 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors border-b border-gray-50 last:border-0"
                           >
                             {subItem.name}
@@ -547,7 +567,6 @@ const TravelNavbar = () => {
               <div key={link.name} className="border-b border-gray-100 last:border-0">
                 {link.subItems ? (
                   <>
-                    {/* Parent Menu Item Button */}
                     <button 
                       onClick={() => toggleMobileSubMenu(link.name)}
                       className="w-full flex items-center justify-between px-2 py-4 text-base font-semibold text-gray-700 hover:text-blue-600 transition-colors group"
@@ -564,15 +583,13 @@ const TravelNavbar = () => {
                       />
                     </button>
                     
-                    {/* Submenu Dropdown */}
                     <div className={`overflow-hidden transition-all duration-300 bg-gray-50 rounded-b-lg ${activeMobileMenu === link.name ? 'max-h-[800px] opacity-100 mb-2' : 'max-h-0 opacity-0'}`}>
                       <div className="flex flex-col pl-11 pr-2 py-2 space-y-1">
                         {link.subItems.map((subItem, index) => (
-                          // 4. Mobile me bhi <Link> tag use kiya
                           <Link 
                             key={index} 
                             to={subItem.path} 
-                            onClick={() => setIsOpen(false)} // Link click hone par mobile menu close ho jayega
+                            onClick={handleLinkClick} // Applied central handler
                             className="py-2.5 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors border-b border-gray-200 last:border-0"
                           >
                             {subItem.name}
@@ -582,10 +599,9 @@ const TravelNavbar = () => {
                     </div>
                   </>
                 ) : (
-                  // Link without Submenu for Mobile
                   <Link
                     to={link.path}
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleLinkClick} // Applied central handler
                     className="w-full flex items-center px-2 py-4 text-base font-semibold text-gray-700 hover:text-blue-600 transition-colors group"
                   >
                     <span className="text-gray-400 group-hover:text-blue-600 transition-colors mr-4">
@@ -598,7 +614,6 @@ const TravelNavbar = () => {
             ))}
           </div>
 
-          {/* Mobile Bottom Utilities */}
           <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
             <button className="w-full flex items-center justify-center bg-blue-600 text-white px-4 py-3.5 rounded-xl font-bold shadow-md hover:bg-blue-700 transition-colors">
               Login / Register

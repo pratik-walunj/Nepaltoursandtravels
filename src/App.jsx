@@ -3,20 +3,29 @@ import Layout from "./Layout"
 import Home from "./pages/Home"
 import IndiaNepalallPackages from "./pages/IndiaNepalallPackages"
 import NepalAllPackages from "./nepalpackages/NepalAllPackages"
+import Kathmandu from "./nepalpackages/Kathmandu"
 
 
-import AyodhyaPackages from "./pages/AyodhyaPackages"
+import VisaPage from "./pages/VisaPage"
+
+
+
+import AyodhyaPackages from "./ayodhyapackages/AyodhyaPackages"
+
 import KathmanduTour2N3D from "./pages/KathmanduTour2N3D"
-import KashiTourPackages from "./pages/KashiTourPackages"
-import BhutanTourPackages from "./pages/BhutanTourPackages"
-import PrayagrajTourPackages from "./pages/PrayagrajTourPackages"
-import BodhGayaTourPackages from "./pages/BodhGayaTourPackages"
-import GorakhpurTourPackages from "./pages/GorakhpurTourPackages"
-import SchoolTripNepal from "./pages/school-trip-nepal"
-import ParaglidingNepal from "./pages/paragliding-nepal"
-import MountainFlightNepal from "./pages/mountain-flight-nepal"
-import MountainHelicopterNepal from "./pages/mountain-helicopter-tour-nepal"
-import BungeeJumpingNepal from "./pages/bungee-jumping-nepal"
+import KashiTourPackages from "./kashipackages/KashiTourPackages"
+import BhutanTourPackages from "./bhutanpackages/BhutanTourPackages"
+import PrayagrajTourPackages from "./PrayagrajPackages/PrayagrajTourPackages"
+import BodhGayaTourPackages from "./bodhgayapackages/BodhGayaTourPackages"
+import GorakhpurTourPackages from "./gorakhpurpackages/GorakhpurTourPackages"
+import SchoolTripNepal from "./schooltrippackage/school-trip-nepal"
+import ParaglidingNepal from "./adventuresports/paragliding-nepal"
+import MountainFlightNepal from "./adventuresports/mountain-flight-nepal"
+import MountainHelicopterNepal from "./adventuresports/mountain-helicopter-tour-nepal"
+import BungeeJumpingNepal from "./adventuresports/bungee-jumping-nepal"
+import TrekkingInNepal from "./adventuresports/trekking-in-nepal"
+import HikingInNepal from "./adventuresports/hiking-in-nepal"
+import MountainBikingInNepalPage from "./adventuresports/mountain-biking-In-Nepal"
 
 
 const App=()=>{
@@ -45,6 +54,14 @@ const App=()=>{
 
       <Route path="indianepalallpackages" element={<IndiaNepalallPackages/>}/>
       <Route path="nepalallpackages" element={<NepalAllPackages/>}/>
+      <Route path="package/kathmandu" element={<Kathmandu/>}/>
+
+      <Route path="visa" element={<VisaPage/>}/>
+
+      <Route path="trekking-in-nepal" element={<TrekkingInNepal/>}/>
+      <Route path="hiking-in-nepal" element={<HikingInNepal/>}/>
+      <Route path="mountain-biking-In-Nepal" element={<MountainBikingInNepalPage/>}/>
+
 
      
 

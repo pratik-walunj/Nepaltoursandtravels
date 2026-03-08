@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Paraglidinginnepal from "../images/Paragliding-in-nepal.webp"
+import Annapurna from "../images/Annapurna.jpeg"
 import { 
   Mountain, Clock, ShieldCheck, 
   ChevronRight, ArrowUpRight, CheckCircle,
@@ -60,7 +62,7 @@ const ResponsiveParaglidingNepal = () => {
       <section className="px-3 lg:px-8 mb-12 lg:mb-20">
         <div className="max-w-7xl mx-auto relative h-[450px] lg:h-[70vh] rounded-3xl lg:rounded-[3.5rem] overflow-hidden shadow-xl group">
           <img 
-            src="src/images/Paragliding-in-nepal.webp" 
+            src={Paraglidinginnepal} 
             className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
             alt="Paragliding over Pokhara"
           />
@@ -116,7 +118,7 @@ const ResponsiveParaglidingNepal = () => {
           <div className="order-1 lg:order-2">
              <div className="bg-slate-100 rounded-3xl overflow-hidden shadow-lg h-[250px] lg:h-[450px]">
                 <img 
-                  src="src/images/Annapurna.jpeg" 
+                  src= {Annapurna} 
                   className="w-full h-full object-cover" 
                   alt="Nepal Views" 
                 />

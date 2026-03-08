@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import MountainHelicopter from "../images/Mountain Helicopter.jpeg"
 import { 
   Mountain, ShieldCheck, Star, 
   ChevronRight, ArrowUpRight, CheckCircle,
@@ -82,7 +83,7 @@ const HelicopterToursPremium = () => {
         <div className="max-w-7xl mx-auto bg-slate-50 p-6 lg:p-14 rounded-2xl lg:rounded-[3.5rem] shadow-sm border border-slate-100">
            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-4 rounded-xl lg:rounded-[2.5rem] overflow-hidden shadow-xl h-[200px] lg:h-[350px]">
-                 <img src="src\images\Mountain Helicopter.jpeg" className="w-full h-full object-cover" alt="Heli Tours"/>
+                 <img src={MountainHelicopter} className="w-full h-full object-cover" alt="Heli Tours"/>
               </div>
               <div className="lg:col-span-8 text-left">
                  <h2 className="text-lg lg:text-2xl font-black text-slate-900 mb-4 border-l-4 border-orange-600 pl-4 uppercase">Luxury Himalayan Expeditions</h2>

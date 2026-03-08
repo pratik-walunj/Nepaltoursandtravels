@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import caption from "../images/caption.jpg"
 import { 
   Mountain, Clock, ShieldCheck, Star, 
   ChevronRight, ArrowUpRight, CheckCircle,
@@ -74,7 +75,7 @@ const MountainFlightNepalDetailed = () => {
       <section className="px-3 lg:px-8 mb-12 lg:mb-20">
         <div className="max-w-7xl mx-auto relative h-[450px] lg:h-[70vh] rounded-3xl lg:rounded-[3.5rem] overflow-hidden shadow-xl group text-left">
           <img 
-            src="src\images\caption.jpg" 
+            src={caption}
             className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
             alt="Himalayan Peak View"
           />
@@ -167,7 +168,7 @@ const MountainFlightNepalDetailed = () => {
           <div className="order-1 lg:order-2">
              <div className="bg-slate-100 rounded-3xl overflow-hidden shadow-lg h-[250px] lg:h-[450px]">
                 <img 
-                  src="src\images\caption.jpg" 
+                  src={caption} 
                   className="w-full h-full object-cover" 
                   alt="Nepal Peaks" 
                 />
