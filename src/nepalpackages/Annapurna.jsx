@@ -7,7 +7,7 @@ import {
 import annapurna from "../images/Annapurna.jpeg"; 
 import pokhara2 from "../images/pokhara2.png"
 import gorakhpur from "../images/gorakhpur.png"
-import helitour6 from "../images/helitour6.png"
+import Helitour from  "../images/Helitour.png"
 // --- GORAKHPUR TO ANNAPURNA BASE CAMP MOCK DATA ---
 const packageData = {
   title: "Ultimate Himalayas: Gorakhpur to Annapurna Base Camp (Heli Tour)",
@@ -23,7 +23,7 @@ const packageData = {
   images: [
     "https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Annapurna Mountains
     pokhara2, // Pokhara Lake
-    helitour6  // Aerial Mountain View
+    Helitour  // Aerial Mountain View
   ],
   itinerary: [
     {
@@ -35,7 +35,7 @@ const packageData = {
     {
       day: 2,
       title: "Helicopter Flight to Annapurna Base Camp & Local Sightseeing",
-      image: helitour6,
+      image: Helitour,
       description: "The highlight of your trip! Wake up early and transfer to Pokhara Airport for a thrilling Helicopter flight. Fly over lush valleys and traditional villages directly into the heart of the Himalayas. Land at Annapurna Base Camp (4,130m) for 30-45 minutes. Enjoy a warm breakfast surrounded by stunning 360-degree views of Mt. Annapurna and Machhapuchhre. Fly back to Pokhara. In the afternoon, visit Davis Fall, Gupteshwor Cave, and enjoy a peaceful boat ride on Phewa Lake. Overnight stay in Pokhara."
     },
     {
