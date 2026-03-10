@@ -33,11 +33,19 @@ import AyodhyaLucknow from "./ayodhyapackages/ayodhya-lucknow"
 import AyodhyaChitrakoot from "./ayodhyapackages/ayodhya-chitrakoot"
 import AyodhyaNepal from "./ayodhyapackages/ayodhya-nepal-sonauli-"
 import AyodhyaGorakhpur from "./ayodhyapackages/ayodhya-gorakhpur"
+
 import KashiAyodhyaTour from "./kashipackages/kashi-ayodhya-tour"
 import KashiPrayagrajTour from "./kashipackages/kashi-prayagraj-tour"
 import KashiGorakhpurTour from "./kashipackages/kashi-gorakhpur-tour"
 import KashiLucknowTour from "./kashipackages/kashi-lucknow-tour"
 import KashiChitrakootTour from "./kashipackages/kashi-chitrakoot-tour"
+
+
+import Pokhara from "./nepalpackages/Pokhara"
+import Chitwan from "./nepalpackages/Chitwan"
+import Annapurna from "./nepalpackages/Annapurna";
+import Lumbini from "./nepalpackages/Lumbini"
+import Mustang from "./nepalpackages/Mustang";
 
 
 const App=()=>{
@@ -64,10 +72,15 @@ const App=()=>{
       <Route path="mountain-flight-nepal" element={<MountainFlightNepal/>}/>
       <Route path="mountain-helicopter-tour-nepal" element={<MountainHelicopterNepal/>}/>
       <Route path="bungee-jumping-nepal" element={<BungeeJumpingNepal/>}/>
-
+                    {/*   Nepal packages */}
       <Route path="indianepalallpackages" element={<IndiaNepalallPackages/>}/>
       <Route path="nepalallpackages" element={<NepalAllPackages/>}/>
       <Route path="package/kathmandu" element={<Kathmandu/>}/>
+      <Route path="package/pokhara"  element={<Pokhara/>}/>
+      <Route path="package/chitwan" element={<Chitwan/>}/>
+      <Route path="package/annapurna"  element={<Annapurna/>}/>
+      <Route path="package/lumbini"  element={<Lumbini/>}/>
+      <Route path="package/mustang"  element={<Mustang/>}/>
 
       <Route path="visa" element={<VisaPage/>}/>
 
