@@ -16,6 +16,9 @@ import {
   Star, Filter, ChevronRight, ChevronLeft, Bus, Mountain,
   ShieldCheck, Zap, Landmark, CheckCircle
 } from 'lucide-react';
+
+import { Link } from 'react-router-dom';
+
 import { fromJSON } from 'postcss';
 
 // 1. Gorakhpur Banner Carousel Data
@@ -48,7 +51,7 @@ const packagesData = [
     region: "Spiritual Circuit",
     image: Kashi,
     destinations: "Gorakhpur • Varanasi • Vishwanath Temple",
-    duration: "2 Days / 1 Night",
+    duration: "3Days / 2 Night",
     daysValue: 2, 
     originalPrice: "₹....",
     discountedPrice: "₹....",
@@ -56,7 +59,7 @@ const packagesData = [
     discount: ".. OFF",
     rating: 4.9,
     style: "Spiritual / Pilgrimage", 
-    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer', 'Guide'],
+    inclusions: ['Flight', ' Hotel', 'All Meals', 'Sightseeing','Transfer', 'Guide'],
     tag: "Bestseller"
   },
   {
@@ -73,16 +76,16 @@ const packagesData = [
     discount: ".. OFF",
     rating: 5.0,
     style: "Spiritual / Pilgrimage",
-    inclusions: ['Hotel', 'Breakfast', 'Sightseeing', 'Transfer'],
+   inclusions: ['Flight', ' Hotel', 'All Meals', 'Sightseeing','Transfer', 'Guide'],
     tag: "Most Popular"
   },
   {
     id: 3,
-    title: "Gorakhpur → Kushinagar",
+    title: "Gorakhpur → Khushinagar",
     region: "Buddhist Circuit",
     image: Kushinagar,
     destinations: "Mahaparinirvana Temple • Ramabhar Stupa",
-    duration: "1 Day / 0 Night",
+    duration: "2 Day / 1Night",
     daysValue: 1,
     originalPrice: "₹....",
     discountedPrice: "₹....",
@@ -90,12 +93,12 @@ const packagesData = [
     discount: ".. OFF",
     rating: 4.8,
     style: "Spiritual / Pilgrimage",
-    inclusions: ['Sightseeing', 'Transfer', 'Guide'],
+    inclusions: ['Flight', ' Hotel', 'All Meals', 'Sightseeing','Transfer', 'Guide'],
     tag: "Short Trip"
   },
   {
     id: 4,
-    title: "Gorakhpur → Nepal Border",
+    title: "Gorakhpur → NepalBorder",
     region: "Cross Border Link",
     image: NepalBorder ,
     destinations: "Sonauli Border • Lumbini Gateway",
@@ -107,7 +110,7 @@ const packagesData = [
     discount: ".. OFF",
     rating: 4.7,
     style: "Trekking & Adventure",
-    inclusions: ['Hotel', 'Transfer', 'Guide'],
+    inclusions: ['Flight', ' Hotel', 'All Meals', 'Sightseeing','Transfer', 'Guide'],
     tag: "International Link"
   },
   {
@@ -124,7 +127,7 @@ const packagesData = [
     discount: ".. OFF",
     rating: 4.8,
     style: "Spiritual / Pilgrimage",
-    inclusions: ['Hotel', 'All Meals', 'Sightseeing', 'Transfer'],
+   inclusions: ['Flight', ' Hotel', 'All Meals', 'Sightseeing','Transfer', 'Guide'],
     tag: "Cultural"
   },
   {
@@ -141,7 +144,7 @@ const packagesData = [
     discount: ".. OFF",
     rating: 4.6,
     style: "Leisure & Culture",
-    inclusions: ['Hotel', 'Breakfast', 'Sightseeing', 'Transfer'],
+   inclusions: ['Flight', ' Hotel', 'All Meals', 'Sightseeing','Transfer', 'Guide'],
     tag: "Family Choice"
   }
 ];
@@ -208,6 +211,11 @@ const GorakhpurTourPackages = () => {
     return <Camera size={16} />;
   };
 
+
+
+    const createSlug = (name) => {
+    return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
+  };
   return (
     <div className="w-full font-sans bg-gray-50 min-h-screen pb-16">
       
@@ -324,9 +332,13 @@ const GorakhpurTourPackages = () => {
                         <span className="text-xs text-gray-500 ml-1">/ person</span>
                       </div>
                     </div>
-                    <button className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg text-sm flex items-center">
-                      View Details <ChevronRight size={16} className="ml-1" />
-                    </button>
+                    <Link 
+                       to={`/package/${createSlug(pkg.title)}`}
+                        className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-colors duration-300 shadow-lg shadow-orange-500/20 text-sm flex items-center"
+                      >
+                        View Details
+                        <ChevronRight size={16} className="ml-1" />
+                    </Link>
                   </div>
                 </div>
               </div>

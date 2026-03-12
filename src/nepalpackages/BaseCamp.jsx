@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import pokhara from "../images/pokhara.jpg";
 import gorakhpur from "../images/gorakhpur.png";
+
 // --- GORAKHPUR TO BASE CAMP TREK MOCK DATA ---
 const packageData = {
   title: "Epic Trail: Gorakhpur to Annapurna Base Camp Trek",

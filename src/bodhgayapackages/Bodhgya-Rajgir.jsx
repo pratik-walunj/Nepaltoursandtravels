@@ -4,7 +4,9 @@ import {
   Minus, Plus, Info, BedDouble, Utensils, 
   Camera, Bus, Award, Users 
 } from 'lucide-react';
-
+import rajgirbanner from "../images/rajgirbanner.png"
+import nalandaruins from "../images/nalandaruins.jpg"
+import rajgirpawapuri from "../images/rajgirpawapuri.webp"
 // --- BODH GAYA TO RAJGIR & NALANDA MOCK DATA ---
 const packageData = {
   title: "Heritage Trail: Bodh Gaya, Rajgir & Nalanda Tour",
@@ -16,11 +18,11 @@ const packageData = {
   basePriceAdult: 9500,
   basePriceChildWithBed: 6500,
   basePriceChildWithoutBed: 4500,
-  topBannerImage: "https://images.unsplash.com/photo-1583315555431-7e3f8905b7b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=400&q=80", 
+  topBannerImage: rajgirbanner, 
   images: [
     "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Bodh Gaya
-    "https://images.unsplash.com/photo-1584880556209-660205244533?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", // Peace Pagoda / Stupa vibe
-    "https://images.unsplash.com/photo-1623869608404-5857e4e1a0b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"  // Ancient Architecture
+    rajgirbanner, // Peace Pagoda / Stupa vibe
+    rajgirpawapuri // Ancient Architecture
   ],
   itinerary: [
     {
@@ -32,13 +34,13 @@ const packageData = {
     {
       day: 2,
       title: "Bodh Gaya to Rajgir & Nalanda Ruins",
-      image: "https://images.unsplash.com/photo-1584880556209-660205244533?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image:nalandaruins,
       description: "After an early breakfast, check out and drive to Rajgir (approx. 2 hours), the ancient capital of the Magadha Empire. Enjoy a thrilling Ropeway ride to the Vishwa Shanti Stupa (Peace Pagoda) situated on Ratnagiri Hill. Visit Venu Van and the Japanese Temple. After lunch, proceed to Nalanda to explore the ruins of the ancient Nalanda University, one of the world's oldest centers of learning, and the Nalanda Museum. Overnight stay in Rajgir."
     },
     {
       day: 3,
       title: "Pawapuri, Hot Springs & Departure",
-      image: "https://images.unsplash.com/photo-1623869608404-5857e4e1a0b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: rajgirpawapuri,
       description: "After breakfast, visit the Brahmakund (natural hot water springs) in Rajgir. Later, drive to the holy city of Pawapuri (the salvation place of Lord Mahavira) and visit the beautiful Jal Mandir located in the middle of a lotus pond. After completing the sightseeing, you will be driven back to Gaya or Patna Airport/Railway Station for your onward journey."
     }
   ],

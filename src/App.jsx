@@ -51,7 +51,11 @@ import Nagarkot from "./nepalpackages/Nagarkot";
 import  BaseCamp from "./nepalpackages/BaseCamp";
 
 import Varanasi from "./bodhgayapackages/Varanasi"
-import BothgayaRajgir from "./bodhgayapackages/Bodhgya-Rajgir"
+import BodhgayaRajgir from "./bodhgayapackages/Bodhgya-Rajgir"
+import BodhgyaNalanda from "./bodhgayapackages/BodhgyaNalanda"
+import BodhgyaToPatna from "./bodhgayapackages/BodggyaToPatna";
+import BodhgyaToKhushinagar from "./bodhgayapackages/BodhgyaToKhushinagar"
+import BodhgyaToLumbini from "./bodhgayapackages/BodhgyaToLumbini"
 
 import PrayagrajAyodhyaTour from "./PrayagrajPackages/prayagraj-ayodhya"
 import PrayagrajKashiTour from "./PrayagrajPackages/prayagraj-kashi"
@@ -60,6 +64,11 @@ import PrayagrajGorakhpurTour from "./PrayagrajPackages/prayagraj-gorakhpur"
 import PrayagrajNepalTour from "./PrayagrajPackages/prayagraj-nepal-border"
 import PrayagrajLucknowTour from "./PrayagrajPackages/prayagraj-lucknow"
 
+
+import  GorakhpurToKashi from "./gorakhpurpackages/GorakhpurTokashi"
+import GorakhpurToAyodhya from "./gorakhpurpackages/GorakhpurToAyodhya" 
+import GorakhpurToKhushinagar from "./gorakhpurpackages/GorakhpurToKushinagar";
+import GorakhpurToNepalBoder from "./gorakhpurpackages/GorakhpurToNepalBorder"
 
 const App=()=>{
   return(
@@ -126,12 +135,19 @@ const App=()=>{
       <Route path="package/prayagraj-lucknow" element={<PrayagrajLucknowTour/>}/>              
 
       {/* Bodhgayapackages */}
-      <Route path="package/bothgaya-varanasi" element={<Varanasi/>}/>
-      <Route path="package/rajgir" element={<BothgayaRajgir/>}/>
+      <Route path="package/bodhgaya-varanasi" element={<Varanasi/>}/>
+      <Route path="package/rajgir" element={<BodhgayaRajgir/>}/>
+ <Route path="package/bodhgaya-nalanda" element={<BodhgyaNalanda/>}/>
+ <Route path="package/bodhgaya-patna" element={<BodhgyaToPatna/>}/>   
+  <Route path="package/bodhgaya-khushinagar" element={<BodhgyaToKhushinagar/>}/>     
+    <Route path="package/bodhgaya-lumbini" element={<BodhgyaToLumbini/>}/> 
 
+        {/* Gorakhpur Packages */}
 
-     
-
+        <Route path="package/gorakhpur-kashi" element={<GorakhpurToKashi/>}/> 
+        <Route path="package/gorakhpur-ayodhya" element={<GorakhpurToAyodhya/>}/> 
+         <Route path="package/gorakhpur-khushinagar" element={<GorakhpurToKhushinagar/>}/> 
+         <Route path="package/gorakhpur-nepalborder" element={<GorakhpurToNepalBoder/>}/> 
 
 
 

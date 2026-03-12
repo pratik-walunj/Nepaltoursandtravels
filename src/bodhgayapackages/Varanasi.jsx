@@ -5,7 +5,8 @@ import {
   Camera, Bus, Award, Users 
 } from 'lucide-react';
   import bodhgyabanner from "../images/bodhgyabanner.png";
-  import gangaarti from "../images/gangaarti.png"
+  import gangaarti from "../images/gangaarti.png";
+  import bodhgaya from "../images/bodhgaya.jpg"
 // --- BODH GAYA TO VARANASI MOCK DATA ---
 const packageData = {
   title: "Spiritual Circuit: Bodh Gaya to Varanasi Tour",
@@ -19,7 +20,7 @@ const packageData = {
   basePriceChildWithoutBed: 6500,
   topBannerImage: bodhgyabanner, 
   images: [
-    "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Varanasi Ghats
+    bodhgaya, // Varanasi Ghats
     "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", // Bodh Gaya Temple
     gangaarti  // Ganga Aarti
   ],
@@ -33,7 +34,7 @@ const packageData = {
     {
       day: 2,
       title: "Drive from Bodh Gaya to Varanasi",
-      image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: bodhgaya,
       description: "After breakfast, check out and embark on a scenic drive to the holy city of Varanasi (approx. 5-6 hours). Upon arrival, check into your hotel. In the evening, head to the Dashashwamedh Ghat to witness the mesmerizing and grand Ganga Aarti ceremony from the riverbanks or a boat. Overnight stay in Varanasi."
     }
    
