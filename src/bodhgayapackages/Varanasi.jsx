@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
   import bodhgyabanner from "../images/bodhgyabanner.png";
   import gangaarti from "../images/gangaarti.png";
-  import bodhgaya from "../images/bodhgaya.jpg"
+  import bodhgaya from "../images/Bodhgaya.jpg";
 // --- BODH GAYA TO VARANASI MOCK DATA ---
 const packageData = {
   title: "Spiritual Circuit: Bodh Gaya to Varanasi Tour",
