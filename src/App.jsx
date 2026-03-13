@@ -68,7 +68,15 @@ import PrayagrajLucknowTour from "./PrayagrajPackages/prayagraj-lucknow"
 import  GorakhpurToKashi from "./gorakhpurpackages/GorakhpurTokashi"
 import GorakhpurToAyodhya from "./gorakhpurpackages/GorakhpurToAyodhya" 
 import GorakhpurToKhushinagar from "./gorakhpurpackages/GorakhpurToKushinagar";
-import GorakhpurToNepalBoder from "./gorakhpurpackages/GorakhpurToNepalBorder"
+import GorakhpurToNepalBoder from "./gorakhpurpackages/GorakhpurToNepalBorder";
+import GorakhpurToPrayagraj from "./gorakhpurpackages/GorakhpurToPrayagraj"
+import GorakhpurToLucknow from "./gorakhpurpackages/GorakhpurToLucknow"
+
+// school Trip Packages 
+import GorakhpurToLumbini from "./schooltrippackage/GorakhpurToLumbini";
+import GorakhpurToBalmikiNagar from "./schooltrippackage/GorakhpurToBalmikiNagar"
+import GorakhpurToKushinagar from "./schooltrippackage/GorakhpurToKushinagar";
+import GorakhpurToKAyodhya from "./schooltrippackage/GorakhpurToAyodhya"
 
 const App=()=>{
   return(
@@ -148,11 +156,14 @@ const App=()=>{
         <Route path="package/gorakhpur-ayodhya" element={<GorakhpurToAyodhya/>}/> 
          <Route path="package/gorakhpur-khushinagar" element={<GorakhpurToKhushinagar/>}/> 
          <Route path="package/gorakhpur-nepalborder" element={<GorakhpurToNepalBoder/>}/> 
+          <Route path="package/gorakhpur-prayagraj" element={<GorakhpurToPrayagraj/>}/> 
+            <Route path="package/gorakhpur-lucknow" element={<GorakhpurToLucknow/>}/> 
 
-
-
-
-
+{/* School Trip Packages  */}
+<Route path="package/gorakhpur-lumbini" element={<GorakhpurToLumbini/>}/> 
+<Route path="package/balmikinagar" element={<GorakhpurToBalmikiNagar/>}/> 
+<Route path="package/kushinagar" element={<GorakhpurToKushinagar/>}/>
+<Route path="package/ayodhya" element={<GorakhpurToKAyodhya/>}/>
 
 
 

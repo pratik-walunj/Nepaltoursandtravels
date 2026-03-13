@@ -5,7 +5,7 @@ import Lumbini from "../images/lumbin.jpeg"
 import BalmikiNagar from "../images/GettyImages-1439040510.webp"
 import Kushinagar from "../images/kushinagar-banner2.webp"
 import Ayodhya from "../images/Ram-Mandir-Ayodhya-Tour.jpg"
-
+import { Link } from 'react-router-dom';
 
 import { 
   MapPin, Clock, Plane, BedDouble, Utensils, Camera, 
@@ -34,11 +34,11 @@ const bannerData = [
 const packagesData = [
   {
     id: 1,
-    title: "Lumbini, Nepal",
+    title: "Lumbini",
     region: "Lumbini, Nepal",
     image: Lumbini,
-    destinations: "Lumbini • Buddha Birthplace • UNESCO Site",
-    duration: "3 Days / 2 Nights",
+    destinations: "Gorakhpur → Sunauli → Lumbini (1N) → Gorakhpur",
+    duration: "2 Days / 1 Nights",
     daysValue: 3, 
     originalPrice: "₹....",
     discountedPrice: "₹....",
@@ -51,7 +51,7 @@ const packagesData = [
   },
   {
     id: 2,
-    title: "Balmiki Nagar",
+    title: "Balmikinagar",
     region: "Balmiki Nagar",
     image: BalmikiNagar,
     destinations: "Wildlife Sanctuary • Geography Study • Eco-tourism",
@@ -63,7 +63,7 @@ const packagesData = [
     discount: ".. OFF",
     rating: 4.8,
     style: "Trekking & Adventure",
-    inclusions: ['Bus', 'Hotel', 'All Meals', 'Guide'],
+    inclusions: ['Bus', 'Hotel', 'All Meals', 'Guide', 'Sightseeing'],
     tag: "Geography & Nature"
   },
   {
@@ -71,8 +71,8 @@ const packagesData = [
     title: "Kushinagar",
     region: "Kushinagar",
     image: Kushinagar,
-    destinations: "Mahaparinirvana Temple • Ramabhar Stupa",
-    duration: "1 Day / 0 Night",
+    destinations: "Gorakhpur (School) → Kushinagar (1N) → Gorakhpur Return",
+    duration: "2 Day / 1 Night",
     daysValue: 1,
     originalPrice: "₹....",
     discountedPrice: "₹....",
@@ -80,7 +80,7 @@ const packagesData = [
     discount: ".. OFF",
     rating: 4.7,
     style: "Educational Learning",
-    inclusions: ['Bus', 'All Meals', 'Guide', 'Sightseeing'],
+    inclusions: ['Bus', 'Hotel', 'All Meals', 'Guide', 'Sightseeing'],
     tag: "Historical Study"
   },
   {
@@ -88,7 +88,7 @@ const packagesData = [
     title: "Ayodhya",
     region: "Ayodhya",
     image: Ayodhya,
-    destinations: "Ram Janmabhoomi • Indian Culture • Traditions",
+    destinations: "Gorakhpur (School) → Ayodhya (1N) → Gorakhpur Return",
     duration: "2 Days / 1 Night",
     daysValue: 2,
     originalPrice: "₹...",
@@ -97,7 +97,7 @@ const packagesData = [
     discount: ".. OFF",
     rating: 4.8,
     style: "Educational Learning",
-    inclusions: ['Bus', 'Hotel', 'All Meals', 'Guide'],
+    inclusions: ['Bus', 'Hotel', 'All Meals', 'Guide', 'Sightseeing'],
     tag: "Cultural History"
   }
 ];
@@ -175,6 +175,11 @@ const SchoolTripNepal = () => {
     return <BookOpen size={16} />;
   };
 
+
+
+  const createSlug = (name) => {
+    return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
+  };
   return (
     <div className="w-full font-sans bg-gray-50 min-h-screen pb-16">
       
@@ -328,9 +333,13 @@ const SchoolTripNepal = () => {
                           <span className="text-xs text-gray-500 ml-1 font-medium">/ student</span>
                         </div>
                       </div>
-                      <button className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg text-sm flex items-center uppercase tracking-wide">
-                        View Details <ChevronRight size={16} className="ml-1" />
-                      </button>
+                      <Link 
+                        to={`/package/${createSlug(pkg.title)}`}
+                          className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-colors duration-300 shadow-lg shadow-orange-500/20 text-sm flex items-center"
+                        >
+                        View Details
+                      <ChevronRight size={16} className="ml-1" />
+                      </Link>
                     </div>
                   </div>
                 </div>

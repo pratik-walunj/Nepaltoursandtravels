@@ -416,7 +416,9 @@ const TravelNavbar = () => {
       
       {/* Top Utility Bar */}
       <div className={`hidden lg:flex justify-between items-center px-6 py-2 text-[11px] transition-colors duration-300 border-b ${
-        isSolid ? 'bg-gray-100 text-gray-600 border-gray-200' : 'bg-black/40 backdrop-blur-sm text-gray-200 border-white/20'
+        isSolid ? 'bg-gray-100 text-gray-600 border-gray-200' :
+        // bg-black/40
+        '         backdrop-blur-sm text-gray-200 border-white/20'
       }`}>
         <div className="flex items-center space-x-6">
           <a href="#" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
@@ -438,7 +440,9 @@ const TravelNavbar = () => {
 
       {/* Main Navbar */}
       <div className={`transition-all duration-300 ${
-        isSolid ? 'bg-white shadow-md border-b border-gray-200' : 'bg-gradient-to-b from-black/60 to-transparent'
+        isSolid ? 'bg-white shadow-md border-b border-gray-200' :
+        // from-black/60
+        'bg-gradient-to-b  to-transparent'
       }`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 md:h-24">
@@ -525,11 +529,11 @@ const TravelNavbar = () => {
 
             {/* Right Side Actions */}
             <div className="hidden xl:flex items-center space-x-4 ml-8">
-              <button className={`p-2 rounded-full transition-colors ${
+              {/* <button className={`p-2 rounded-full transition-colors ${
                 isSolid ? 'text-gray-600 hover:text-blue-600 hover:bg-gray-100' : 'text-white hover:text-yellow-400 hover:bg-white/10'
               }`}>
                 <Search size={22} />
-              </button>
+              </button> */}
               
               <button className={`px-5 py-2.5 rounded-md font-bold text-sm transition-all duration-300 ${
                 isSolid 
@@ -542,9 +546,9 @@ const TravelNavbar = () => {
 
             {/* Mobile Menu Toggle */}
             <div className="xl:hidden flex items-center space-x-4">
-              <button className={`transition-colors ${isSolid ? 'text-gray-600 hover:text-blue-600' : 'text-white hover:text-yellow-400'}`}>
+              {/* <button className={`transition-colors ${isSolid ? 'text-gray-600 hover:text-blue-600' : 'text-white hover:text-yellow-400'}`}>
                 <Search size={24} />
-              </button>
+              </button> */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`focus:outline-none p-2 rounded-md transition-colors ${
