@@ -82,8 +82,15 @@ import ParoTaktsangTour from "./bhutanpackages/paro-taktsang-experience"
 import PunakhaHeritageTour from "./bhutanpackages/punakha-heritage-tour"
 import ThimphuCapitalTour from "./bhutanpackages/thimphu-capital-heart"
 import PhobjikhaValleyTour from "./bhutanpackages/phobjikha-scenic-valley"
+
 import  ScrollToTop from "./pages/ScrollToTop";
 import Flight from "./pages/Flight"
+
+
+import HotelBookingNepal from "./pages/hotels"
+
+
+
 const App=()=>{
   return(
     <>
@@ -179,8 +186,7 @@ const App=()=>{
          <Route path="package/thimphu-capital-heart" element={<ThimphuCapitalTour/>}/>
          <Route path="package/phobjikha-scenic-valley" element={<PhobjikhaValleyTour/>}/>
 
-
-
+         <Route path="hotels" element={<HotelBookingNepal/>}/>
 <Route path="flight" element={<Flight/>}/>
 
 
