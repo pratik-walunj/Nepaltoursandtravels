@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
-import caption from "../images/caption.jpg"
+import caption from "../images/caption.jpg";
+// Note: Assuming you have a mountain flight video, replace this source. 
+// If not, it will fall back to the poster image (caption.jpg).
+import Everest_Video from "../images/Mountain_Flight_Nepal.mp4"; 
+
 import { 
   Mountain, Clock, ShieldCheck, Star, 
-  ChevronRight, ArrowUpRight, CheckCircle,
-  Wind, Plane, Calendar, HelpCircle,
-  ChevronDown, Zap, MapPin, Award, Check
+  CheckCircle, Calendar, Plane,
+  ChevronDown, Zap, MapPin, Award, Check,
+  CloudSun, PhoneCall
 } from 'lucide-react';
 
 const MountainFlightNepalDetailed = () => {
   const [activeFaq, setActiveFaq] = useState(0);
 
   const flightFacts = [
-    { label: "Duration", value: "50-60 Mins", icon: <Clock className="text-orange-500" size={18}/> },
-    { label: "Best Time", value: "Early Morning", icon: <Calendar className="text-orange-500" size={18}/> },
-    { label: "Seating", value: "Window Seats", icon: <ShieldCheck className="text-orange-500" size={18}/> },
-    { label: "Service", value: "Hotel Pickup", icon: <MapPin className="text-orange-500" size={18}/> }
+    { label: "Duration", value: "50-60 Mins", icon: <Clock className="text-orange-500" size={20}/> },
+    { label: "Best Time", value: "Early Morning", icon: <Calendar className="text-orange-500" size={20}/> },
+    { label: "Seating", value: "Window Seats", icon: <ShieldCheck className="text-orange-500" size={20}/> },
+    { label: "Service", value: "Hotel Pickup", icon: <MapPin className="text-orange-500" size={20}/> }
   ];
 
   const highlights = [
@@ -32,83 +36,89 @@ const MountainFlightNepalDetailed = () => {
   ];
 
   const faqs = [
-    { 
-      q: "How long is the mountain flight?", 
-      a: "The flight time is approximately 50–60 minutes; total tour time including pickup is ~2 hours." 
-    },
-    { 
-      q: "When is the best time to go?", 
-      a: "Early morning flights (clear skies) are best — September to April gives the most stable visibility." 
-    },
-    { 
-      q: "Can I get a window seat?", 
-      a: "We request window seats for all guests, but seat assignment is subject to the airline’s final allocation." 
-    },
-    { 
-      q: "What happens if the flight is canceled due to weather?", 
-      a: "You can reschedule or receive a full refund — we monitor weather and advise early if changes are needed." 
-    },
-    {
-        q:"Do I need travel insurance?",
-        a:"Yes — we strongly recommend personal travel insurance covering flight cancellations and health."
-    }
+    { q: "How long is the mountain flight?", a: "The flight time is approximately 50–60 minutes; total tour time including pickup is ~2 hours." },
+    { q: "When is the best time to go?", a: "Early morning flights (clear skies) are best — September to April gives the most stable visibility." },
+    { q: "Can I get a window seat?", a: "We request window seats for all guests, but seat assignment is subject to the airline’s final allocation." },
+    { q: "What happens if the flight is canceled due to weather?", a: "You can reschedule or receive a full refund — we monitor weather and advise early if changes are needed." },
+    { q: "Do I need travel insurance?", a: "Yes — we strongly recommend personal travel insurance covering flight cancellations and health." }
   ];
 
   return (
-    <div className="bg-[#FDFDFD] min-h-screen pt-20 lg:pt-28 font-sans selection:bg-orange-100 overflow-x-hidden">
+    <div className="bg-white min-h-screen font-sans selection:bg-orange-100 overflow-x-hidden">
       
-      {/* 1. HEADER SECTION */}
-      <section className="px-5 lg:px-12 mb-8">
-        <div className="max-w-7xl mx-auto border-l-4 border-orange-600 pl-5">
-          <nav className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
-            <a href="/" className="hover:text-orange-600 transition-colors">Home</a>
-            <span>/</span>
-            <span className="text-slate-900 uppercase">Adventure Sports</span>
-          </nav>
-          <h1 className="text-3xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase leading-tight">
-            Mountain Flight <span className="text-orange-600 font-serif italic normal-case tracking-normal">in Nepal</span>
-          </h1>
-        </div>
-      </section>
+      {/* 1. PREMIUM HERO BANNER (Styled like Paragliding Page) */}
+      <section className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden">
+        <video 
+          autoPlay loop muted playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster={caption}
+        >
+          <source src={Everest_Video} type="video/mp4" />
+        </video>
+        
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/50 to-transparent"></div>
 
-      {/* 2. CINEMATIC HERO */}
-      <section className="px-3 lg:px-8 mb-12 lg:mb-20">
-        <div className="max-w-7xl mx-auto relative h-[450px] lg:h-[70vh] rounded-3xl lg:rounded-[3.5rem] overflow-hidden shadow-xl group text-left">
-          <img 
-            src={caption}
-            className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
-            alt="Himalayan Peak View"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
-          
-          <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-16">
-            <div className="max-w-3xl">
-               <div className="bg-orange-600/30 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full mb-4 inline-flex items-center gap-2">
-                 <Zap size={12} className="text-orange-400 fill-orange-400"/>
-                 <span className="text-white text-[9px] font-black uppercase tracking-widest">Scenic Everest Flight</span>
-               </div>
-               <h2 className="text-xl lg:text-4xl font-bold italic text-white leading-snug mb-8">
-                 "Experience Nepal's Himalayas like never before with a one-hour panoramic flight from Kathmandu."
-               </h2>
-               
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 bg-black/40 backdrop-blur-xl p-5 lg:p-8 rounded-2xl lg:rounded-3xl border border-white/10">
-                  {flightFacts.map((fact, i) => (
-                    <div key={i} className="text-left border-l border-white/10 pl-3 first:border-0">
-                       <div className="flex items-center gap-2 mb-1">
-                         {fact.icon}
-                         <p className="text-[8px] lg:text-[10px] font-black uppercase text-slate-300 tracking-wider">{fact.label}</p>
-                       </div>
-                       <p className="text-xs lg:text-base font-black text-white">{fact.value}</p>
-                    </div>
-                  ))}
-               </div>
+        <div className="relative max-w-7xl mx-auto h-full flex flex-col justify-center px-4 sm:px-6 lg:px-12 pt-10">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 bg-orange-600 text-white px-3 py-1 lg:px-4 lg:py-1.5 rounded-full mb-4 lg:mb-6 shadow-lg">
+              <Award size={14} className="lg:w-4 lg:h-4" />
+              <span className="text-[9px] lg:text-[11px] font-bold uppercase tracking-[0.2em]">World Class Aerial Tour</span>
+            </div>
+            
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-4 lg:mb-6 uppercase">
+              Face to Face with <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                Mount Everest
+              </span>
+            </h1>
+            
+            <p className="text-sm sm:text-base lg:text-xl text-slate-200 mb-6 lg:mb-8 max-w-xl font-medium leading-relaxed italic">
+              "Experience Nepal's Himalayas like never before with a one-hour panoramic flight from Kathmandu."
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
+               <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
+                 Book My Window Seat <Zap size={18} fill="currentColor"/>
+               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. NEW: HIGHLIGHTS & ADVANTAGES BENTO GRID */}
-      <section className="py-12 lg:py-16 px-5 lg:px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 text-left">
+      {/* 2. FLOATING INFO BAR + LIVE STATUS */}
+      <section className="relative z-30 px-4 -mt-12 md:-mt-16 lg:-mt-20">
+         <div className="max-w-7xl mx-auto bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-xl lg:rounded-2xl border border-slate-100 overflow-hidden">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-x divide-y lg:divide-y-0 divide-slate-100">
+              {flightFacts.map((stat, i) => (
+                <div key={i} className="flex items-center gap-3 lg:gap-4 p-4 lg:p-8">
+                  <div className="bg-orange-50 p-2 lg:p-3 rounded-lg lg:rounded-xl shrink-0">{stat.icon}</div>
+                  <div>
+                    <p className="text-[9px] lg:text-[10px] uppercase font-bold text-slate-400 tracking-widest">{stat.label}</p>
+                    <p className="text-slate-900 font-extrabold text-xs lg:text-base">{stat.value}</p>
+                  </div>
+                </div>
+              ))}
+              
+              {/* LIVE FLIGHT STATUS WIDGET */}
+              <div className="col-span-2 md:col-span-1 lg:col-span-1 bg-slate-50/80 p-4 lg:p-8 flex items-center gap-4 border-l-4 border-orange-500">
+                 <div className="p-2 bg-white rounded-full shadow-sm">
+                    <CloudSun className="text-blue-500 animate-pulse" size={24}/>
+                 </div>
+                 <div>
+                    <div className="flex items-center gap-2">
+                       <p className="text-[10px] uppercase font-black text-slate-500">Flight Visibility</p>
+                       <span className="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+                    </div>
+                    <p className="text-slate-900 font-black text-sm lg:text-base">Clear Views</p>
+                    <p className="text-[9px] font-bold text-orange-600 uppercase">Status: Operating</p>
+                 </div>
+              </div>
+            </div>
+         </div>
+      </section>
+
+      {/* 3. HIGHLIGHTS & ADVANTAGES BENTO GRID */}
+      <section className="py-16 lg:py-24 px-5 lg:px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 text-left">
         <div className="bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col justify-center group hover:border-orange-200 transition-all">
           <div className="flex items-center gap-4 mb-8">
              <div className="bg-orange-600 p-3 rounded-2xl text-white shadow-lg shadow-orange-900/10">
@@ -143,12 +153,12 @@ const MountainFlightNepalDetailed = () => {
         </div>
       </section>
 
-      {/* 4. CORE CONTENT DESCRIPTION */}
+      {/* 4. CONTENT WITH IMAGE (Styled like Paragliding Why Choose section) */}
       <section className="py-12 lg:py-24 px-5 lg:px-6 max-w-7xl mx-auto text-left">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           <div className="order-2 lg:order-1">
-            <h3 className="text-2xl lg:text-4xl font-black text-slate-900 mb-6 lg:mb-8 tracking-tight uppercase">
-              Aerial Views of the <br/><span className="text-orange-600">World's Highest Peaks</span>
+            <h3 className="text-3xl lg:text-5xl font-black text-slate-900 mb-8 tracking-tight uppercase leading-tight">
+              Aerial Views of the <br/><span className="text-orange-600 italic font-serif lowercase">highest peaks</span>
             </h3>
             <p className="text-slate-600 text-sm lg:text-base font-medium italic leading-relaxed mb-8 border-l-4 border-orange-100 pl-5">
               Enjoy unforgettable aerial sights of Mount Everest, Lhotse, Makalu, and more. It's an ideal choice for photographers seeking the best scenic views in Nepal.
@@ -165,40 +175,41 @@ const MountainFlightNepalDetailed = () => {
             </div>
           </div>
 
-          <div className="order-1 lg:order-2">
-             <div className="bg-slate-100 rounded-3xl overflow-hidden shadow-lg h-[250px] lg:h-[450px]">
-                <img 
-                  src={caption} 
-                  className="w-full h-full object-cover" 
-                  alt="Nepal Peaks" 
-                />
-             </div>
+          <div className="relative order-1 lg:order-2 px-4">
+            <div className="absolute inset-0 bg-orange-600 rounded-3xl rotate-3"></div>
+            <img 
+              src={caption} 
+              className="relative rounded-3xl w-full h-[350px] lg:h-[500px] object-cover -rotate-3 hover:rotate-0 transition-all duration-700 shadow-2xl" 
+              alt="Nepal Peaks" 
+            />
           </div>
         </div>
       </section>
 
       {/* 5. FAQ ACCORDION */}
-      <section className="py-16 lg:py-24 bg-slate-50 px-5">
+      <section className="py-20 bg-slate-50 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight uppercase italic">Flight Intelligence</h2>
-            <p className="text-slate-500 font-bold text-[10px] lg:text-xs uppercase tracking-widest mt-2">Essential knowledge for travelers</p>
+            <span className="text-orange-600 font-bold uppercase tracking-widest text-sm">Need Help?</span>
+            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mt-2 italic uppercase">Flight Intelligence</h2>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid gap-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-slate-100 overflow-hidden text-left">
+              <div key={i} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <button 
                   onClick={() => setActiveFaq(activeFaq === i ? -1 : i)}
-                  className="w-full p-5 lg:p-6 flex items-center justify-between transition-colors hover:bg-slate-50"
+                  className="w-full p-6 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
                 >
-                  <span className="text-xs lg:text-base font-black uppercase text-slate-800">{faq.q}</span>
-                  <ChevronDown className={`transition-transform duration-300 ${activeFaq === i ? 'rotate-180 text-orange-600' : 'text-slate-400'}`} size={18}/>
+                  <span className="font-bold text-slate-800 lg:text-lg uppercase pr-4">{faq.q}</span>
+                  <div className={`p-2 rounded-full bg-orange-50 text-orange-600 transition-transform ${activeFaq === i ? 'rotate-180' : ''}`}>
+                    <ChevronDown size={20} />
+                  </div>
                 </button>
                 {activeFaq === i && (
-                   <p className="px-5 lg:px-6 pb-6 text-slate-500 text-xs lg:text-sm font-medium leading-relaxed italic border-t border-slate-50 pt-4">
+                   <div className="px-6 pb-6 text-slate-600 text-base leading-relaxed italic border-t border-slate-50 pt-4">
                      {faq.a}
-                   </p>
+                   </div>
                 )}
               </div>
             ))}
@@ -207,22 +218,25 @@ const MountainFlightNepalDetailed = () => {
       </section>
 
       {/* 6. CALL TO ACTION - BRANDED STYLE */}
-      <section className="py-16 lg:py-24 px-5 text-center">
-        <div className="max-w-5xl mx-auto bg-slate-900 p-10 lg:p-20 rounded-[2.5rem] lg:rounded-[4rem] text-white relative overflow-hidden shadow-xl">
-           <div className="absolute top-0 right-0 w-64 h-64 bg-orange-600 blur-[120px] opacity-20"></div>
-           <Plane className="mx-auto mb-6 text-orange-400" size={40}/>
-           <h2 className="text-2xl lg:text-5xl font-black mb-6 uppercase italic tracking-tighter leading-none">Witness Everest <br/><span className="text-orange-500">From the Clouds</span></h2>
-           <p className="text-slate-400 text-xs lg:text-base mb-10 opacity-90 max-w-xl mx-auto italic leading-relaxed">
-             "For bookings or inquiries, contact us 24/7! Fast, convenient, and perfect for all travelers."
-           </p>
+      <section className="py-20 lg:py-32 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto bg-slate-900 rounded-[3rem] p-8 lg:p-24 text-center relative overflow-hidden shadow-2xl">
+           <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+              <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-orange-600 blur-[120px] rounded-full"></div>
+           </div>
+
+           <h2 className="relative z-10 text-3xl sm:text-5xl lg:text-7xl font-black text-white mb-8 leading-tight tracking-tight uppercase">
+             Witness Everest <br />
+             <span className="text-orange-500 italic font-serif">From the Clouds</span>
+           </h2>
            
-           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a href="tel:+918576000084" className="w-full sm:w-auto bg-white hover:bg-orange-600 text-slate-900 hover:text-white px-10 py-4 lg:px-14 lg:py-5 rounded-2xl font-black text-[10px] tracking-widest transition-all duration-300 hover:scale-105 shadow-xl uppercase border-2 border-transparent">
-                 Book Flight: +91 8576000084
+           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 lg:gap-10 relative z-10">
+              <a href="tel:+918576000084" className="w-full sm:w-auto group flex items-center justify-center gap-4 bg-white text-slate-900 px-8 py-5 rounded-2xl font-black text-lg lg:text-xl transition-all hover:bg-orange-600 hover:text-white shadow-xl hover:-translate-y-1">
+                <PhoneCall size={24} className="group-hover:animate-bounce"/>
+                +91 8576000084
               </a>
               <div className="text-center sm:text-left">
-                 <p className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1 leading-none">Nepal Tour & Travels</p>
-                 <p className="font-bold text-xs text-slate-300 italic">Trusted Experts since 1999</p>
+                 <p className="text-orange-500 font-bold uppercase tracking-widest text-xs mb-1">Nepal Tour & Travels</p>
+                 <p className="text-slate-400 font-medium text-base lg:text-lg italic">Trusted Experts since 1999</p>
               </div>
            </div>
         </div>
