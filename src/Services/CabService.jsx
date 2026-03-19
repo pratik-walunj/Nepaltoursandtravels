@@ -464,6 +464,7 @@ import audia6sideview from "../images/audia6sideview.png"
 import audia8 from "../images/audia8sideview.png"
 import audia4 from "../images/audia4.png";
 import audiq3view from "../images/audiq3view.png"
+import audiq5view from "../images/audiq5view.png"
 // --- MOCK AIRPORT DATA ---
 const availableAirports = [
   { code: 'DEL', city: 'New Delhi', name: 'Indira Gandhi International Airport', country: 'India' },
@@ -552,7 +553,7 @@ const CabPage = () => {
     
     { id: 11, path: "audi-a6", type: "Audi", models: "Audi A6", seats: 4, bags: 2, pricePerKm: "...", rating: 4.9, isAc: true, img:audia6sideview },
     { id: 102 , path: "audi-q3", type: "Audi", models: "Audi Q3", seats: 5, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img:audiq3view },
-     { id: 103 , path: "audi-q5", type: "Audi", models: "Audi Q5", seats: 5, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img:audiq3view },
+     { id: 103 , path: "audi-q5", type: "Audi", models: "Audi Q5", seats: 5, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img: audiq5view },
     { id: 12, path: "mercedes-e-class", type: "Mercedes", models: "Mercedes E-Class", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
     
     // Group & Commuter Vehicles (Tempo Traveller)
