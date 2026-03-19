@@ -92,8 +92,11 @@ import CabService from "./Services/CabService"
 
 import CurrencyExchangeNepal from "./pages/currency-exchange"
 import NepalSimCard from "./pages/sim-card"
-
-
+import Audi from "./Services/Audi"
+import AudiA8 from "./Services/AudiA8"
+import AudiA4 from "./Services/AudiA4";
+import AudiQ3 from "./Services/AudiQ3"
+import AudiQ5 from "./Services/AudiQ5"
 const App=()=>{
   return(
     <>
@@ -197,9 +200,11 @@ const App=()=>{
         
 
 <Route path="cabservice" element={<CabService/>}/>
-
-
-
+<Route path="cab-details/audi-a6" element={<Audi/>}/>
+<Route path="cab-details/audi-a8" element={<AudiA8/>}/>
+<Route path="cab-details/audi-a4" element={<AudiA4/>}/>
+<Route path="cab-details/audi-q3" element={<AudiQ3/>}/>
+<Route path="cab-details/audi-q5" element={<AudiQ5/>}/>
 
 
       </Route>

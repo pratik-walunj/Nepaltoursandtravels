@@ -31,7 +31,7 @@ const NepalSimCard = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     setIsSending(true);
-
+                
     const SERVICE_ID = "YOUR_SERVICE_ID";
     const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
     const PUBLIC_KEY = "YOUR_PUBLIC_KEY";
