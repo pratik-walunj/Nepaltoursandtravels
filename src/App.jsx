@@ -96,7 +96,10 @@ import Audi from "./Services/Audi"
 import AudiA8 from "./Services/AudiA8"
 import AudiA4 from "./Services/AudiA4";
 import AudiQ3 from "./Services/AudiQ3"
-import AudiQ5 from "./Services/AudiQ5"
+import AudiQ5 from "./Services/AudiQ5";
+import AudiQ7 from "./Services/AudiQ7";
+import Testimonials from "./pages/Testimonials"
+
 const App=()=>{
   return(
     <>
@@ -107,6 +110,7 @@ const App=()=>{
 
       <Route index element={<Home/>}/>
       <Route path="home" element={<Home/>}/>
+      <Route path="testimonials" element={<Testimonials/>}/>
 
       
       <Route path="ayodhya-packages" element={<AyodhyaPackages/>}/>
@@ -205,7 +209,7 @@ const App=()=>{
 <Route path="cab-details/audi-a4" element={<AudiA4/>}/>
 <Route path="cab-details/audi-q3" element={<AudiQ3/>}/>
 <Route path="cab-details/audi-q5" element={<AudiQ5/>}/>
-
+<Route path="cab-details/audi-q7" element={<AudiQ7/>}/>
 
       </Route>
 

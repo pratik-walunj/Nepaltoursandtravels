@@ -1,45 +1,52 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // React Router import kiya
 import { 
   CarFront, Building2, Smartphone, Banknote, Plane, FileText 
 } from 'lucide-react';
 
-// Added 'description' to each service to explain it briefly
+// Har service me ek 'path' add kiya gaya hai navigation ke liye
 const servicesData = [
   {
     id: 1,
     title: "Taxi & Cabs",
     description: "Reliable airport transfers & local sightseeing cabs.",
     icon: <CarFront size={40} strokeWidth={1.2} />,
+    path: "/cabservice" // Yahan apna actual route path dalein
   },
   {
     id: 2,
     title: "Hotel Booking",
     description: "Best stays from budget hotels to luxury resorts.",
     icon: <Building2 size={40} strokeWidth={1.2} />,
+    path: "/hotels"
   },
   {
     id: 3,
     title: "SIM Card",
     description: "Pre-activated 4G/5G tourist SIM cards on arrival.",
     icon: <Smartphone size={40} strokeWidth={1.2} />,
+    path: "/services/sim-card"
   },
   {
     id: 4,
     title: "Forex",
     description: "Best currency exchange rates with zero hassle.",
     icon: <Banknote size={40} strokeWidth={1.2} />,
+    path: "/services/currency-exchange"
   },
   {
     id: 5,
     title: "Flight Tickets",
     description: "Affordable domestic & international flight bookings.",
     icon: <Plane size={40} strokeWidth={1.2} />,
+    path: "/flight"
   },
   {
     id: 6,
     title: "Visa Assistance",
     description: "Smooth and fast tourist visa processing support.",
     icon: <FileText size={40} strokeWidth={1.2} />,
+    path: "/visa"
   }
 ];
 
@@ -62,10 +69,10 @@ const NepalServices = () => {
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-10 md:gap-x-10 lg:gap-x-14">
           
           {servicesData.map((service) => (
-            <a 
+            // <a> tag ko <Link> se replace kiya gaya hai smooth routing ke liye
+            <Link 
               key={service.id} 
-              href="#" 
-              // Width badha di gayi hai taaki description achhe se show ho (w-[140px] to w-[180px])
+              to={service.path} 
               className="flex flex-col items-center group w-[140px] md:w-[180px] cursor-pointer"
             >
               {/* Circular Icon Container */}
@@ -78,12 +85,11 @@ const NepalServices = () => {
                 <h3 className="text-base md:text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 leading-tight mb-2">
                   {service.title}
                 </h3>
-                {/* Naya Description Text */}
                 <p className="text-[11px] md:text-xs text-gray-500 leading-relaxed font-medium">
                   {service.description}
                 </p>
               </div>
-            </a>
+            </Link>
           ))}
 
         </div>

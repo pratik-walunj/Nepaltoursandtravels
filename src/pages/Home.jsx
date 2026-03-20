@@ -236,6 +236,7 @@ import AdventureSport from '../adventuresports/AdventureSport';
 
 import Services from "../pages/Services"
 import Faq  from "../pages/Faq"
+import Testimonials from './Testimonials';
 
 const popularDestinations = [
   "Kathmandu Valley",
@@ -406,6 +407,7 @@ const HomePage = () => {
 
       <NepalPackages/>
       <AdventureSport/>
+      <Testimonials/>
       <Services/>
     
       <Faq/>
