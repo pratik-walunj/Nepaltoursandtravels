@@ -97,6 +97,12 @@ import AudiA8 from "./Services/AudiA8"
 import AudiA4 from "./Services/AudiA4";
 import AudiQ3 from "./Services/AudiQ3"
 import AudiQ5 from "./Services/AudiQ5"
+
+
+import ErtigaDetails from "./Services/suv-ertiga"
+import SwiftDzireDetails from "./Services/sedan-swift-dzire"
+import InnovaCrystaDetails from "./Services/toyota-innova-crysta"
+
 const App=()=>{
   return(
     <>
@@ -205,6 +211,11 @@ const App=()=>{
 <Route path="cab-details/audi-a4" element={<AudiA4/>}/>
 <Route path="cab-details/audi-q3" element={<AudiQ3/>}/>
 <Route path="cab-details/audi-q5" element={<AudiQ5/>}/>
+
+
+<Route path="cab-details/suv-ertiga" element={<ErtigaDetails/>}/>
+<Route path="cab-details/sedan-swift-dzire" element={<SwiftDzireDetails/>}/>
+<Route path="cab-details/toyota-innova-crysta" element={<InnovaCrystaDetails/>}/>
 
 
       </Route>

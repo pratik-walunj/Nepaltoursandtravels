@@ -465,6 +465,9 @@ import audia8 from "../images/audia8sideview.png"
 import audia4 from "../images/audia4.png";
 import audiq3view from "../images/audiq3view.png"
 import audiq5view from "../images/audiq5view.png"
+import ertigaView from "../images/Ertiga.jpg"; 
+import dzireMain from "../images/swift-dzire.jpg"; 
+import innovaMain from "../images/innova-crysta.jpg"; 
 // --- MOCK AIRPORT DATA ---
 const availableAirports = [
   { code: 'DEL', city: 'New Delhi', name: 'Indira Gandhi International Airport', country: 'India' },
@@ -532,11 +535,11 @@ const CabPage = () => {
   const initialFleetData = [
     // Standard
     { id: 1, path: "hatchback-wagonr-swift", type: "Hatchback", models: "WagonR, Swift", seats: 4, bags: 1, pricePerKm: "...", rating: 4.5, isAc: true, img: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 2, path: "sedan-dzire-etios", type: "Sedan", models: "Dzire, Etios", seats: 4, bags: 2, pricePerKm: "...", rating: 4.8, isAc: true, img: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 3, path: "suv-ertiga", type: "SUV", models: "Ertiga", seats: 6, bags: 3, pricePerKm: "...", rating: 4.6, isAc: true, img: "https://images.unsplash.com/photo-1563720225384-9c02604084f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 2, path: "sedan-swift-dzire", type: "Sedan", models: "Swift Dzire ", seats: 4, bags: 2, pricePerKm: "...", rating: 4.8, isAc: true, img: dzireMain },
+    { id: 3, path: "suv-ertiga", type: "SUV", models: "Ertiga", seats: 6, bags: 3, pricePerKm: "...", rating: 4.6, isAc: true, img: ertigaView },
     
     // Brands
-    { id: 4, path: "toyota-innova-crysta", type: "Toyota", models: "Innova Crysta", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 4, path: "toyota-innova-crysta", type: "Toyota", models: "Innova Crysta", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img: innovaMain },
     { id: 5, path: "toyota-fortuner", type: "Toyota", models: "Fortuner", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
     
     { id: 6, path: "hyundai-creta", type: "Hyundai", models: "Creta", seats: 4, bags: 3, pricePerKm: "...", rating: 4.7, isAc: true, img: "https://images.unsplash.com/photo-1563720225384-9c02604084f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
