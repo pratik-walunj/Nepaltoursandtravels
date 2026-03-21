@@ -107,9 +107,15 @@ import AudiQ5 from "./Services/AudiQ5"
 import ErtigaDetails from "./Services/suv-ertiga"
 import SwiftDzireDetails from "./Services/sedan-swift-dzire"
 import InnovaCrystaDetails from "./Services/toyota-innova-crysta"
+
 import Seater17Tempo from "./Services/17SeaterTempo";
 import Seater20Tempo from "./Services/Seater20Tempo"
 import Seater26Tempo from "./Services/Seater26Tempo"
+
+import WagonRDetails from "./Services/hatchback-wagonr-swift"
+
+
+
 const App=()=>{
   return(
     <>
@@ -224,6 +230,7 @@ const App=()=>{
 <Route path="cab-details/suv-ertiga" element={<ErtigaDetails/>}/>
 <Route path="cab-details/sedan-swift-dzire" element={<SwiftDzireDetails/>}/>
 <Route path="cab-details/toyota-innova-crysta" element={<InnovaCrystaDetails/>}/>
+<Route path="cab-details/hatchback-wagonr-swift" element={<WagonRDetails/>}/>
 
 {/* 17 Tempo traveller  */}
 
