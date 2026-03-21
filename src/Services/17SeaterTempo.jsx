@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import audia4 from "../images/audia4.png"
-import audia6frontview from "../images/audia6frontview.png";
-import audia6backview from "../images/audia6backview.png"
-import audia4frontview from "../images/audia4frontview.png";
-import audia4backview from "../images/audia4backview.png"
-// Master Data with specific Audi A4 details and description
+// Placeholders: Aap apni actual Tempo Traveller images yahan import karein
+import seater17view from "../images/17seaterview.png"; 
+import seater17frontview from "../images/17seaterfrontview.png";
+import seater17backview from "../images/17seaterbackview.png";
+
+// Master Data specifically configured for 17-Seater Tempo Traveller
 const masterFleetData = [
   { 
-    id: 101, 
-    path: "audi-a4", 
-    type: "Audi", 
-    models: "AUDI A4", 
-    seats: "5 SEATS", 
-    bags: "2 BAGS", 
-    pricePerKm: 40, 
+    id: 201, 
+    path: "17-seater-tempo-traveller", 
+    type: "Force", 
+    models: "17 SEATER TEMPO TRAVELLER", 
+    seats: "17 SEATS", 
+    bags: "12 BAGS", // Massive luggage capacity for groups
+    pricePerKm: 28, 
     rating: 4.8, 
     isAc: true, 
-    img:audia4 ,
-    description: "The Audi A4 represents a perfect synergy of sporty dynamics, everyday practicality, and premium elegance. Featuring a meticulously crafted interior with advanced acoustics, plush leather seating, and customizable ambient lighting, it ensures a deeply comfortable and serene journey. With its sleek aerodynamic exterior and superior handling, the Audi A4 is the ultimate choice for executive travel, stylish city rides, and premium airport transfers."
+    // High-quality placeholder image for testing
+    img: seater17view, // Bus/Van placeholder
+    description: "The 17-Seater Luxury Tempo Traveller is the ultimate choice for large family vacations, corporate outings, and group tours. Designed for long-distance comfort, it features premium pushback reclining seats, ample legroom, dual AC vents for uniform cooling, and a high-quality entertainment system. With massive luggage capacity and heavy-duty suspension, it ensures a smooth and enjoyable ride even on challenging hilly terrains. Perfect for keeping your entire group together without compromising on luxury and space."
   }
 ];
 
@@ -31,21 +32,21 @@ const CabDetails = () => {
   const [activeImage, setActiveImage] = useState(0);
   
   // Package Accordion State
-  const [activePackage, setActivePackage] = useState(null);
+  const [activePackage, setActivePackage] = useState(null); // Default to outstation for Tempos
   
   // Form States inside Packages
   const [pkgDate, setPkgDate] = useState('');
   const [pkgTime, setPkgTime] = useState('');
   
-  // NAYE STATES: Extra Kms aur Hrs ke liye
+  // Extra Kms and Hrs States for Real-time Calculation
   const [extraKms, setExtraKms] = useState('');
   const [extraHrs, setExtraHrs] = useState('');
 
   const [carData, setCarData] = useState(null);
 
-  // 1. Fetch Data UseEffect 
+  // 1. Fetch Data UseEffect
   useEffect(() => {
-    const foundCar = masterFleetData.find(car => car.path === carName) || masterFleetData.find(car => car.id === 101);
+    const foundCar = masterFleetData.find(car => car.path === carName) || masterFleetData.find(car => car.id === 201);
     setCarData(foundCar);
   }, [carName]);
 
@@ -64,48 +65,48 @@ const CabDetails = () => {
     return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white">Loading Vehicle Data...</div>;
   }
 
-  // Structuring data for Audi A4
+  // Structuring data for Tempo Traveller
   const details = {
     brand: carData.type.toUpperCase(),
     model: carData.models.toUpperCase(),
-    category: "PREMIUM SEDAN",
+    category: "PREMIUM GROUP TRAVEL", // Updated Category
     driveType: "CHAUFFEUR DRIVEN",
     description: carData.description,
     images: [
-      audia4 , // Use local imported images as needed
-      audia4frontview,
-      audia4backview 
+      carData.img, // Side View
+      seater17frontview, // Placeholder
+      seater17backview  // Placeholder
     ],
     features: [
       `${carData.seats}`,
-      carData.isAc ? "AUTOMATIC" : "MANUAL",
-      "PETROL", 
+      carData.isAc ? "DUAL AC" : "NON-AC", // Updated for Tempos
+      "DIESEL", 
       `${carData.bags}`
     ]
   };
 
-  // Mock Packages Data (Numeric Values for Real-Time Calculation)
+  // Mock Packages Data (Pricing adjusted for heavy commercial vehicle)
   const packagesData = [
     {
       id: 'city',
-      title: 'STANDARD / CITY RIDE — 8HR 80KM',
-      basePrice: 25000,
-      extraKmRate: 250,
-      extraHrRate: 2500,
+      title: 'LOCAL CITY RIDE — 8HR 80KM',
+      basePrice: 6500,
+      extraKmRate: 28,
+      extraHrRate: 500,
       hasExtras: true
     },
     {
       id: 'outstation',
       title: 'OUTSTATION — 300KM / 12AM—12AM',
-      basePrice: 75000,
-      extraKmRate: 280,
-      extraHrRate: 2800,
+      basePrice: 18000,
+      extraKmRate: 28,
+      extraHrRate: 600,
       hasExtras: true
     },
     {
       id: 'airport',
-      title: 'AIRPORT TRANSFER',
-      basePrice: 28000,
+      title: 'AIRPORT TRANSFER (GROUP)',
+      basePrice: 4500,
       extraKmRate: 0,
       extraHrRate: 0,
       hasExtras: false
@@ -130,12 +131,10 @@ const CabDetails = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
           <div className="flex items-center gap-5">
             <div className="flex items-center text-white/80">
-                 <svg width="60" height="30" viewBox="0 0 100 40" fill="none" stroke="currentColor" strokeWidth="3" className="opacity-90">
-                   <circle cx="20" cy="20" r="14" />
-                   <circle cx="40" cy="20" r="14" />
-                   <circle cx="60" cy="20" r="14" />
-                   <circle cx="80" cy="20" r="14" />
-                 </svg>
+                {/* Custom Logo Fallback for Tempo / Force */}
+                <div className="w-12 h-12 rounded-full border border-gray-500 flex items-center justify-center bg-gray-800">
+                  <span className="font-bold text-xs tracking-tighter">VAN</span>
+                </div>
             </div>
             <div className="flex flex-col justify-center">
               <h1 className="text-2xl md:text-[28px] font-bold text-white tracking-wide leading-tight">
@@ -201,10 +200,10 @@ const CabDetails = () => {
 
       </div>
 
-      {/* --- 2. EXPLORE OUR LUXURY PACKAGES SECTION --- */}
+      {/* --- 2. EXPLORE OUR PACKAGES SECTION --- */}
       <div className="w-full max-w-5xl mx-auto mt-16">
         <h2 className="text-lg md:text-xl font-extrabold text-white tracking-widest uppercase mb-6 pl-2">
-          Explore Our Luxury Packages
+          Explore Tour Packages
         </h2>
 
         <div className="bg-[#1c1c1c] rounded-3xl overflow-hidden flex flex-col">
@@ -225,7 +224,6 @@ const CabDetails = () => {
                   className="flex items-center justify-between p-6 md:p-8 cursor-pointer hover:bg-white/5 transition-colors"
                   onClick={() => {
                     setActivePackage(isActive ? null : pkg.id);
-                    // Package change par purane extra inputs reset kar do
                     setExtraKms('');
                     setExtraHrs('');
                   }}
@@ -277,7 +275,7 @@ const CabDetails = () => {
                     </div>
                   </div>
 
-                  {/* Extra KMS / Extra HRS Inputs (Replacing static text with Real-time Inputs) */}
+                  {/* Extra KMS / Extra HRS Inputs */}
                   {pkg.hasExtras && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-10">
                       
@@ -324,7 +322,6 @@ const CabDetails = () => {
                   <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mt-6 border-t border-gray-800 pt-8">
                     <div>
                       <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">Estimated Total</p>
-                      {/* Displaying Real-Time Total */}
                       <p className="text-3xl md:text-4xl font-black text-white tracking-wide">
                         ₹ {currentTotal.toLocaleString('en-IN')}
                       </p>
@@ -349,17 +346,15 @@ const CabDetails = () => {
       </div>
 
       <style>{`
-        /* Hide Default Number Arrows (Spinners) in Chrome/Safari/Edge */
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }
         input[type="number"] {
-          -moz-appearance: textfield; /* Firefox */
+          -moz-appearance: textfield; 
         }
         
-        /* Minimalist Calendar and Time picker icons */
         input[type="date"]::-webkit-calendar-picker-indicator,
         input[type="time"]::-webkit-calendar-picker-indicator {
             opacity: 0;

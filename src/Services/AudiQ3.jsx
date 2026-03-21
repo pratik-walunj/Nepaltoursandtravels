@@ -31,7 +31,7 @@ const CabDetails = () => {
   const [activeImage, setActiveImage] = useState(0);
   
   // Package Accordion State
-  const [activePackage, setActivePackage] = useState('city');
+  const [activePackage, setActivePackage] = useState(null);
   
   // Form States inside Packages
   const [pkgDate, setPkgDate] = useState('');
