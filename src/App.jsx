@@ -107,6 +107,7 @@ import AudiQ5 from "./Services/AudiQ5"
 import ErtigaDetails from "./Services/suv-ertiga"
 import SwiftDzireDetails from "./Services/sedan-swift-dzire"
 import InnovaCrystaDetails from "./Services/toyota-innova-crysta"
+import WagonRDetails from "./Services/hatchback-wagonr-swift"
 
 
 const App=()=>{
@@ -223,6 +224,7 @@ const App=()=>{
 <Route path="cab-details/suv-ertiga" element={<ErtigaDetails/>}/>
 <Route path="cab-details/sedan-swift-dzire" element={<SwiftDzireDetails/>}/>
 <Route path="cab-details/toyota-innova-crysta" element={<InnovaCrystaDetails/>}/>
+<Route path="cab-details/hatchback-wagonr-swift" element={<WagonRDetails/>}/>
 
 
       </Route>
