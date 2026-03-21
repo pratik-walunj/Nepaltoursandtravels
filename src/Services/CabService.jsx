@@ -471,6 +471,7 @@ import audiq7view from "../images/audiq7view.png";
 import ertigaView from "../images/Ertiga.jpg"; 
 import dzireMain from "../images/swift-dzire.jpg"; 
 import innovaMain from "../images/innova-crysta.jpg"; 
+import wagonRMain from "../images/wagonr.jpg";
 
 // --- MOCK AIRPORT DATA ---
 const availableAirports = [
@@ -538,7 +539,7 @@ const CabPage = () => {
   // EXTENDED MOCK DATA: Added 'path' field to every car for SEO friendly URLs
   const initialFleetData = [
     // Standard
-    { id: 1, path: "hatchback-wagonr-swift", type: "Hatchback", models: "WagonR, Swift", seats: 4, bags: 1, pricePerKm: "...", rating: 4.5, isAc: true, img: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 1, path: "hatchback-wagonr-swift", type: "Hatchback", models: "WagonR", seats: 4, bags: 1, pricePerKm: "...", rating: 4.5, isAc: true, img: wagonRMain },
     { id: 2, path: "sedan-swift-dzire", type: "Sedan", models: "Swift Dzire ", seats: 4, bags: 2, pricePerKm: "...", rating: 4.8, isAc: true, img: dzireMain },
     { id: 3, path: "suv-ertiga", type: "SUV", models: "Ertiga", seats: 6, bags: 3, pricePerKm: "...", rating: 4.6, isAc: true, img: ertigaView },
     
