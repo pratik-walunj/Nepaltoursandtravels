@@ -113,6 +113,9 @@ import Seater20Tempo from "./Services/Seater20Tempo"
 import Seater26Tempo from "./Services/Seater26Tempo"
 
 import WagonRDetails from "./Services/hatchback-wagonr-swift"
+import FortunerDetails from "./Services/toyota-fortuner"
+import CretaDetails from "./Services/hyundai-creta"
+import VernaDetails from "./Services/hyundai-verna"
 
 
 
@@ -231,6 +234,9 @@ const App=()=>{
 <Route path="cab-details/sedan-swift-dzire" element={<SwiftDzireDetails/>}/>
 <Route path="cab-details/toyota-innova-crysta" element={<InnovaCrystaDetails/>}/>
 <Route path="cab-details/hatchback-wagonr-swift" element={<WagonRDetails/>}/>
+<Route path="cab-details/toyota-fortuner" element={<FortunerDetails/>}/>
+<Route path="cab-details/hyundai-creta" element={<CretaDetails/>}/>
+<Route path="cab-details/hyundai-verna" element={<VernaDetails/>}/>
 
 {/* 17 Tempo traveller  */}
 

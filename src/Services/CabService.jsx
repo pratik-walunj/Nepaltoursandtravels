@@ -468,7 +468,7 @@ import audiq5view from "../images/audiq5view.png"
 
 import audiq7view from "../images/audiq7view.png"; 
 import seater17view from "../images/17seaterview.png"; 
-import ertigaView from "../images/Ertiga.jpg"; 
+import ertigaView from "../images/ertigaa.jpg"; 
 import dzireMain from "../images/swift-dzire.jpg"; 
 import innovaMain from "../images/innova-crysta.jpg"; 
 
@@ -476,6 +476,9 @@ import seater20view from "../images/seater20view.png";
 import seater26view from "../images/seater26view.png"; 
 
 import wagonRMain from "../images/wagonr.jpg";
+import fortunerMain from "../images/fortuner.jpg"; 
+import cretaMain from "../images/creta.jpg"; 
+import vernaMain from "../images/verna.jpg"; 
 
 
 // --- MOCK AIRPORT DATA ---
@@ -550,10 +553,10 @@ const CabPage = () => {
     
     // Brands
     { id: 4, path: "toyota-innova-crysta", type: "Toyota", models: "Innova Crysta", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img: innovaMain },
-    { id: 5, path: "toyota-fortuner", type: "Toyota", models: "Fortuner", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 5, path: "toyota-fortuner", type: "Toyota", models: "Fortuner", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img: fortunerMain },
     
-    { id: 6, path: "hyundai-creta", type: "Hyundai", models: "Creta", seats: 4, bags: 3, pricePerKm: "...", rating: 4.7, isAc: true, img: "https://images.unsplash.com/photo-1563720225384-9c02604084f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 7, path: "hyundai-verna", type: "Hyundai", models: "Verna", seats: 4, bags: 2, pricePerKm:"...", rating: 4.8, isAc: true, img: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 6, path: "hyundai-creta", type: "Hyundai", models: "Creta", seats: 4, bags: 3, pricePerKm: "...", rating: 4.7, isAc: true, img: cretaMain },
+    { id: 7, path: "hyundai-verna", type: "Hyundai", models: "Verna", seats: 4, bags: 2, pricePerKm:"...", rating: 4.8, isAc: true, img: vernaMain },
     
     // Luxury Brands
     { id: 8, path: "bmw-3-series", type: "BMW", models: "BMW 3 Series", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
