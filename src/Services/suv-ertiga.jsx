@@ -114,7 +114,7 @@ const ErtigaDetails = () => {
           <div className="flex items-center gap-5">
             <div className="flex items-center text-white/80">
                 <div className="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center">
-                    <span className="font-black text-[10px] tracking-tighter">SUV</span>
+                    <span className="font-black text-[10px] tracking-tighter text-white">SUV</span>
                 </div>
             </div>
             <div className="flex flex-col justify-center">
@@ -198,9 +198,25 @@ const ErtigaDetails = () => {
                 </div>
 
                 <div className={`px-6 md:px-14 overflow-hidden transition-all duration-500 ${isActive ? 'max-h-[800px] pb-8 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  
+                  {/* FIXED DATE/TIME INPUT SECTION */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 mt-4">
-                    <input type="date" value={pkgDate} onChange={(e) => setPkgDate(e.target.value)} className="bg-transparent border-b border-gray-600 text-white pb-2 outline-none [color-scheme:dark]" />
-                    <input type="time" value={pkgTime} onChange={(e) => setPkgTime(e.target.value)} className="bg-transparent border-b border-gray-600 text-white pb-2 outline-none [color-scheme:dark]" />
+                    <div className="relative border-b border-gray-600">
+                      <input 
+                        type="date" 
+                        value={pkgDate} 
+                        onChange={(e) => setPkgDate(e.target.value)} 
+                        className="w-full bg-transparent text-white pb-2 outline-none [color-scheme:dark] cursor-pointer" 
+                      />
+                    </div>
+                    <div className="relative border-b border-gray-600">
+                      <input 
+                        type="time" 
+                        value={pkgTime} 
+                        onChange={(e) => setPkgTime(e.target.value)} 
+                        className="w-full bg-transparent text-white pb-2 outline-none [color-scheme:dark] cursor-pointer" 
+                      />
+                    </div>
                   </div>
 
                   {pkg.hasExtras && (
@@ -221,7 +237,7 @@ const ErtigaDetails = () => {
                       <p className="text-gray-500 text-[10px] font-bold uppercase mb-1">Total Estimated Fare</p>
                       <p className="text-3xl md:text-4xl font-black text-white">₹ {currentTotal.toLocaleString('en-IN')}</p>
                     </div>
-                    <button className="w-full md:w-auto bg-green-500 hover:bg-green-400 text-black font-black uppercase text-xs py-4 px-12 rounded-full transition-all">
+                    <button className="w-full md:w-auto bg-white text-black font-black uppercase text-xs py-4 px-12 rounded-full mt-6 md:mt-0 active:scale-95 transition-transform">
                       Confirm Ertiga Booking
                     </button>
                   </div>
@@ -232,9 +248,26 @@ const ErtigaDetails = () => {
         </div>
       </div>
 
+      {/* FIXED CSS BLOCK */}
       <style>{`
-        input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: pointer; width: 100%; height: 100%; position: absolute; }
+        input[type="number"]::-webkit-outer-spin-button, 
+        input[type="number"]::-webkit-inner-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator, 
+        input[type="time"]::-webkit-calendar-picker-indicator { 
+          cursor: pointer; 
+          filter: invert(1);
+          opacity: 0.6;
+          transition: opacity 0.2s;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator:hover, 
+        input[type="time"]::-webkit-calendar-picker-indicator:hover { 
+          opacity: 1;
+        }
       `}</style>
     </div>
   );
