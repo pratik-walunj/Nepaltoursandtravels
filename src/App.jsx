@@ -111,9 +111,10 @@ import InnovaCrystaDetails from "./Services/toyota-innova-crysta"
 import Seater17Tempo from "./Services/17SeaterTempo";
 import Seater20Tempo from "./Services/Seater20Tempo"
 import Seater26Tempo from "./Services/Seater26Tempo"
-
+import Seater13Tempo from "./Services/Seater13Tempo"
+import Seater12Tempo from "./Services/Seater12Tempo"
 import WagonRDetails from "./Services/hatchback-wagonr-swift"
-
+import MercedesEclass from "./Services/MercedesEclass"
 
 
 const App=()=>{
@@ -237,8 +238,9 @@ const App=()=>{
 <Route path="cab-details/17-seater-force-traveller" element={<Seater17Tempo/>}/>
 <Route path="cab-details/20-seater-force-traveller" element={<Seater20Tempo/>}/>
 <Route path="cab-details/26-seater-force-traveller" element={<Seater26Tempo/>}/>
-
-
+<Route path="cab-details/13-seater-force-traveller" element={<Seater13Tempo/>}/>
+<Route path="cab-details/12-seater-force-traveller" element={<Seater12Tempo/>}/>
+<Route path="cab-details/mercedes-e-class" element={<MercedesEclass/>}/>
 
 
       </Route>

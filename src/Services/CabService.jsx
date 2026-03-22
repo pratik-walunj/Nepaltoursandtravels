@@ -474,8 +474,10 @@ import innovaMain from "../images/innova-crysta.jpg";
 
 import seater20view from "../images/seater20view.png"; 
 import seater26view from "../images/seater26view.png"; 
-
+import seater13view from "../images/seater13view.png"; 
+import seater12view from "../images/seater12view.png"; 
 import wagonRMain from "../images/wagonr.jpg";
+import mercedeseclassview from "../images/mercedeseclassview.png"; 
 
 
 // --- MOCK AIRPORT DATA ---
@@ -568,11 +570,11 @@ const CabPage = () => {
     { id: 102 , path: "audi-q3", type: "Audi", models: "Audi Q3", seats: 5, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img:audiq3view },
      { id: 103 , path: "audi-q5", type: "Audi", models: "Audi Q5", seats: 5, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img: audiq5view },
      { id: 104 , path: "audi-q7", type: "Audi", models: "Audi Q7", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img: audiq7view },
-    { id: 12, path: "mercedes-e-class", type: "Mercedes", models: "Mercedes E-Class", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 12, path: "mercedes-e-class", type: "Mercedes", models: "Mercedes E-Class", seats: 5, bags: 3, pricePerKm: "...", rating: 5.0, isAc: true, img: mercedeseclassview },
     
     // Group & Commuter Vehicles (Tempo Traveller)
-    { id: 13, path: "12-seater-force-traveller", type: "Tempo Traveller", models: "12 Seater Force Traveller", seats: 12, bags: 8, pricePerKm: "...", rating: 4.6, isAc: true, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 14, path: "13-seater-force-traveller", type: "Tempo Traveller", models: "13 Seater Force Traveller", seats: 13, bags: 9, pricePerKm: "...", rating: 4.6, isAc: true, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 199, path: "12-seater-force-traveller", type: "Tempo Traveller", models: "12 Seater Force Traveller", seats: 12, bags: 8, pricePerKm: "...", rating: 4.6, isAc: true, img: seater12view },
+    { id: 200, path: "13-seater-force-traveller", type: "Tempo Traveller", models: "13 Seater Force Traveller", seats: 13, bags: 9, pricePerKm: "...", rating: 4.6, isAc: true, img: seater13view },
     { id: 201, path: "17-seater-force-traveller", type: "Tempo Traveller", models: "17 Seater Force Traveller", seats: 17, bags: 12, pricePerKm: "...", rating: 4.7, isAc: true, img: seater17view  },
     { id: 202, path: "20-seater-force-traveller", type: "Tempo Traveller", models: "20 Seater Force Traveller", seats: 20, bags: 15, pricePerKm: "...", rating: 4.7, isAc: true, img: seater20view },
     { id: 203, path: "26-seater-force-traveller", type: "Tempo Traveller", models: "26 Seater Force Traveller", seats: 26, bags: 20, pricePerKm: "...", rating: 4.5, isAc: true, img: seater26view },

@@ -20,7 +20,7 @@ const masterFleetData = [
     isAc: true, 
     // High-quality placeholder image for testing (Mini-Bus)
     img: seater26view,
-    description: "The 26-Seater Luxury Tempo Traveller operates in the premium mini-bus segment, making it the ultimate choice for massive group tours, large wedding parties, and extensive corporate excursions. It offers an incredibly spacious cabin with an easy-to-navigate aisle, premium pushback reclining seats, and high-capacity dual-AC vents. Designed for long-haul comfort and safety, this heavy-duty vehicle features superior suspension to glide over rough terrains and ample luggage space for extended trips. Experience the joy of traveling together without compromising on personal space or premium amenities."
+    description: "The 26-Seater Luxury Tempo Traveller operates in the premium  segment, making it the ultimate choice for massive group tours, large wedding parties, and extensive corporate excursions. It offers an incredibly spacious cabin with an easy-to-navigate aisle, premium pushback reclining seats, and high-capacity dual-AC vents. Designed for long-haul comfort and safety, this heavy-duty vehicle features superior suspension to glide over rough terrains and ample luggage space for extended trips. Experience the joy of traveling together without compromising on personal space or premium amenities."
   }
 ];
 
