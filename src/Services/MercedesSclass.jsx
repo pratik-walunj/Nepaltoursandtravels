@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-// Placeholders: Aap apni actual Audi A4 images yahan import karein
-import audia4 from "../images/audia4.png"
-import audia4frontview from "../images/audia4frontview.png";
-import audia4backview from "../images/audia4backview.png"
-
-// Master Data with specific Audi A4 details and description
+// Placeholders: Aap apni actual Mercedes S-Class images yahan import karein
+import mercedessclassview from "../images/mercedessclassview.png"; 
+import mercedessclassfrontview from "../images/mercedessclassfrontview.png"; 
+import mercedessclassbackview from "../images/mercedessclassbackview.png"; 
+// Master Data specifically configured for Mercedes S-Class (Flagship)
 const masterFleetData = [
   { 
-    id: 101, 
-    path: "audi-a4", 
-    type: "Audi", 
-    models: "AUDI A4", 
-    seats: "5 SEATS", 
-    bags: "2 BAGS", 
-    pricePerKm: 40, 
-    rating: 4.8, 
+    id: 100, 
+    path: "mercedes-s-class", 
+    type: "Mercedes-Benz", 
+    models: "MERCEDES S CLASS", 
+    seats: "4 SEATS", // 4 Seats emphasize the VIP Rear Lounge experience
+    bags: "3 BAGS", 
+    pricePerKm: 80, // Ultra-luxury segment pricing
+    rating: 5.0, 
     isAc: true, 
-    img: audia4,
-    description: "The Audi A4 represents a perfect synergy of sporty dynamics, everyday practicality, and premium elegance. Featuring a meticulously crafted interior with advanced acoustics, plush leather seating, and customizable ambient lighting, it ensures a deeply comfortable and serene journey. With its sleek aerodynamic exterior and superior handling, the Audi A4 is the ultimate choice for executive travel, stylish city rides, and premium airport transfers."
+    img: mercedessclassview,
+    description: "The Mercedes-Benz S-Class is the ultimate pinnacle of automotive luxury, universally recognized as the benchmark for flagship sedans. Designed to offer an unparalleled chauffeur-driven experience, the rear cabin transforms into a first-class VIP lounge with reclining massage seats, cinematic screens, and exquisite ambient lighting. Engineered with a revolutionary predictive air suspension system, it literally glides over road imperfections, ensuring a whisper-quiet and flawlessly smooth journey for top executives, celebrities, and VVIPs."
   }
 ];
 
@@ -43,9 +42,9 @@ const CabDetails = () => {
 
   const [carData, setCarData] = useState(null);
 
-  // 1. Fetch Data UseEffect 
+  // 1. Fetch Data UseEffect
   useEffect(() => {
-    const foundCar = masterFleetData.find(car => car.path === carName) || masterFleetData.find(car => car.id === 101);
+    const foundCar = masterFleetData.find(car => car.path === carName) || masterFleetData.find(car => car.id === 100);
     setCarData(foundCar);
   }, [carName]);
 
@@ -64,48 +63,48 @@ const CabDetails = () => {
     return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white">Loading Vehicle Data...</div>;
   }
 
-  // Structuring data for Audi A4
+  // Structuring data for Mercedes S-Class
   const details = {
     brand: carData.type.toUpperCase(),
     model: carData.models.toUpperCase(),
-    category: "PREMIUM SEDAN",
+    category: "ULTRA LUXURY SEDAN", // Flagship Tag
     driveType: "CHAUFFEUR DRIVEN",
     description: carData.description,
     images: [
       carData.img, 
-      audia4frontview,
-      audia4backview 
+      mercedessclassfrontview , 
+      mercedessclassbackview 
     ],
     features: [
       `${carData.seats}`,
-      carData.isAc ? "AUTOMATIC" : "MANUAL",
-      "PETROL", 
+      "AUTOMATIC",
+      "DIESEL", 
       `${carData.bags}`
     ]
   };
 
-  // Mock Packages Data (Numeric Values for Real-Time Calculation)
+  // Mock Packages Data (Flagship S-Class Pricing)
   const packagesData = [
     {
       id: 'city',
-      title: 'STANDARD / CITY RIDE — 8HR 80KM',
-      basePrice: 25000,
-      extraKmRate: 250,
-      extraHrRate: 2500,
+      title: 'LOCAL CITY RIDE — 8HR 80KM',
+      basePrice: 15000,
+      extraKmRate: 80,
+      extraHrRate: 1500,
       hasExtras: true
     },
     {
       id: 'outstation',
       title: 'OUTSTATION — 300KM / 12AM—12AM',
-      basePrice: 75000,
-      extraKmRate: 280,
-      extraHrRate: 2800,
+      basePrice: 35000,
+      extraKmRate: 80,
+      extraHrRate: 1500,
       hasExtras: true
     },
     {
       id: 'airport',
-      title: 'AIRPORT TRANSFER',
-      basePrice: 28000,
+      title: 'VIP AIRPORT TRANSFER',
+      basePrice: 8500,
       extraKmRate: 0,
       extraHrRate: 0,
       hasExtras: false
@@ -141,7 +140,7 @@ const CabDetails = () => {
     <div className="font-sans bg-black min-h-screen pt-24 md:pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative selection:bg-gray-700 selection:text-white">
 
       {/* GLOBAL BACK BUTTON */}
-     
+    
 
       {/* --- 1. MAIN CAR DETAILS CARD (EXACT HYPE LUXURY SIZE & STYLE) --- */}
       <div className="w-full max-w-[1000px] mx-auto bg-[#181818] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl mb-8 border border-white/5">
@@ -158,13 +157,11 @@ const CabDetails = () => {
         <div className="flex flex-row items-center justify-between mb-8 px-1 md:px-2">
           <div className="flex items-center gap-4 md:gap-5">
             <div className="flex items-center text-white">
-                {/* Custom Audi SVG Logo */}
+                {/* Mercedes Star SVG Logo */}
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-white flex items-center justify-center p-1.5">
-                  <svg viewBox="0 0 100 40" fill="none" stroke="currentColor" strokeWidth="4" className="w-full h-auto text-white opacity-90 px-1">
-                    <circle cx="20" cy="20" r="14" />
-                    <circle cx="40" cy="20" r="14" />
-                    <circle cx="60" cy="20" r="14" />
-                    <circle cx="80" cy="20" r="14" />
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full text-white">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 2v10l8.5 5M12 12l-8.5 5" />
                   </svg>
                 </div>
             </div>

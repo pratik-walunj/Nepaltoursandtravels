@@ -140,12 +140,12 @@ const CabDetails = () => {
     <div className="font-sans bg-black min-h-screen pt-24 md:pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative selection:bg-gray-700 selection:text-white">
 
       {/* GLOBAL BACK BUTTON */}
-      <button 
+      {/* <button 
         onClick={() => navigate(-1)} 
         className="absolute top-20 left-4 md:left-12 text-gray-400 hover:text-white font-bold transition-all text-[10px] md:text-xs uppercase tracking-widest flex items-center mb-4 z-50"
       >
         <span className="mr-1.5">←</span> BACK TO FLEET
-      </button>
+      </button> */}
 
       {/* --- 1. MAIN CAR DETAILS CARD (EXACT HYPE LUXURY SIZE & STYLE) --- */}
       <div className="w-full max-w-[1000px] mx-auto bg-[#181818] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl mb-8 border border-white/5">

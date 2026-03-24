@@ -116,7 +116,9 @@ import Seater12Tempo from "./Services/Seater12Tempo"
 import WagonRDetails from "./Services/hatchback-wagonr-swift"
 
 import MercedesEclass from "./Services/MercedesEclass"
-
+import MercedesCclass from "./Services/MercedesCclass";
+import MercedesSclass from "./Services/MercedesSclass";
+import MercedesMaybach from "./Services/MercedesMaybach";
 import FortunerDetails from "./Services/toyota-fortuner"
 import CretaDetails from "./Services/hyundai-creta"
 import VernaDetails from "./Services/hyundai-verna"
@@ -250,8 +252,9 @@ const App=()=>{
 <Route path="cab-details/13-seater-force-traveller" element={<Seater13Tempo/>}/>
 <Route path="cab-details/12-seater-force-traveller" element={<Seater12Tempo/>}/>
 <Route path="cab-details/mercedes-e-class" element={<MercedesEclass/>}/>
-
-
+<Route path="cab-details/mercedes-c-class" element={<MercedesCclass/>}/>
+<Route path="cab-details/mercedes-s-class" element={<MercedesSclass/>}/>
+<Route path="cab-details/mercedes-maybach" element={<MercedesMaybach/>}/>
       </Route>
 
 
