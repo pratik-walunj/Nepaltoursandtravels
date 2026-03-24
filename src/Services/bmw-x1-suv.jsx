@@ -2,32 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-// Assets - Replace these with your actual local image imports
-import dzireMain from "../images/swift-dzire.jpg"; 
-import dzireFront from "../images/swift-dzire_front.jpg";
-import dzireInterior from "../images/swift-dzire_back.jpg";
+// Assets - Using your provided BMW X1 SUV imagery
+import bmwX1Main from "../images/bmw_x1.jpg"; 
+import bmwX1Front from "../images/bmw_x1_front.jpg"; 
+import bmwX1Interior from "../images/bmw_x1_back.jpg"; 
 
 const masterFleetData = [
   { 
-    id: 102, 
-    path: "swift-dzire", 
-    type: "Maruti Suzuki", 
-    models: "Swift Dzire", 
+    id: 301, 
+    path: "bmw-x1", 
+    type: "BMW", 
+    models: "BMW X1 SUV", 
     seats: "4 SEATS", 
-    bags: "2 BAGS", 
-    pricePerKm: 15, 
-    rating: 4.8, 
+    bags: "3 BAGS", // Upgraded capacity based on source
+    pricePerKm: 65, 
+    rating: 4.9, // Based on source
     isAc: true, 
-    img: dzireMain,
-    description: "The Maruti Suzuki Swift Dzire is India's most loved compact sedan, offering a perfect blend of elegance and efficiency. Known for its smooth ride quality and premium upholstery, it provides a comfortable cabin for up to four passengers. With a dedicated boot space for two large bags and superior fuel economy, it is the ideal choice for business trips, city commutes, and small family outings."
+    img: bmwX1Main,
+    description: "The BMW X1 SUV redefines the compact luxury segment with its commanding road presence and versatile interior. Designed for those who require both the agility of a sedan and the robust space of an SUV, it features an elevated seating position for superior visibility and a flexible luggage compartment. Perfect for weekend getaways or navigating the city with a bit more breathing room, the X1 offers a spirited drive without compromising on executive comfort."
   }
 ];
 
-const SwiftDzireDetails = () => {
+const BmwX1Details = () => {
   const navigate = useNavigate();
   const { carName } = useParams(); 
   
-const [activeImage, setActiveImage] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
   const [activePackage, setActivePackage] = useState(null); 
   const [pkgDate, setPkgDate] = useState('');
   const [pkgTime, setPkgTime] = useState('');
@@ -35,12 +35,12 @@ const [activeImage, setActiveImage] = useState(0);
   const [extraHrs, setExtraHrs] = useState('');
   const [carData, setCarData] = useState(null);
 
-useEffect(() => {
+  useEffect(() => {
     const foundCar = masterFleetData.find(car => car.path === carName) || masterFleetData[0];
     setCarData(foundCar);
   }, [carName]);
 
-useEffect(() => {
+  useEffect(() => {
     if (carData) {
       const interval = setInterval(() => {
         setActiveImage((prevIndex) => (prevIndex + 1) % 3); 
@@ -50,23 +50,23 @@ useEffect(() => {
   }, [carData]);
 
   if (!carData) {
-    return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white uppercase tracking-tighter">Initializing Sedan...</div>;
+    return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white uppercase tracking-tighter">Warming Up SUV...</div>;
   }
 
   const details = {
     brand: carData.type.toUpperCase(),
     model: carData.models.toUpperCase(),
-    category: "PREMIUM SEDAN COLLECTION",
+    category: "LUXURY SUV COLLECTION",
     driveType: "CHAUFFEUR DRIVEN",
     description: carData.description,
-    images: [carData.img, dzireFront, dzireInterior],
-    features: [ `${carData.seats}`, "FULL AC", "PETROL/DIESEL", `${carData.bags}` ]
+    images: [carData.img, bmwX1Front, bmwX1Interior],
+    features: [ `${carData.seats}`, "AC", "SPACIOUS BOOT", `${carData.bags}` ] // Updated tags
   };
 
   const packagesData = [
-    { id: 'city', title: 'LOCAL RIDE — 8HR 80KM', basePrice: 2800, extraKmRate: 15, extraHrRate: 200, hasExtras: true },
-    { id: 'outstation', title: 'OUTSTATION — MIN 250KM / DAY', basePrice: 3750, extraKmRate: 16, extraHrRate: 0, hasExtras: true },
-    { id: 'airport', title: 'AIRPORT TRANSFER', basePrice: 1100, extraKmRate: 0, extraHrRate: 0, hasExtras: false }
+    { id: 'city', title: 'PREMIUM LOCAL — 8HR 80KM', basePrice: 15000, extraKmRate: 65, extraHrRate: 1500, hasExtras: true },
+    { id: 'outstation', title: 'SUV OUTSTATION — MIN 300KM / DAY', basePrice: 25000, extraKmRate: 65, extraHrRate: 1800, hasExtras: true },
+    { id: 'airport', title: 'AIRPORT SUV TRANSFER', basePrice: 7500, extraKmRate: 0, extraHrRate: 0, hasExtras: false }
   ];
 
   const handleProceedToPay = (e, pkg, totalAmount) => {
@@ -91,7 +91,6 @@ useEffect(() => {
   return (
     <div className="font-sans bg-black min-h-screen pt-24 md:pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative selection:bg-gray-700 selection:text-white">
 
-      {/* --- 1. MAIN VEHICLE CARD --- */}
       <div className="w-full max-w-[1000px] mx-auto bg-[#181818] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl mb-8 border border-white/5">
         
         <button 
@@ -105,7 +104,7 @@ useEffect(() => {
           <div className="flex items-center gap-4 md:gap-5">
             <div className="flex items-center text-white">
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-white flex items-center justify-center">
-                  <span className="font-bold text-[10px] md:text-xs tracking-tighter">SEDAN</span>
+                  <span className="font-bold text-[10px] md:text-xs tracking-tighter">BMW</span>
                 </div>
             </div>
             <div className="flex flex-col justify-center">
@@ -118,16 +117,15 @@ useEffect(() => {
             </div>
           </div>
           <div className="flex flex-col items-end">
-            {/* <span className="text-green-500 text-[10px] md:text-xs font-black uppercase tracking-[0.1em] bg-green-500/10 px-3 py-1 rounded-md mb-1">
+            <span className="text-green-500 text-[10px] md:text-xs font-black uppercase tracking-[0.1em] bg-green-500/10 px-3 py-1 rounded-md mb-1">
               {carData.rating} ★ RATED
-            </span> */}
+            </span>
             <span className="text-gray-300 text-[10px] md:text-xs font-bold uppercase tracking-[0.1em]">
               {details.driveType}
             </span>
           </div>
         </div>
 
-        {/* --- IMAGE CONTAINER (Light Gray Style) --- */}
         <div className="relative w-full h-[250px] sm:h-[350px] md:h-[420px] bg-[#e9e9e9] rounded-2xl md:rounded-3xl flex items-center justify-center overflow-hidden mb-8">
           <img 
             src={details.images[activeImage]} 
@@ -148,7 +146,6 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* Features Pills */}
         <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-2">
           {details.features.map((feature, index) => (
             <div 
@@ -161,23 +158,23 @@ useEffect(() => {
         </div>
       </div> 
 
-      {/* --- DESCRIPTION --- */}
       <div className="w-full max-w-[1000px] mx-auto mb-14 px-4 md:px-6">
         <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-medium text-center md:text-left">
           {details.description}
         </p>
       </div>
 
-      {/* --- PACKAGE SELECTION (White Card Style) --- */}
       <div className="w-full max-w-[1000px] mx-auto mt-12">
         <h2 className="text-lg md:text-xl font-bold text-white tracking-widest uppercase mb-6 pl-2">
-          Select Your Package
+          SUV Priority Packages
         </h2>
 
         <div className="bg-white rounded-[2rem] overflow-hidden flex flex-col shadow-2xl">
           {packagesData.map((pkg, index) => {
             const isActive = activePackage === pkg.id;
-            const currentTotal = pkg.basePrice + (pkg.hasExtras ? ((parseInt(extraKms) || 0) * pkg.extraKmRate) + ((parseInt(extraHrs) || 0) * pkg.extraHrRate) : 0);
+            const kmsValue = parseInt(extraKms) || 0;
+            const hrsValue = parseInt(extraHrs) || 0;
+            const currentTotal = pkg.basePrice + (pkg.hasExtras ? (kmsValue * pkg.extraKmRate) + (hrsValue * pkg.extraHrRate) : 0);
             
             return (
               <div key={pkg.id} className={`border-b border-slate-200 ${index === packagesData.length - 1 ? 'border-b-0' : ''}`}>
@@ -233,15 +230,15 @@ useEffect(() => {
 
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mt-4 bg-[#181818] p-6 md:p-8 rounded-2xl shadow-lg border border-black">
                     <div>
-                      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Total Amount</p>
+                      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Final Fare</p>
                       <p className="text-3xl md:text-4xl font-black text-white">₹ {currentTotal.toLocaleString('en-IN')}</p>
-                      <p className="text-gray-500 text-[10px] mt-1 font-medium">Tolls & state taxes as actuals</p>
+                      <p className="text-gray-500 text-[10px] mt-1 font-medium">Tolls & state taxes extra as actuals</p>
                     </div>
                     <button 
                       onClick={(e) => handleProceedToPay(e, pkg, currentTotal)}
                       className="w-full md:w-auto bg-white hover:bg-gray-200 text-black font-black uppercase tracking-[0.15em] text-[10px] py-4 px-10 rounded-xl transition-all shadow-md hover:-translate-y-1 active:translate-y-0"
                     >
-                      Book Dzire Now
+                      Book SUV Now
                     </button>
                   </div>
                 </div>
@@ -251,7 +248,7 @@ useEffect(() => {
         </div>
       </div>
 
-    <style>{`
+      <style>{`
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type="number"] { -moz-appearance: textfield; }
@@ -260,4 +257,4 @@ useEffect(() => {
   );
 };
 
-export default SwiftDzireDetails;
+export default BmwX1Details;

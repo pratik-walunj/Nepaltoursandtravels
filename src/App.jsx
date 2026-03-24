@@ -120,8 +120,12 @@ import MercedesEclass from "./Services/MercedesEclass"
 import FortunerDetails from "./Services/toyota-fortuner"
 import CretaDetails from "./Services/hyundai-creta"
 import VernaDetails from "./Services/hyundai-verna"
-
-
+import CabDetails from "./Services/bmw-3-series"
+import BmwDetails from "./Services/bmw-5-series"
+import BmwX1Details from "./Services/bmw-x1-suv"
+import BmwMzDetails from "./Services/bmw-mz-convertible"
+import MahindraScorpioDetails from "./Services/Mahindra-Scorpio"
+import MahindraXuv700Details from "./Services/Mahindra-XUV"
 
 const App=()=>{
   return(
@@ -241,6 +245,13 @@ const App=()=>{
 <Route path="cab-details/toyota-fortuner" element={<FortunerDetails/>}/>
 <Route path="cab-details/hyundai-creta" element={<CretaDetails/>}/>
 <Route path="cab-details/hyundai-verna" element={<VernaDetails/>}/>
+<Route path="cab-details/bmw-3-series" element={<CabDetails/>}/>
+<Route path="cab-details/bmw-5-series" element={<BmwDetails/>}/>
+<Route path="cab-details/bmw-x1-suv" element={<BmwX1Details/>}/>
+<Route path="cab-details/bmw-mz-convertible" element={<BmwMzDetails/>}/>
+<Route path="cab-details/Mahindra-Scorpio" element={<MahindraScorpioDetails/>}/>
+<Route path="cab-details/Mahindra-XUV" element={<MahindraXuv700Details/>}/>
+
 
 {/* 17 Tempo traveller  */}
 
