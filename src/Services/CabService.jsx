@@ -483,6 +483,12 @@ import mercedeseclassview from "../images/mercedeseclassview.png";
 import fortunerMain from "../images/fortuner.jpg"; 
 import cretaMain from "../images/creta.jpg"; 
 import vernaMain from "../images/verna.jpg"; 
+import bmwMain from "../images/bmw.jpg"; 
+import bmw520Main from "../images/bmw520.jpg";
+import bmwX1Main from "../images/bmw_x1.jpg";
+import bmwMZMain from "../images/bmw_mz.jpg";
+import scorpioMain from "../images/Mahindra-Scorpio.jpg";
+import xuv700Main from "../images/Mahindra-xuv.jpg";
 
 
 
@@ -564,13 +570,17 @@ const CabPage = () => {
     { id: 7, path: "hyundai-verna", type: "Hyundai", models: "Verna", seats: 4, bags: 2, pricePerKm:"...", rating: 4.8, isAc: true, img: vernaMain },
     
     // Luxury Brands
-    { id: 8, path: "bmw-3-series", type: "BMW", models: "BMW 3 Series", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 9, path: "bmw-5-series", type: "BMW", models: "BMW 5 Series", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 10, path: "bmw-x1-suv", type: "BMW", models: "BMW X1 SUV", seats: 4, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 8, path: "bmw-3-series", type: "BMW", models: "BMW 320d", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: bmwMain },
+    { id: 9, path: "bmw-5-series", type: "BMW", models: "BMW 520", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: bmw520Main },
+    { id: 10, path: "bmw-x1-suv", type: "BMW", models: "BMW X1 SUV", seats: 4, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img: bmwX1Main },
+
+    { id: 111, path: "bmw-mz-convertible", type: "BMW", models: "BMW MZ Convertible", seats: 4, bags: 2, pricePerKm: "...", rating: 4.9, isAc: true, img:bmwMZMain },
+    { id: 112, path: "Mahindra-Scorpio", type: "SUV", models: "Mahindra", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img:scorpioMain },
+    { id: 113, path: "Mahindra-XUV", type: "SUV", models: "Mahindra XUV 700", seats: 7, bags: 4, pricePerKm: "...", rating: 5.0, isAc: true, img:xuv700Main },
     
     { id: 99, path: "audi-a8", type: "Audi", models: "Audi A8", seats: 4, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img:audia8 },
     
-    { id: 101, path: "audi-a4", type: "Audi", models: "Audi A4", seats: 5, bags: 2, pricePerKm: "...", rating: 4.9, isAc: true, img:audia4 },
+    { id: 11, path: "audi-a4", type: "Audi", models: "Audi A4", seats: 5, bags: 2, pricePerKm: "...", rating: 4.9, isAc: true, img:audia4 },
     
     { id: 11, path: "audi-a6", type: "Audi", models: "Audi A6", seats: 4, bags: 2, pricePerKm: "...", rating: 4.9, isAc: true, img:audia6sideview },
     { id: 102 , path: "audi-q3", type: "Audi", models: "Audi Q3", seats: 5, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img:audiq3view },
