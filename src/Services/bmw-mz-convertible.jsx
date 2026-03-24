@@ -2,32 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-// Assets - Replace these with your actual local image imports
-import dzireMain from "../images/swift-dzire.jpg"; 
-import dzireFront from "../images/swift-dzire_front.jpg";
-import dzireInterior from "../images/swift-dzire_back.jpg";
+// Assets - Replace these with your actual BMW MZ imagery
+import bmwMZMain from "../images/bmw_mz.jpg"; 
+import bmwMZFront from "../images/bmw_mz_front.jpg"; 
+import bmwMZTopDown from "../images/bmw_mz_back.jpg"; 
 
 const masterFleetData = [
   { 
-    id: 102, 
-    path: "swift-dzire", 
-    type: "Maruti Suzuki", 
-    models: "Swift Dzire", 
+    id: 401, 
+    path: "bmw-mz-convertible", 
+    type: "BMW", 
+    models: "BMW MZ Convertible", 
     seats: "4 SEATS", 
-    bags: "2 BAGS", 
-    pricePerKm: 15, 
-    rating: 4.8, 
+    bags: "2 BAGS", // Convertible trunk capacity
+    pricePerKm: 75, // Standard premium for open-top
+    rating: 4.9, // Based on source
     isAc: true, 
-    img: dzireMain,
-    description: "The Maruti Suzuki Swift Dzire is India's most loved compact sedan, offering a perfect blend of elegance and efficiency. Known for its smooth ride quality and premium upholstery, it provides a comfortable cabin for up to four passengers. With a dedicated boot space for two large bags and superior fuel economy, it is the ideal choice for business trips, city commutes, and small family outings."
+    img: bmwMZMain,
+    description: "The BMW MZ Convertible is the ultimate statement of freedom and luxury on the open road. Perfect for scenic coastal drives, grand entrances, or premium city cruising, this vehicle blends high-performance dynamics with the pure joy of open-air touring. Featuring an automated soft-top that can be operated on the move, a sophisticated wind deflector system, and the signature BMW driving experience, the MZ series is crafted for those who don't just travel, but make every journey an event."
   }
 ];
 
-const SwiftDzireDetails = () => {
+const BmwMzDetails = () => {
   const navigate = useNavigate();
   const { carName } = useParams(); 
   
-const [activeImage, setActiveImage] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
   const [activePackage, setActivePackage] = useState(null); 
   const [pkgDate, setPkgDate] = useState('');
   const [pkgTime, setPkgTime] = useState('');
@@ -35,12 +35,12 @@ const [activeImage, setActiveImage] = useState(0);
   const [extraHrs, setExtraHrs] = useState('');
   const [carData, setCarData] = useState(null);
 
-useEffect(() => {
+  useEffect(() => {
     const foundCar = masterFleetData.find(car => car.path === carName) || masterFleetData[0];
     setCarData(foundCar);
   }, [carName]);
 
-useEffect(() => {
+  useEffect(() => {
     if (carData) {
       const interval = setInterval(() => {
         setActiveImage((prevIndex) => (prevIndex + 1) % 3); 
@@ -50,23 +50,23 @@ useEffect(() => {
   }, [carData]);
 
   if (!carData) {
-    return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white uppercase tracking-tighter">Initializing Sedan...</div>;
+    return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white uppercase tracking-tighter">Retracting Soft-Top...</div>;
   }
 
   const details = {
     brand: carData.type.toUpperCase(),
     model: carData.models.toUpperCase(),
-    category: "PREMIUM SEDAN COLLECTION",
+    category: "ELITE SPORT COLLECTION", // Swapped 'Executive' for 'Sport'
     driveType: "CHAUFFEUR DRIVEN",
     description: carData.description,
-    images: [carData.img, dzireFront, dzireInterior],
-    features: [ `${carData.seats}`, "FULL AC", "PETROL/DIESEL", `${carData.bags}` ]
+    images: [carData.img, bmwMZFront, bmwMZTopDown],
+    features: [ `${carData.seats}`, "AUTOMATED TOP", "WIND DEFLECTOR", `${carData.bags}` ] // Updated tags
   };
 
   const packagesData = [
-    { id: 'city', title: 'LOCAL RIDE — 8HR 80KM', basePrice: 2800, extraKmRate: 15, extraHrRate: 200, hasExtras: true },
-    { id: 'outstation', title: 'OUTSTATION — MIN 250KM / DAY', basePrice: 3750, extraKmRate: 16, extraHrRate: 0, hasExtras: true },
-    { id: 'airport', title: 'AIRPORT TRANSFER', basePrice: 1100, extraKmRate: 0, extraHrRate: 0, hasExtras: false }
+    { id: 'city', title: 'SPORT LOCAL — 8HR 80KM', basePrice: 18000, extraKmRate: 75, extraHrRate: 2000, hasExtras: true },
+    { id: 'outstation', title: 'GRAND TOURING — MIN 300KM / DAY', basePrice: 28000, extraKmRate: 75, extraHrRate: 2500, hasExtras: true },
+    { id: 'airport', title: 'VIP ARRIVAL TRANSFER', basePrice: 9500, extraKmRate: 0, extraHrRate: 0, hasExtras: false }
   ];
 
   const handleProceedToPay = (e, pkg, totalAmount) => {
@@ -91,7 +91,6 @@ useEffect(() => {
   return (
     <div className="font-sans bg-black min-h-screen pt-24 md:pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative selection:bg-gray-700 selection:text-white">
 
-      {/* --- 1. MAIN VEHICLE CARD --- */}
       <div className="w-full max-w-[1000px] mx-auto bg-[#181818] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl mb-8 border border-white/5">
         
         <button 
@@ -105,7 +104,7 @@ useEffect(() => {
           <div className="flex items-center gap-4 md:gap-5">
             <div className="flex items-center text-white">
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-white flex items-center justify-center">
-                  <span className="font-bold text-[10px] md:text-xs tracking-tighter">SEDAN</span>
+                  <span className="font-bold text-[10px] md:text-xs tracking-tighter">BMW</span>
                 </div>
             </div>
             <div className="flex flex-col justify-center">
@@ -127,7 +126,6 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* --- IMAGE CONTAINER (Light Gray Style) --- */}
         <div className="relative w-full h-[250px] sm:h-[350px] md:h-[420px] bg-[#e9e9e9] rounded-2xl md:rounded-3xl flex items-center justify-center overflow-hidden mb-8">
           <img 
             src={details.images[activeImage]} 
@@ -148,7 +146,6 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* Features Pills */}
         <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-2">
           {details.features.map((feature, index) => (
             <div 
@@ -161,23 +158,23 @@ useEffect(() => {
         </div>
       </div> 
 
-      {/* --- DESCRIPTION --- */}
       <div className="w-full max-w-[1000px] mx-auto mb-14 px-4 md:px-6">
         <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-medium text-center md:text-left">
           {details.description}
         </p>
       </div>
 
-      {/* --- PACKAGE SELECTION (White Card Style) --- */}
       <div className="w-full max-w-[1000px] mx-auto mt-12">
         <h2 className="text-lg md:text-xl font-bold text-white tracking-widest uppercase mb-6 pl-2">
-          Select Your Package
+          Open-Top Experience Packages
         </h2>
 
         <div className="bg-white rounded-[2rem] overflow-hidden flex flex-col shadow-2xl">
           {packagesData.map((pkg, index) => {
             const isActive = activePackage === pkg.id;
-            const currentTotal = pkg.basePrice + (pkg.hasExtras ? ((parseInt(extraKms) || 0) * pkg.extraKmRate) + ((parseInt(extraHrs) || 0) * pkg.extraHrRate) : 0);
+            const kmsValue = parseInt(extraKms) || 0;
+            const hrsValue = parseInt(extraHrs) || 0;
+            const currentTotal = pkg.basePrice + (pkg.hasExtras ? (kmsValue * pkg.extraKmRate) + (hrsValue * pkg.extraHrRate) : 0);
             
             return (
               <div key={pkg.id} className={`border-b border-slate-200 ${index === packagesData.length - 1 ? 'border-b-0' : ''}`}>
@@ -203,7 +200,7 @@ useEffect(() => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 mt-4 bg-slate-50 p-6 rounded-2xl border border-slate-200">
                     <div className="flex flex-col">
-                      <label className="text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2">Travel Date *</label>
+                      <label className="text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2">Experience Date *</label>
                       <input type="date" value={pkgDate} onChange={(e) => setPkgDate(e.target.value)} className="w-full bg-white border border-slate-300 text-slate-800 px-4 py-3 rounded-xl outline-none font-bold text-sm focus:border-black transition-all shadow-sm" />
                     </div>
                     <div className="flex flex-col">
@@ -233,15 +230,15 @@ useEffect(() => {
 
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mt-4 bg-[#181818] p-6 md:p-8 rounded-2xl shadow-lg border border-black">
                     <div>
-                      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Total Amount</p>
+                      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Estimated Grand Total</p>
                       <p className="text-3xl md:text-4xl font-black text-white">₹ {currentTotal.toLocaleString('en-IN')}</p>
-                      <p className="text-gray-500 text-[10px] mt-1 font-medium">Tolls & state taxes as actuals</p>
+                      <p className="text-gray-500 text-[10px] mt-1 font-medium">Taxes & tolls extra as per actuals</p>
                     </div>
                     <button 
                       onClick={(e) => handleProceedToPay(e, pkg, currentTotal)}
                       className="w-full md:w-auto bg-white hover:bg-gray-200 text-black font-black uppercase tracking-[0.15em] text-[10px] py-4 px-10 rounded-xl transition-all shadow-md hover:-translate-y-1 active:translate-y-0"
                     >
-                      Book Dzire Now
+                      Book Convertible
                     </button>
                   </div>
                 </div>
@@ -251,7 +248,7 @@ useEffect(() => {
         </div>
       </div>
 
-    <style>{`
+      <style>{`
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type="number"] { -moz-appearance: textfield; }
@@ -260,4 +257,4 @@ useEffect(() => {
   );
 };
 
-export default SwiftDzireDetails;
+export default BmwMzDetails;
