@@ -7,11 +7,7 @@ import Kathmandu from "./nepalpackages/Kathmandu"
 
 
 import VisaPage from "./pages/VisaPage"
-
-
-
 import AyodhyaPackages from "./ayodhyapackages/AyodhyaPackages"
-
 import KathmanduTour2N3D from "./pages/KathmanduTour2N3D"
 import KashiTourPackages from "./kashipackages/KashiTourPackages"
 import BhutanTourPackages from "./bhutanpackages/BhutanTourPackages"
@@ -114,7 +110,7 @@ import Seater26Tempo from "./Services/Seater26Tempo"
 import Seater13Tempo from "./Services/Seater13Tempo"
 import Seater12Tempo from "./Services/Seater12Tempo"
 import WagonRDetails from "./Services/hatchback-wagonr-swift"
-
+import MercedesSlk from "./Services/MercedesSlk"
 import MercedesEclass from "./Services/MercedesEclass"
 import MercedesCclass from "./Services/MercedesCclass";
 import MercedesSclass from "./Services/MercedesSclass";
@@ -128,13 +124,16 @@ import BmwX1Details from "./Services/bmw-x1-suv"
 import BmwMzDetails from "./Services/bmw-mz-convertible"
 import MahindraScorpioDetails from "./Services/Mahindra-Scorpio"
 import MahindraXuv700Details from "./Services/Mahindra-XUV"
-
+import JaguarXe from "./Services/JaguarXe"
+import JaguarXf from "./Services/JaguarXf"
+import JaguarXjl from "./Services/JaguarXjl"
 const App=()=>{
   return(
     <>
     <BrowserRouter>
    <ScrollToTop />
     <Routes>
+
       <Route path="/" element={<Layout/>} >
 
       <Route index element={<Home/>}/>
@@ -266,6 +265,11 @@ const App=()=>{
 <Route path="cab-details/mercedes-c-class" element={<MercedesCclass/>}/>
 <Route path="cab-details/mercedes-s-class" element={<MercedesSclass/>}/>
 <Route path="cab-details/mercedes-maybach" element={<MercedesMaybach/>}/>
+     <Route path="cab-details/mercedes-slk" element={<MercedesSlk/>}/>
+      {/* jaguar */}
+       <Route path="cab-details/jaguar-xe" element={<JaguarXe/>}/>
+      <Route path="cab-details/jaguar-xf" element={<JaguarXf/>}/>
+       <Route path="cab-details/jaguar-xjl" element={<JaguarXjl/>}/>
       </Route>
 
 
