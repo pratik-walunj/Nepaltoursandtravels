@@ -124,6 +124,9 @@ import BmwX1Details from "./Services/bmw-x1-suv"
 import BmwMzDetails from "./Services/bmw-mz-convertible"
 import MahindraScorpioDetails from "./Services/Mahindra-Scorpio"
 import MahindraXuv700Details from "./Services/Mahindra-XUV"
+import GypsyDetails from "./Services/Gypsy"
+import JeepDetails from "./Services/Jeep"
+
 import JaguarXe from "./Services/JaguarXe"
 import JaguarXf from "./Services/JaguarXf"
 import JaguarXjl from "./Services/JaguarXjl"
@@ -252,6 +255,8 @@ const App=()=>{
 <Route path="cab-details/bmw-mz-convertible" element={<BmwMzDetails/>}/>
 <Route path="cab-details/Mahindra-Scorpio" element={<MahindraScorpioDetails/>}/>
 <Route path="cab-details/Mahindra-XUV" element={<MahindraXuv700Details/>}/>
+<Route path="cab-details/Gypsy" element={<GypsyDetails/>}/>
+<Route path="cab-details/Jeep" element={<JeepDetails/>}/>
 
 
 {/* 17 Tempo traveller  */}

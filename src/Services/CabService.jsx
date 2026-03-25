@@ -37,6 +37,8 @@ import bmwX1Main from "../images/bmw_x1.jpg";
 import bmwMZMain from "../images/bmw_mz.jpg";
 import scorpioMain from "../images/Mahindra-Scorpio.jpg";
 import xuv700Main from "../images/Mahindra-xuv.jpg";
+import gypsyMain from "../images/Gypsy.jpg";
+import jeepMain from "../images/jeep.jpg"; 
 
 
 
@@ -124,7 +126,11 @@ const CabPage = () => {
 
     { id: 111, path: "bmw-mz-convertible", type: "BMW", models: "BMW MZ Convertible", seats: 4, bags: 2, pricePerKm: "...", rating: 4.9, isAc: true, img:bmwMZMain },
     { id: 112, path: "Mahindra-Scorpio", type: "SUV", models: "Mahindra", seats: 7, bags: 4, pricePerKm: "...", rating: 4.9, isAc: true, img:scorpioMain },
-    { id: 113, path: "Mahindra-XUV", type: "SUV", models: "Mahindra XUV 700", seats: 7, bags: 4, pricePerKm: "...", rating: 5.0, isAc: true, img:xuv700Main },
+    { id: 113, path: "Gypsy", type: "Compact SUV", models: "Gypsy", seats: 4, bags: 2, pricePerKm: "...", rating: 4.9, isAc: true, img:gypsyMain },
+    { id: 114, path: "Jeep", type: "SUV", models: "Jeep", seats: 5, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img:jeepMain },
+
+
+    { id: 115, path: "Mahindra-XUV", type: "SUV", models: "Mahindra XUV 700", seats: 7, bags: 4, pricePerKm: "...", rating: 5.0, isAc: true, img:xuv700Main },
     
     { id: 99, path: "audi-a8", type: "Audi", models: "Audi A8", seats: 4, bags: 3, pricePerKm: "...", rating: 4.9, isAc: true, img:audia8 },
     
