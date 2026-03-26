@@ -2,28 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-// Assets - Replace with your actual Hyundai Creta image paths
-import cretaMain from "../images/creta.jpg"; 
-import cretaFront from "../images/creta_front.jpg";
-import cretaInterior from "../images/creta_back.jpg";
+// Assets - Replace with your actual Urbania image paths
+import urbaniaMain from "../images/urbania.jpg"; 
+import urbaniaInterior from "../images/urbania13Front.jpg";
+import urbaniaRear from "../images/urbania13Back.jpg";
 
 const masterFleetData = [
   { 
-    id: 107, 
-    path: "creta", 
-    type: "Hyundai", 
-    models: "Hyundai Creta", 
-    seats: "4 SEATS", 
-    bags: "3 BAGS", 
-    pricePerKm: 20, 
-    rating: 4.7, 
+    id: 115, 
+    path: "13-seater-luxury-urbania", 
+    type: "Force Motors", 
+    models: "13 Seater Luxury Urbania", 
+    seats: "13 SEATS", 
+    bags: "10 BAGS", 
+    pricePerKm: 45, 
+    rating: 4.8, 
     isAc: true, 
-    img: cretaMain,
-    description: "The Hyundai Creta is the ultimate urban SUV, blending cutting-edge technology with a bold, masculine design. Known for its 'Sensuous Sportiness,' it offers a premium cabin experience with ventilated seats, a panoramic sunroof, and advanced safety features. Ideal for small families or executive travel, the Creta provides a smooth, powerful drive that makes every journey comfortable and stylish."
+    img: urbaniaMain,
+    description: "The Force Urbania is the pinnacle of group luxury travel. Designed with a global styling language, it offers best-in-class cabin space, reclining seats with individual armrests, and triple-zone air conditioning. Its semi-monocoque structure and advanced suspension ensure a whisper-quiet, car-like ride quality, making it the ultimate choice for corporate retreats, large family expeditions, and premium tourist transfers."
   }
 ];
 
-const CretaDetails = () => {
+const UrbaniaDetails = () => {
   const navigate = useNavigate();
   const { carName } = useParams(); 
   
@@ -50,23 +50,23 @@ const CretaDetails = () => {
   }, [carData]);
 
   if (!carData) {
-    return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white uppercase tracking-tighter">Initializing Premium SUV...</div>;
+    return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white uppercase tracking-tighter">Initializing Luxury Transporter...</div>;
   }
 
   const details = {
-    brand: carData.type.toUpperCase(),
+    brand: "FORCE URBANIA",
     model: carData.models.toUpperCase(),
-    category: "URBAN PREMIUM SUV",
+    category: "PREMIUM GROUP TRANSPORTER",
     driveType: "CHAUFFEUR DRIVEN",
     description: carData.description,
-    images: [carData.img, cretaFront, cretaInterior],
-    features: [ `${carData.seats}`, "AUTO CLIMATE", "PANORAMIC VIEW", `${carData.bags}` ]
+    images: [carData.img , urbaniaInterior , urbaniaRear ],
+    features: [ `${carData.seats}`, "INDIVIDUAL RECLINERS", "TRIPLE-ZONE AC", `${carData.bags}` ]
   };
 
   const packagesData = [
-    { id: 'city', title: 'LOCAL RIDE — 8HR 80KM', basePrice: 4000, extraKmRate: 20, extraHrRate: 300, hasExtras: true },
-    { id: 'outstation', title: 'OUTSTATION — MIN 300KM / DAY', basePrice: 6000, extraKmRate: 22, extraHrRate: 0, hasExtras: true },
-    { id: 'airport', title: 'AIRPORT EXECUTIVE TRANSFER', basePrice: 1800, extraKmRate: 0, extraHrRate: 0, hasExtras: false }
+    { id: 'city', title: 'PREMIUM CITY — 8HR 80KM', basePrice: 8500, extraKmRate: 45, extraHrRate: 800, hasExtras: true },
+    { id: 'outstation', title: 'GROUP EXPEDITION — MIN 300KM / DAY', basePrice: 15000, extraKmRate: 50, extraHrRate: 0, hasExtras: true },
+    { id: 'airport', title: 'AIRPORT GROUP TRANSFER', basePrice: 4000, extraKmRate: 0, extraHrRate: 0, hasExtras: false }
   ];
 
   const handleProceedToPay = (e, pkg, totalAmount) => {
@@ -105,7 +105,7 @@ const CretaDetails = () => {
           <div className="flex items-center gap-4 md:gap-5">
             <div className="flex items-center text-white">
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-white flex items-center justify-center">
-                  <span className="font-bold text-[10px] md:text-xs tracking-tighter text-white">SUV</span>
+                  <span className="font-bold text-[9px] md:text-[10px] tracking-tighter text-white text-center">ELITE</span>
                 </div>
             </div>
             <div className="flex flex-col justify-center">
@@ -118,8 +118,8 @@ const CretaDetails = () => {
             </div>
           </div>
           <div className="flex flex-col items-end">
-            {/* <span className="text-green-500 text-[10px] md:text-xs font-black uppercase tracking-[0.1em] bg-green-500/10 px-3 py-1 rounded-md mb-1">
-              {carData.rating} ★ RATING
+            {/* <span className="text-emerald-400 text-[10px] md:text-xs font-black uppercase tracking-[0.1em] bg-emerald-500/10 px-3 py-1 rounded-md mb-1">
+              {carData.rating} ★
             </span> */}
             <span className="text-gray-300 text-[10px] md:text-xs font-bold uppercase tracking-[0.1em]">
               {details.driveType}
@@ -132,7 +132,7 @@ const CretaDetails = () => {
           <img 
             src={details.images[activeImage]} 
             alt={details.model} 
-            className="w-[85%] md:w-[75%] max-h-[85%] object-contain transition-opacity duration-700 ease-in-out mix-blend-multiply drop-shadow-xl"
+            className="w-[90%] md:w-[85%] max-h-[85%] object-contain transition-opacity duration-700 ease-in-out mix-blend-multiply drop-shadow-xl"
           />
 
           <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
@@ -171,7 +171,7 @@ const CretaDetails = () => {
       {/* --- PACKAGE SELECTION (White Theme) --- */}
       <div className="w-full max-w-[1000px] mx-auto mt-12">
         <h2 className="text-lg md:text-xl font-bold text-white tracking-widest uppercase mb-6 pl-2">
-          Select Creta Package
+          Select Group Travel Package
         </h2>
 
         <div className="bg-white rounded-[2rem] overflow-hidden flex flex-col shadow-2xl">
@@ -189,7 +189,7 @@ const CretaDetails = () => {
                   }}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-3.5 h-3.5 rounded-full border-2 transition-colors ${isActive ? 'bg-cyan-500 border-cyan-500' : 'border-slate-300'}`}>
+                    <div className={`w-3.5 h-3.5 rounded-full border-2 transition-colors ${isActive ? 'bg-emerald-600 border-emerald-600' : 'border-slate-300'}`}>
                         {isActive && <div className="w-1 h-1 bg-white rounded-full mx-auto mt-0.5"></div>}
                     </div>
                     <span className={`font-bold text-[11px] md:text-sm tracking-widest uppercase ${isActive ? 'text-black' : 'text-slate-800'}`}>
@@ -203,11 +203,11 @@ const CretaDetails = () => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 mt-4 bg-slate-50 p-6 rounded-2xl border border-slate-200">
                     <div className="flex flex-col">
-                      <label className="text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2">Ride Date *</label>
+                      <label className="text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2">Travel Date *</label>
                       <input type="date" value={pkgDate} onChange={(e) => setPkgDate(e.target.value)} className="w-full bg-white border border-slate-300 text-slate-800 px-4 py-3 rounded-xl outline-none font-bold text-sm focus:border-black transition-all shadow-sm" />
                     </div>
                     <div className="flex flex-col">
-                      <label className="text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2">Pickup Time *</label>
+                      <label className="text-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2">Departure Time *</label>
                       <input type="time" value={pkgTime} onChange={(e) => setPkgTime(e.target.value)} className="w-full bg-white border border-slate-300 text-slate-800 px-4 py-3 rounded-xl outline-none font-bold text-sm focus:border-black transition-all shadow-sm" />
                     </div>
                   </div>
@@ -233,15 +233,15 @@ const CretaDetails = () => {
 
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mt-4 bg-[#181818] p-6 md:p-8 rounded-2xl shadow-lg border border-black">
                     <div>
-                      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Total Trip Fare</p>
+                      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Group Expedition Fare</p>
                       <p className="text-3xl md:text-4xl font-black text-white">₹ {currentTotal.toLocaleString('en-IN')}</p>
-                      <p className="text-gray-500 text-[10px] mt-1 font-medium">Tolls & parking extra as per actuals</p>
+                      <p className="text-gray-500 text-[10px] mt-1 font-medium">Tolls & interstate taxes extra as per actuals</p>
                     </div>
                     <button 
                       onClick={(e) => handleProceedToPay(e, pkg, currentTotal)}
                       className="w-full md:w-auto bg-white hover:bg-gray-200 text-black font-black uppercase tracking-[0.15em] text-[10px] py-4 px-10 rounded-xl transition-all shadow-md hover:-translate-y-1 active:translate-y-0"
                     >
-                      Book Creta
+                      Book Urbania
                     </button>
                   </div>
                 </div>
@@ -260,4 +260,4 @@ const CretaDetails = () => {
   );
 };
 
-export default CretaDetails;
+export default UrbaniaDetails;
