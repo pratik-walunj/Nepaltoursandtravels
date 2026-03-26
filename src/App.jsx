@@ -130,6 +130,10 @@ import JeepDetails from "./Services/Jeep"
 import JaguarXe from "./Services/JaguarXe"
 import JaguarXf from "./Services/JaguarXf"
 import JaguarXjl from "./Services/JaguarXjl"
+
+import Urbania13Seater from "./Services/Urbania13Seater"
+import Urbania17Details from "./Services/17-seater-luxury-urbania"
+
 const App=()=>{
   return(
     <>
@@ -275,6 +279,11 @@ const App=()=>{
        <Route path="cab-details/jaguar-xe" element={<JaguarXe/>}/>
       <Route path="cab-details/jaguar-xf" element={<JaguarXf/>}/>
        <Route path="cab-details/jaguar-xjl" element={<JaguarXjl/>}/>
+
+       {/* Urbania */}
+
+       <Route path="cab-details/13-seater-luxury-urbania" element={<Urbania13Seater/>}/>
+       <Route path="cab-details/17-seater-luxury-urbania" element={<Urbania17Details/>}/>
       </Route>
 
 

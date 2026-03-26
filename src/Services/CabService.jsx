@@ -39,6 +39,8 @@ import scorpioMain from "../images/Mahindra-Scorpio.jpg";
 import xuv700Main from "../images/Mahindra-xuv.jpg";
 import gypsyMain from "../images/Gypsy.jpg";
 import jeepMain from "../images/jeep.jpg"; 
+import urbaniaMain from "../images/urbania.jpg";
+import urbania17 from "../images/urbania17Main.jpg"
 
 
 
@@ -159,8 +161,8 @@ const CabPage = () => {
 
     // Force Urbania
     { id: 18, path: "10-seater-luxury-urbania", type: "Force Urbania", models: "10 Seater Luxury Urbania", seats: 10, bags: 8, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 19, path: "13-seater-luxury-urbania", type: "Force Urbania", models: "13 Seater Luxury Urbania", seats: 13, bags: 10, pricePerKm: "...", rating: 4.8, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 20, path: "17-seater-luxury-urbania", type: "Force Urbania", models: "17 Seater Luxury Urbania", seats: 17, bags: 14, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 19, path: "13-seater-luxury-urbania", type: "Force Urbania", models: "13 Seater Luxury Urbania", seats: 13, bags: 10, pricePerKm: "...", rating: 4.8, isAc: true, img: urbaniaMain },
+    { id: 20, path: "17-seater-luxury-urbania", type: "Force Urbania", models: "17 Seater Luxury Urbania", seats: 17, bags: 14, pricePerKm: "...", rating: 4.9, isAc: true, img: urbania17 },
 
     // Bus Options
     { id: 21, path: "35-seater-volvo-bus-ac", type: "Bus", models: "35 Seater Volvo Bus (AC)", seats: 35, bags: 35, pricePerKm: "...", rating: 4.7, isAc: true, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
