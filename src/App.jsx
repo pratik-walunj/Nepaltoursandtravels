@@ -127,6 +127,8 @@ import MahindraXuv700Details from "./Services/Mahindra-XUV"
 import JaguarXe from "./Services/JaguarXe"
 import JaguarXf from "./Services/JaguarXf"
 import JaguarXjl from "./Services/JaguarXjl"
+import Luxury65SeaterAcBus from "./Services/Luxury65SeaterAcBus";
+import Luxury35SeaterAcBus from "./Services/Luxury35SeaterAcBus"
 const App=()=>{
   return(
     <>
@@ -270,6 +272,10 @@ const App=()=>{
        <Route path="cab-details/jaguar-xe" element={<JaguarXe/>}/>
       <Route path="cab-details/jaguar-xf" element={<JaguarXf/>}/>
        <Route path="cab-details/jaguar-xjl" element={<JaguarXjl/>}/>
+{/* bus */}
+<Route path="cab-details/65-seater-luxury-bus-ac" element={<Luxury65SeaterAcBus/>}/>
+<Route path="cab-details/35-seater-luxury-bus-ac" element={<Luxury35SeaterAcBus/>}/>
+
       </Route>
 
 

@@ -7,7 +7,7 @@ import {
   ChevronRight, Users, Navigation, Filter, Star
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import flightbanner from "../images/flightbanner.png"
+import acbus65seater from "../images/acbus65seater.png";
 import audia6sideview from "../images/audia6sideview.png"
 import audia8 from "../images/audia8sideview.png"
 import audia4 from "../images/audia4.png";
@@ -25,7 +25,7 @@ import seater26view from "../images/seater26view.png";
 import seater13view from "../images/seater13view.png"; 
 import seater12view from "../images/seater12view.png"; 
 import wagonRMain from "../images/wagonr.jpg";
-
+import acbus35seaterview from "../images/acbus35seaterview.png";
 import mercedeseclassview from "../images/mercedeseclassview.png"; 
 import mercedesMaybachview from "../images/mercedesMaybachview.png"; 
 import fortunerMain from "../images/fortuner.jpg"; 
@@ -153,14 +153,17 @@ const CabPage = () => {
 
     // Force Urbania
     { id: 18, path: "10-seater-luxury-urbania", type: "Force Urbania", models: "10 Seater Luxury Urbania", seats: 10, bags: 8, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 19, path: "13-seater-luxury-urbania", type: "Force Urbania", models: "13 Seater Luxury Urbania", seats: 13, bags: 10, pricePerKm: "...", rating: 4.8, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 19, path: "13-seater-luxury-urbania", type: "Force Urbania", models: "13 Seater Luxury Urbania", seats: 13, bags: 10, pricePerKm: "...", rating: 4.8, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"},
     { id: 20, path: "17-seater-luxury-urbania", type: "Force Urbania", models: "17 Seater Luxury Urbania", seats: 17, bags: 14, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
 
     // Bus Options
-    { id: 21, path: "35-seater-volvo-bus-ac", type: "Bus", models: "35 Seater Volvo Bus (AC)", seats: 35, bags: 35, pricePerKm: "...", rating: 4.7, isAc: true, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 22, path: "45-seater-luxury-bus-ac", type: "Bus", models: "45 Seater Luxury Bus (AC)", seats: 45, bags: 45, pricePerKm: "...", rating: 4.6, isAc: true, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 23, path: "45-seater-standard-bus-nonac", type: "Bus", models: "45 Seater Standard Bus (Non-AC)", seats: 45, bags: 45, pricePerKm: "...", rating: 4.2, isAc: false, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    {  path: "35-seater-volvo-bus-ac", type: "Bus", models: "35 Seater Volvo Bus (AC)", seats: 35, bags: 35, pricePerKm: "...", rating: 4.7, isAc: true, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    {  path: "65-seater-luxury-bus-ac", type: "Bus", models: "65 Seater Luxury Bus (AC)", seats: 65, bags: 45, pricePerKm: "...", rating: 4.6, isAc: true, img:acbus65seater },
+       {  path: "35-seater-luxury-bus-ac", type: "Bus", models: "35 Seater Luxury Bus (AC)", seats: 35, bags: 25, pricePerKm: "...", rating: 4.6, isAc: true, img:acbus35seaterview },
+
+    {  path: "55-seater-standard-bus-nonac", type: "Bus", models: "45 Seater Standard Bus (Non-AC)", seats: 55, bags: 45, pricePerKm: "...", rating: 4.2, isAc: false, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
   ];
+
 
   // Filtering Logic
   let displayedFleet = initialFleetData;
