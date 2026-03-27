@@ -133,8 +133,8 @@ import JaguarXjl from "./Services/JaguarXjl"
 
 import Luxury65SeaterAcBus from "./Services/Luxury65SeaterAcBus";
 import Luxury35SeaterAcBus from "./Services/Luxury35SeaterAcBus"
-
-
+import Volvo55SeaterAcBus from "./Services/Volvo55SeaterAcBus"
+import Volvo45SeaterAcBus from "./Services/Volvo45SeaterAcBus"
 import Urbania13Seater from "./Services/Urbania13Seater"
 import Urbania17Details from "./Services/17-seater-luxury-urbania"
 
@@ -288,7 +288,8 @@ const App=()=>{
 {/* bus */}
 <Route path="cab-details/65-seater-luxury-bus-ac" element={<Luxury65SeaterAcBus/>}/>
 <Route path="cab-details/35-seater-luxury-bus-ac" element={<Luxury35SeaterAcBus/>}/>
-
+<Route path="cab-details/55-seater-volvo-bus-ac" element={<Volvo55SeaterAcBus/>}/>
+<Route path="cab-details/45-seater-volvo-bus-ac" element={<Volvo45SeaterAcBus/>}/>
 
        {/* Urbania */}
 

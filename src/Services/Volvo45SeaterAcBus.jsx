@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-// Placeholders: Aap apni actual Tempo Traveller images yahan import karein
-import seater17view from "../images/17seaterview.png"; 
-import seater17frontview from "../images/17seaterfrontview.png";
-import seater17backview from "../images/17seaterbackview.png";
+// Placeholders: Aap apni actual Volvo 45-Seater Bus images yahan import karein
+import volvo45seaterview from "../images/volvo45seaterview.png"; // Replace with Volvo 45-Seater image
+import volvo45seaterfrontview from "../images/volvo45seaterfrontview.png"; // Replace with Volvo 45-Seater image
+import volvo45seaterbackview from "../images/volvo45seaterbackview.png"; // Replace with Volvo 45-Seater image
 
-// Master Data specifically configured for 17-Seater Tempo Traveller
+// Master Data specifically configured for Volvo 45-Seater Luxury Bus
 const masterFleetData = [
   { 
-    id: 201, 
-    path: "17-seater-tempo-traveller", 
-    type: "Force", 
-    models: "17 SEATER TEMPO TRAVELLER", 
-    seats: "17 SEATS", 
-    bags: "12 BAGS", // Massive luggage capacity for groups
-    pricePerKm: 28, 
+    id: 208, 
+    path: "luxury-volvo-45-seater-ac-bus", 
+    type: "Volvo Bus", 
+    models: "45 SEATER VOLVO BUS", 
+    seats: "45 SEATS", 
+    bags: "45 BAGS", // Excellent underbelly luggage capacity
+    pricePerKm: 70, // Premium commercial mid-to-large coach pricing
     rating: 4.8, 
     isAc: true, 
-    // High-quality placeholder image for testing
-    img: seater17view, // Bus/Van placeholder
-    description: "The 17-Seater Luxury Tempo Traveller is the ultimate choice for large family vacations, corporate outings, and group tours. Designed for long-distance comfort, it features premium pushback reclining seats, ample legroom, dual AC vents for uniform cooling, and a high-quality entertainment system. With massive luggage capacity and heavy-duty suspension, it ensures a smooth and enjoyable ride even on challenging hilly terrains. Perfect for keeping your entire group together without compromising on luxury and space."
+    img: volvo45seaterview,
+    description: "The 45-Seater Volvo Luxury AC Bus is the gold standard for premium group travel. Perfectly sized for large destination weddings, corporate team offsites, and extensive outstation excursions, this highly sought-after coach combines Volvo's legendary safety with world-class comfort. It features ergonomic semi-sleeper pushback seats, whisper-quiet cabin insulation, dual-climate AC, and an advanced air-suspension system that absorbs every bump. With generous luggage space and a commanding road presence, it guarantees a first-class journey for your entire group."
   }
 ];
 
@@ -32,7 +31,7 @@ const CabDetails = () => {
   const [activeImage, setActiveImage] = useState(0);
   
   // Package Accordion State
-  const [activePackage, setActivePackage] = useState(null); // Default to outstation for Tempos
+  const [activePackage, setActivePackage] = useState(null);
   
   // Form States inside Packages
   const [pkgDate, setPkgDate] = useState('');
@@ -44,9 +43,9 @@ const CabDetails = () => {
 
   const [carData, setCarData] = useState(null);
 
-  // 1. Fetch Data UseEffect
+  // 1. Fetch Data UseEffect 
   useEffect(() => {
-    const foundCar = masterFleetData.find(car => car.path === carName) || masterFleetData.find(car => car.id === 201);
+    const foundCar = masterFleetData.find(car => car.path === carName) || masterFleetData.find(car => car.id === 208);
     setCarData(foundCar);
   }, [carName]);
 
@@ -57,6 +56,7 @@ const CabDetails = () => {
         setActiveImage((prevIndex) => (prevIndex + 1) % 3); 
       }, 3000); 
 
+      // Cleanup function
       return () => clearInterval(interval);
     }
   }, [carData]);
@@ -65,48 +65,48 @@ const CabDetails = () => {
     return <div className="min-h-screen bg-black flex items-center justify-center font-bold text-white">Loading Vehicle Data...</div>;
   }
 
-  // Structuring data for Tempo Traveller
+  // Structuring data for Volvo 45-Seater Bus
   const details = {
     brand: carData.type.toUpperCase(),
     model: carData.models.toUpperCase(),
-    category: "PREMIUM GROUP TRAVEL", // Updated Category
+    category: "PREMIUM INTERCITY COACH", 
     driveType: "CHAUFFEUR DRIVEN",
     description: carData.description,
     images: [
-      carData.img, // Side View
-      seater17frontview, // Placeholder
-      seater17backview  // Placeholder
+      carData.img, 
+      volvo45seaterfrontview, 
+     volvo45seaterbackview
     ],
     features: [
       `${carData.seats}`,
-      carData.isAc ? "DUAL AC" : "NON-AC", // Updated for Tempos
+      carData.isAc ? "DUAL AC" : "NON-AC",
       "DIESEL", 
       `${carData.bags}`
     ]
   };
 
-  // Mock Packages Data (Pricing adjusted for heavy commercial vehicle)
+  // Mock Packages Data (Premium 45-Seater Coach Pricing)
   const packagesData = [
     {
       id: 'city',
       title: 'LOCAL CITY RIDE — 8HR 80KM',
-      basePrice: 6500,
-      extraKmRate: 28,
-      extraHrRate: 500,
+      basePrice: 14000,
+      extraKmRate: 70,
+      extraHrRate: 1200,
       hasExtras: true
     },
     {
       id: 'outstation',
       title: 'OUTSTATION — 300KM / 12AM—12AM',
-      basePrice: 18000,
-      extraKmRate: 28,
-      extraHrRate: 600,
+      basePrice: 22000,
+      extraKmRate: 70,
+      extraHrRate: 1200,
       hasExtras: true
     },
     {
       id: 'airport',
-      title: 'AIRPORT TRANSFER (GROUP)',
-      basePrice: 4500,
+      title: 'PREMIUM GROUP AIRPORT TRANSFER',
+      basePrice: 9000,
       extraKmRate: 0,
       extraHrRate: 0,
       hasExtras: false
@@ -141,7 +141,8 @@ const CabDetails = () => {
   return (
     <div className="font-sans bg-black min-h-screen pt-24 md:pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative selection:bg-gray-700 selection:text-white">
 
-      
+      {/* GLOBAL BACK BUTTON */}
+     
 
       {/* --- 1. MAIN CAR DETAILS CARD (EXACT HYPE LUXURY SIZE & STYLE) --- */}
       <div className="w-full max-w-[1000px] mx-auto bg-[#181818] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl mb-8 border border-white/5">
@@ -158,9 +159,13 @@ const CabDetails = () => {
         <div className="flex flex-row items-center justify-between mb-8 px-1 md:px-2">
           <div className="flex items-center gap-4 md:gap-5">
             <div className="flex items-center text-white">
-                {/* Premium Ring Custom Logo Fallback for Tempo / Force */}
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-white flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] relative">
-                  <span className="font-bold text-xs md:text-sm tracking-widest text-white">VAN</span>
+                {/* Custom Volvo Iron Mark Logo Representation */}
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-white flex items-center justify-center p-2 shadow-[0_0_15px_rgba(255,255,255,0.1)] relative">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full text-white">
+                    <circle cx="11" cy="13" r="8" />
+                    <line x1="16.5" y1="7.5" x2="21" y2="3" strokeWidth="2" />
+                    <polygon points="22,7 22,2 17,2" fill="currentColor" stroke="none" />
+                  </svg>
                 </div>
             </div>
             <div className="flex flex-col justify-center">

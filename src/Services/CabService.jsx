@@ -7,6 +7,7 @@ import {
   ChevronRight, Users, Navigation, Filter, Star
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import volvo55seaterview from "../images/volvo55seaterview.png";
 import acbus65seater from "../images/acbus65seater.png";
 import audia6sideview from "../images/audia6sideview.png"
 import audia8 from "../images/audia8sideview.png"
@@ -41,6 +42,7 @@ import gypsyMain from "../images/Gypsy.jpg";
 import jeepMain from "../images/jeep.jpg"; 
 import urbaniaMain from "../images/urbania.jpg";
 import urbania17 from "../images/urbania17Main.jpg"
+import volvo45seaterview from "../images/volvo45seaterview.png"; 
 
 
 
@@ -170,11 +172,11 @@ const CabPage = () => {
 
 
     // Bus Options
-    {  path: "35-seater-volvo-bus-ac", type: "Bus", models: "35 Seater Volvo Bus (AC)", seats: 35, bags: 35, pricePerKm: "...", rating: 4.7, isAc: true, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    {  path: "45-seater-volvo-bus-ac", type: "Bus", models: "45 Seater Volvo Bus (AC)", seats: 45, bags: 35, pricePerKm: "...", rating: 4.7, isAc: true, img: volvo45seaterview },
     {  path: "65-seater-luxury-bus-ac", type: "Bus", models: "65 Seater Luxury Bus (AC)", seats: 65, bags: 45, pricePerKm: "...", rating: 4.6, isAc: true, img:acbus65seater },
        {  path: "35-seater-luxury-bus-ac", type: "Bus", models: "35 Seater Luxury Bus (AC)", seats: 35, bags: 25, pricePerKm: "...", rating: 4.6, isAc: true, img:acbus35seaterview },
 
-    {  path: "55-seater-standard-bus-nonac", type: "Bus", models: "45 Seater Standard Bus (Non-AC)", seats: 55, bags: 45, pricePerKm: "...", rating: 4.2, isAc: false, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    {  path: "55-seater-volvo-bus-ac", type: "Bus", models: "55 Seater Volvo Bus", seats: 55, bags: 45, pricePerKm: "...", rating: 4.2, isAc: false, img: volvo55seaterview },
   ];
 
 

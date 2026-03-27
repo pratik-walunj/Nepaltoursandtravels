@@ -237,7 +237,7 @@ import AdventureSport from '../adventuresports/AdventureSport';
 import Services from "../pages/Services"
 import Faq  from "../pages/Faq"
 import Testimonials from './Testimonials';
-
+ import PopUp from "../pages/PopUp"
 const popularDestinations = [
   "Kathmandu Valley",
   "Pokhara",
@@ -307,6 +307,7 @@ const HomePage = () => {
   }, []);
   return (
     <>
+    <PopUp/>
       <div className="w-full font-sans bg-gray-50">
         
         {/* CSS to hide scrollbar for the mobile icon row */}
