@@ -138,6 +138,8 @@ import Volvo45SeaterAcBus from "./Services/Volvo45SeaterAcBus"
 import Urbania13Seater from "./Services/Urbania13Seater"
 import Urbania17Details from "./Services/17-seater-luxury-urbania"
 
+import VintageDetails from "./Services/Vintage-Classic-Car"
+import VintageLuxuryDetails from "./Services/Vintage-Luxury-Car"
 
 const App=()=>{
   return(
@@ -295,6 +297,9 @@ const App=()=>{
 
        <Route path="cab-details/13-seater-luxury-urbania" element={<Urbania13Seater/>}/>
        <Route path="cab-details/17-seater-luxury-urbania" element={<Urbania17Details/>}/>
+
+       <Route path="cab-details/Vintage-Classic-Car" element={<VintageDetails/>}/>
+       <Route path="cab-details/Vintage-Luxury-Car" element={<VintageLuxuryDetails/>}/>
 
       </Route>
 
