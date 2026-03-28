@@ -44,7 +44,8 @@ import jeepMain from "../images/jeep.jpg";
 import urbaniaMain from "../images/urbania.jpg";
 import urbania17 from "../images/urbania17Main.jpg"
 import volvo45seaterview from "../images/volvo45seaterview.png"; 
-
+import vintageMain from "../images/Vintage-Classic-Car.jpg";
+import VintageLuxury from "../images/Vintage-Luxury-Car-main.jpg"
 
 
 // --- MOCK AIRPORT DATA ---
@@ -155,6 +156,10 @@ const CabPage = () => {
     { path: "jaguar-xe", type: "Jaguar", models: "Jaguar XE", seats: 5, bags: 3, pricePerKm: "...", rating: 5.0, isAc: true, img: jaguarxeview },
     {  path: "jaguar-xf", type: "Jaguar", models: "Jaguar XF", seats: 5, bags: 3, pricePerKm: "...", rating: 5.0, isAc: true, img: jaguarxeview },
     {  path: "jaguar-xjl", type: "Jaguar", models: "Jaguar XJL", seats: 2, bags: 1, pricePerKm: "...", rating: 5.0, isAc: true, img: jaguarxeview },
+
+    {  path: "Vintage-Classic-Car", type: "Vintage Sedan", models: "Vintage Classic Car", seats: 5, bags: 3, pricePerKm: "...", rating: 5.0, isAc: true, img: vintageMain },
+    {  path: "Vintage-Luxury-Car", type: "Vintage Sedan", models: "Vintage Luxury Car", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: VintageLuxury },
+    
     // Group & Commuter Vehicles (Tempo Traveller)
     { id: 199, path: "12-seater-force-traveller", type: "Tempo Traveller", models: "12 Seater Force Traveller", seats: 12, bags: 8, pricePerKm: "...", rating: 4.6, isAc: true, img: seater12view },
     { id: 200, path: "13-seater-force-traveller", type: "Tempo Traveller", models: "13 Seater Force Traveller", seats: 13, bags: 9, pricePerKm: "...", rating: 4.6, isAc: true, img: seater13view },
@@ -163,11 +168,7 @@ const CabPage = () => {
     { id: 203, path: "26-seater-force-traveller", type: "Tempo Traveller", models: "26 Seater Force Traveller", seats: 26, bags: 20, pricePerKm: "...", rating: 4.5, isAc: true, img: seater26view },
 
     // Force Urbania
-    { id: 18, path: "10-seater-luxury-urbania", type: "Force Urbania", models: "10 Seater Luxury Urbania", seats: 10, bags: 8, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-
-    { id: 19, path: "13-seater-luxury-urbania", type: "Force Urbania", models: "13 Seater Luxury Urbania", seats: 13, bags: 10, pricePerKm: "...", rating: 4.8, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"},
-    { id: 20, path: "17-seater-luxury-urbania", type: "Force Urbania", models: "17 Seater Luxury Urbania", seats: 17, bags: 14, pricePerKm: "...", rating: 4.9, isAc: true, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-
+   
     { id: 19, path: "13-seater-luxury-urbania", type: "Force Urbania", models: "13 Seater Luxury Urbania", seats: 13, bags: 10, pricePerKm: "...", rating: 4.8, isAc: true, img: urbaniaMain },
     { id: 20, path: "17-seater-luxury-urbania", type: "Force Urbania", models: "17 Seater Luxury Urbania", seats: 17, bags: 14, pricePerKm: "...", rating: 4.9, isAc: true, img: urbania17 },
 
