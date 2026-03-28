@@ -16,7 +16,8 @@ import audiq3view from "../images/audiq3view.png"
 import audiq5view from "../images/audiq5view.png"
 import mercedesslkview from "../images/mercedesslkview.png";
 import audiq7view from "../images/audiq7view.png"; 
-import seater17view from "../images/17seaterview.png"; 
+import seater17view from "../images/seater17view.png"; 
+
 import ertigaView from "../images/ertigaa.jpg"; 
 import dzireMain from "../images/swift-dzire.jpg"; 
 import innovaMain from "../images/innova-crysta.jpg"; 
@@ -157,7 +158,7 @@ const CabPage = () => {
     // Group & Commuter Vehicles (Tempo Traveller)
     { id: 199, path: "12-seater-force-traveller", type: "Tempo Traveller", models: "12 Seater Force Traveller", seats: 12, bags: 8, pricePerKm: "...", rating: 4.6, isAc: true, img: seater12view },
     { id: 200, path: "13-seater-force-traveller", type: "Tempo Traveller", models: "13 Seater Force Traveller", seats: 13, bags: 9, pricePerKm: "...", rating: 4.6, isAc: true, img: seater13view },
-    { id: 201, path: "17-seater-force-traveller", type: "Tempo Traveller", models: "17 Seater Force Traveller", seats: 17, bags: 12, pricePerKm: "...", rating: 4.7, isAc: true, img: seater17view  },
+    { id: 201, path: "17-seater-force-traveller", type: "Tempo Traveller", models: "17 Seater Force Traveller", seats: 17, bags: 12, pricePerKm: "...", rating: 4.7, isAc: true, img: seater17view },
     { id: 202, path: "20-seater-force-traveller", type: "Tempo Traveller", models: "20 Seater Force Traveller", seats: 20, bags: 15, pricePerKm: "...", rating: 4.7, isAc: true, img: seater20view },
     { id: 203, path: "26-seater-force-traveller", type: "Tempo Traveller", models: "26 Seater Force Traveller", seats: 26, bags: 20, pricePerKm: "...", rating: 4.5, isAc: true, img: seater26view },
 

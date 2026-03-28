@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 // Placeholders: Aap apni actual Tempo Traveller images yahan import karein
-import seater17view from "../images/17seaterview.png"; 
-import seater17frontview from "../images/17seaterfrontview.png";
-import seater17backview from "../images/17seaterbackview.png";
+import seater17view from "../images/seater17view.png"; 
+import seater17frontview from "../images/seater17frontview.png";
+import seater17backview from "../images/seater17backview.png";
 
 // Master Data specifically configured for 17-Seater Tempo Traveller
 const masterFleetData = [

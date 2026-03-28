@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import simcardpagebanner from "../images/simcardpagebanner.jpg"
 import Ncell_Logo from "../images/Ncell_Logo.svg.png"
-import Nepal_Telecom_logo from "../images/Nepal_Telecom_logo.jfif"
+// import Nepal_Telecom_logo from "../images/Nepal_Telecom_logo.jfif"
 import emailjs from '@emailjs/browser';
 import { 
   Wifi, ShieldCheck, Smartphone, HelpCircle, 
@@ -57,7 +57,7 @@ const NepalSimCard = () => {
     },
     { 
       name: "Nepal Telecom (NTC)", 
-      logo: Nepal_Telecom_logo,
+      // logo: Nepal_Telecom_log"o,
       bestFor: "Wide Network Coverage",
       coverage: "Best in Remote Rural Areas",
       color: "border-blue-500",
