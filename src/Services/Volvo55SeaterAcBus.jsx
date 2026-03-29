@@ -114,7 +114,7 @@ const CabDetails = () => {
   ];
 
   // --- WORKING PROCEED TO PAY FUNCTION ---
-  const handleProceedToPay = (e, pkg, totalAmount) => {
+   const handleProceedToPay = (e, pkg, totalAmount) => {
     e.stopPropagation();
 
     // Basic Validation
@@ -131,13 +131,16 @@ const CabDetails = () => {
       time: pkgTime,
       extraKms: extraKms || 0,
       extraHrs: extraHrs || 0,
-      totalAmount: totalAmount
+      totalAmount: totalAmount,
+      basePrice: pkg.basePrice,
+      image: carData.img 
     };
 
     console.log("Ready to Checkout:", bookingDetails);
     navigate('/checkout', { state: bookingDetails }); 
   };
 
+  
   return (
     <div className="font-sans bg-black min-h-screen pt-24 md:pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative selection:bg-gray-700 selection:text-white">
 

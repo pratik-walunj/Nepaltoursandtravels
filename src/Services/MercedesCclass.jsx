@@ -112,7 +112,7 @@ const CabDetails = () => {
   ];
 
   // --- WORKING PROCEED TO PAY FUNCTION ---
-  const handleProceedToPay = (e, pkg, totalAmount) => {
+   const handleProceedToPay = (e, pkg, totalAmount) => {
     e.stopPropagation();
 
     // Basic Validation
@@ -129,7 +129,9 @@ const CabDetails = () => {
       time: pkgTime,
       extraKms: extraKms || 0,
       extraHrs: extraHrs || 0,
-      totalAmount: totalAmount
+      totalAmount: totalAmount,
+      basePrice: pkg.basePrice,
+      image: carData.img 
     };
 
     console.log("Ready to Checkout:", bookingDetails);

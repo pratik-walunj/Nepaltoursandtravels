@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-// Placeholders: Aap apni actual Audi Q5 images yahan import karein
+// Placeholders: Import your actual Audi Q5 images here
 import audiq5view from "../images/audiq5view.png"; 
 import audiq5frontview from "../images/audiq5frontview.png";
 import audiq5backview from "../images/audiq5backview.png";
@@ -131,20 +131,22 @@ const CabDetails = () => {
       time: pkgTime,
       extraKms: extraKms || 0,
       extraHrs: extraHrs || 0,
-      totalAmount: totalAmount
+      totalAmount: totalAmount,
+      basePrice: pkg.basePrice,
+      // FIX: Explicitly pulling the image from carData to ensure it is never undefined
+      image: carData.img 
     };
 
-    console.log("Ready to Checkout:", bookingDetails);
+    // Logging to verify data before navigating
+    console.log("Data being sent to checkout:", bookingDetails);
+
     navigate('/checkout', { state: bookingDetails }); 
   };
 
   return (
     <div className="font-sans bg-black min-h-screen pt-24 md:pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative selection:bg-gray-700 selection:text-white">
 
-      {/* GLOBAL BACK BUTTON */}
-      
-
-      {/* --- 1. MAIN CAR DETAILS CARD (EXACT HYPE LUXURY SIZE & STYLE) --- */}
+      {/* --- 1. MAIN CAR DETAILS CARD --- */}
       <div className="w-full max-w-[1000px] mx-auto bg-[#181818] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl mb-8 border border-white/5">
         
         {/* Back Button (Inside Card) */}

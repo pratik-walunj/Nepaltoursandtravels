@@ -140,7 +140,7 @@ import Urbania17Details from "./Services/17-seater-luxury-urbania"
 
 import VintageDetails from "./Services/Vintage-Classic-Car"
 import VintageLuxuryDetails from "./Services/Vintage-Luxury-Car"
-
+import Checkout from "./pages/Checkout"
 const App=()=>{
   return(
     <>
@@ -153,7 +153,7 @@ const App=()=>{
       <Route index element={<Home/>}/>
       <Route path="home" element={<Home/>}/>
       <Route path="testimonials" element={<Testimonials/>}/>
-
+      <Route path="checkout" element={<Checkout/>}/>
       
       <Route path="ayodhya-packages" element={<AyodhyaPackages/>}/>
       <Route path="kathmandu-tour-2n3d" element={<KathmanduTour2N3D/>}/>
