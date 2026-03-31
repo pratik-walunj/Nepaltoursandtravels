@@ -164,7 +164,7 @@ const NepalTourPopup = () => {
   useEffect(() => {
     const showTimer = setTimeout(() => {
       setShow(true); // Page load hone ke 0.5 sec baad popup show hoga
-    }, 500);
+    }, 2000);
 
     return () => clearTimeout(showTimer);
   }, []); // Empty array [] ka matlab hai ye sirf page load/refresh par ek baar chalega

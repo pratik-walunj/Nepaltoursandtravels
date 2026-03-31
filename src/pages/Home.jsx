@@ -233,7 +233,7 @@ import AirportnepalVideo from "../images/AirportnepalVideo.mp4"
 import IndiaPackages from '../pages/IndiaPackages';
 import NepalPackages from "../pages/NepalPackages"
 import AdventureSport from '../adventuresports/AdventureSport';
-
+import TourPackages4image from "../pages/TourPackages4image"
 import Services from "../pages/Services"
 import Faq  from "../pages/Faq"
 import Testimonials from './Testimonials';
@@ -407,6 +407,7 @@ const HomePage = () => {
       <IndiaPackages />
 
       <NepalPackages/>
+      <TourPackages4image/>
       <AdventureSport/>
       <Testimonials/>
       <Services/>
