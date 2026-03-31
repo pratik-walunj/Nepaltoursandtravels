@@ -83,7 +83,9 @@ const BmwX1Details = () => {
       time: pkgTime,
       extraKms: extraKms || 0,
       extraHrs: extraHrs || 0,
-      totalAmount: totalAmount
+      totalAmount: totalAmount,
+      basePrice: pkg.basePrice,
+       image: carData.img
     };
     navigate('/checkout', { state: bookingDetails }); 
   };
