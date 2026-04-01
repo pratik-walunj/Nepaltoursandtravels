@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-// Placeholders: Aap apni actual 26-Seater Tempo Traveller images yahan import karein
+
 import seater26view from "../images/seater26view.png"; 
 import seater26frontview from "../images/seater26frontview.png"; 
 import seater26backview from "../images/seater26backview.png"; 
 
-// Master Data specifically configured for 26-Seater Tempo Traveller (Mini-Bus)
+
+
 const masterFleetData = [
   { 
     id: 203, 
@@ -14,11 +15,11 @@ const masterFleetData = [
     type: "Force", 
     models: "26 SEATER TEMPO TRAVELLER", 
     seats: "26 SEATS", 
-    bags: "20 BAGS", // Massive luggage capacity for mini-bus segment
+    bags: "20 BAGS", 
     pricePerKm: 35, 
     rating: 4.8, 
     isAc: true, 
-    // High-quality placeholder image for testing (Mini-Bus)
+   
     img: seater26view,
     description: "The 26-Seater Luxury Tempo Traveller operates in the premium  segment, making it the ultimate choice for massive group tours, large wedding parties, and extensive corporate excursions. It offers an incredibly spacious cabin with an easy-to-navigate aisle, premium pushback reclining seats, and high-capacity dual-AC vents. Designed for long-haul comfort and safety, this heavy-duty vehicle features superior suspension to glide over rough terrains and ample luggage space for extended trips. Experience the joy of traveling together without compromising on personal space or premium amenities."
   }
@@ -31,7 +32,7 @@ const CabDetails = () => {
   // Slider State
   const [activeImage, setActiveImage] = useState(0);
   
-  // Package Accordion State - null set kiya hai taaki start me koi select na rahe
+  
   const [activePackage, setActivePackage] = useState(null); 
   
   // Form States inside Packages
