@@ -170,7 +170,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Phone, ChevronUp, X } from 'lucide-react';
-import chitwanbanner from "../images/chitwanbanner.png"
+import chitwan from "../images/chitwan.png"
 import nagarkotbanner from "../images/nagarkotbanner.png"
 import nepalview from "../images/nepalview.png"
 
@@ -192,7 +192,7 @@ const HolidaysToNepal = () => {
       title: "Muktinath Yatra",
       subtitle: "A Sacred Pilgrimage",
       description: "Experience the divine journey to Muktinath. A holy site for both Hindus and Buddhists, offering spiritual peace and salvation.",
-      image: chitwanbanner
+      image: chitwan
     },
     {
       tabName: "Kailash",
