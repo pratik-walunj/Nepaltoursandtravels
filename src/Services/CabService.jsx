@@ -7,6 +7,7 @@ import {
   ChevronRight, Users, Navigation, Filter, Star
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import seater12tempoview from "../images/seater12tempoview.png"; 
 import volvo55seaterview from "../images/volvo55seaterview.png";
 import acbus65seater from "../images/acbus65seater.png";
 import audia6sideview from "../images/audia6sideview.png"
@@ -161,7 +162,7 @@ const CabPage = () => {
     {  path: "Vintage-Luxury-Car", type: "Vintage Sedan", models: "Vintage Luxury Car", seats: 4, bags: 2, pricePerKm: "...", rating: 5.0, isAc: true, img: VintageLuxury },
     
     // Group & Commuter Vehicles (Tempo Traveller)
-    { id: 199, path: "12-seater-force-traveller", type: "Tempo Traveller", models: "12 Seater Force Traveller", seats: 12, bags: 8, pricePerKm: "...", rating: 4.6, isAc: true, img: seater12view },
+    { id: 199, path: "12-seater-force-traveller", type: "Tempo Traveller", models: "12 Seater Force Traveller", seats: 12, bags: 8, pricePerKm: "...", rating: 4.6, isAc: true, img: seater12tempoview },
     { id: 200, path: "13-seater-force-traveller", type: "Tempo Traveller", models: "13 Seater Force Traveller", seats: 13, bags: 9, pricePerKm: "...", rating: 4.6, isAc: true, img: seater13view },
     { id: 201, path: "17-seater-force-traveller", type: "Tempo Traveller", models: "17 Seater Force Traveller", seats: 17, bags: 12, pricePerKm: "...", rating: 4.7, isAc: true, img: seater17view },
     { id: 202, path: "20-seater-force-traveller", type: "Tempo Traveller", models: "20 Seater Force Traveller", seats: 20, bags: 15, pricePerKm: "...", rating: 4.7, isAc: true, img: seater20view },
