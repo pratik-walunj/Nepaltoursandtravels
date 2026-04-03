@@ -364,13 +364,13 @@ const TravelNavbar = () => {
       name: 'Activities', 
       icon: <Bike size={22} />,
       subItems: [
-        { name: 'Paragliding in Nepal', path: 'paragliding-nepal' },
+        { name: 'Paragliding in Nepal', path: 'paragliding' },
         { name: 'Mountain flight', path: 'mountain-flight-nepal' },
-        { name: 'Mountain Helicopter in Nepal', path: 'mountain-helicopter-tour-nepal' },
-        { name: 'Bungee jumping', path: 'bungee-jumping-nepal' },
+        { name: 'Mountain Helicopter in Nepal', path: 'mountain-helicopter' },
+        { name: 'Bungee jumping', path: 'bungee-jumping' },
         { name: 'Trekking in Nepal', path: 'trekking-in-nepal' },
         { name: 'Hiking in nepal',path: 'hiking-in-nepal'},
-        { name: 'Mountain biking in nepal',path:'mountain-biking-In-Nepal'},
+        { name: 'Mountain biking in nepal',path:'mountain-biking'},
         { name: 'nepal bike riding',path:'nepal-bike-riding'}
       ] 
     },

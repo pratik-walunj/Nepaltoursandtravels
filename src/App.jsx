@@ -163,10 +163,13 @@ const App=()=>{
       <Route path="bodhGaya-tour-packages" element={<BodhGayaTourPackages/>}/>
       <Route path="gorakhpur-tour-packages" element={<GorakhpurTourPackages/>}/>
       <Route path="school-trip-nepal" element={<SchoolTripNepal/>}/>
-      <Route path="paragliding-nepal" element={<ParaglidingNepal/>}/>
+      <Route path="package/paragliding" element={<ParaglidingNepal/>}/>
       <Route path="mountain-flight-nepal" element={<MountainFlightNepal/>}/>
-      <Route path="mountain-helicopter-tour-nepal" element={<MountainHelicopterNepal/>}/>
-      <Route path="bungee-jumping-nepal" element={<BungeeJumpingNepal/>}/>
+      <Route path="package/mountain-helicopter" element={<MountainHelicopterNepal/>}/>
+      <Route path="package/bungee-jumping" element={<BungeeJumpingNepal/>}/>
+      <Route path="paragliding" element={<ParaglidingNepal/>}/>
+      <Route path="mountain-helicopter" element={<MountainHelicopterNepal/>}/>
+      <Route path="bungee-jumping" element={<BungeeJumpingNepal/>}/>
                     {/*   Nepal packages */}
       <Route path="indianepalallpackages" element={<IndiaNepalallPackages/>}/>
       <Route path="nepalallpackages" element={<NepalAllPackages/>}/>
@@ -181,9 +184,13 @@ const App=()=>{
 
       <Route path="visa" element={<VisaPage/>}/>
 
-      <Route path="trekking-in-nepal" element={<TrekkingInNepal/>}/>
+      <Route path="package/trekking-in-nepal" element={<TrekkingInNepal/>}/>
+       <Route path="trekking-in-nepal" element={<TrekkingInNepal/>}/>
+       <Route path="package/hiking-in-nepal" element={<HikingInNepal/>}/>
       <Route path="hiking-in-nepal" element={<HikingInNepal/>}/>
-      <Route path="mountain-biking-In-Nepal" element={<MountainBikingInNepalPage/>}/>
+      <Route path="package/mountain-biking" element={<MountainBikingInNepalPage/>}/>
+      <Route path="mountain-biking" element={<MountainBikingInNepalPage/>}/>
+      <Route path="package/nepal-bike-riding" element={<BikeTourInNepalPage/>}/>
       <Route path="nepal-bike-riding" element={<BikeTourInNepalPage/>}/>
                         {/* Ayodhya packages */}
       <Route path="package/ayodhya-kashi-varanasi-" element={<AyodhyaKashiDetails/>}/>
