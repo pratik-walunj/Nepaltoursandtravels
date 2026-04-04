@@ -210,13 +210,24 @@ const GorakhpurToMustang = () => {
     setIsCalculated(true);
   };
 
+
+  const handleBookNowClick = () => {
+    setActiveMainTab('calculate price'); // Switch to calculate price tab
+    
+    // Smooth scroll down to the tabs area (you can adjust the element ID or offset if needed)
+    window.scrollTo({
+      top: 500, // Adjust this value based on where the tabs actually sit on your screen
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className="font-sans bg-[#f8f9fa] min-h-screen pb-20">
       
       {/* --- FULL WIDTH TOP BANNER IMAGE --- */}
       <div className="w-full h-[250px] md:h-[350px] lg:h-[400px] mb-6 relative">
         <img src={packageData.topBannerImage} alt="Gorakhpur to Mustang Banner" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/20"></div>
+        {/* <div className="absolute inset-0 bg-black/20"></div> */}
       </div>
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -636,7 +647,7 @@ const GorakhpurToMustang = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded shadow-md transition-colors text-lg mb-4">
+              <button    onClick={handleBookNowClick} className="w-full bg-red-600  cursor-pointer hover:bg-red-700 text-white font-bold py-3.5 rounded shadow-md transition-colors text-lg mb-4">
                 Book Now
               </button>
               

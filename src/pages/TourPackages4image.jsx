@@ -173,10 +173,11 @@ import { Phone, ChevronUp, X } from 'lucide-react';
 import chitwan from "../images/chitwan.png"
 import nagarkotbanner from "../images/nagarkotbanner.png"
 import nepalview from "../images/nepalview.png"
-
+import { useNavigate } from 'react-router-dom';
 const HolidaysToNepal = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showCookieBanner, setShowCookieBanner] = useState(true);
+const navigate =useNavigate();
 
   // --- SMART SLIDER DATA ---
   const sliderData = [
@@ -189,9 +190,9 @@ const HolidaysToNepal = () => {
     },
     {
       tabName: "Chitwan",
-      title: "Muktinath Yatra",
-      subtitle: "A Sacred Pilgrimage",
-      description: "Experience the divine journey to Muktinath. A holy site for both Hindus and Buddhists, offering spiritual peace and salvation.",
+      title: "Wild Wonders of Chitwan",
+      subtitle: "Land of Wildlife and Adventure",
+      description: "Chitwan is a popular district in southern Nepal, known for its rich wildlife, natural beauty, and jungle tourism",
       image: chitwan
     },
     {
@@ -264,7 +265,7 @@ const HolidaysToNepal = () => {
                   {sliderData[currentSlide].description}
                 </p>
                 
-                <button className="border-2 border-[#0027a8] text-[hsl(180,11%,2%)] hover:bg-[#003ea8] hover:text-white font-bold text-xs md:text-sm px-6 md:px-8 py-2.5 md:py-3 rounded-full tracking-widest transition-all hover:shadow-lg active:scale-95">
+                <button     onClick={()=>{navigate("nepalallpackages")}}  className="border-2 border-[#0027a8] text-[hsl(180,11%,2%)] hover:bg-[#003ea8] hover:text-white font-bold text-xs md:text-sm px-6 md:px-8 py-2.5 md:py-3 rounded-full tracking-widest transition-all hover:shadow-lg active:scale-95">
                   EXPLORE PACKAGE
                 </button>
               </div>

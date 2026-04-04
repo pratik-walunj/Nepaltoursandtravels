@@ -332,7 +332,7 @@ const HomePage = () => {
           </video>
 
           {/* Video Overlay */}
-          {/* <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80 z-10"></div> */}
+         
 
           {/* Hero Content */}
           <div className="relative z-20 text-center px-4 w-full max-w-6xl mx-auto mt-16 md:mt-20 flex flex-col items-center">

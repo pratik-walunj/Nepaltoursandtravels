@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import pokhara from "../images/pokhara.jpg";
+import pokhara2 from "../images/pokhara2.png"
 import chitwan from "../images/chitwan.jpeg";
 import lumbini from "../images/lumbin.jpeg"
 import annapurna from "../images/Annapurna.jpeg"; 
@@ -13,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 // 1. MOCK DATA ME 'path' ADD KIYA GAYA HAI 👇
 const destinations = [
   { id: 1, name: "Kathmandu", region: "Kathmandu Valley", packages: "Starting From ₹...", image: "https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/package/kathmandu" },
-  { id: 2, name: "Pokhara", region: "Gandaki Province", packages: "Starting From ₹...", image: pokhara, path: "/package/pokhara" },
+  { id: 2, name: "Pokhara", region: "Gandaki Province", packages: "Starting From ₹...", image: pokhara2, path: "/package/pokhara" },
   { id: 3, name: "Everest Base Camp", region: "Khumbu Region", packages: "Starting From ₹...", image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/package/basecamp" },
   { id: 4, name: "Chitwan", region: "Terai Region", packages: "Starting From ₹...", image: chitwan, path: "/package/chitwan" },
   { id: 5, name: "Lumbini", region: "Lumbini Province", packages: "Starting From ₹...", image: lumbini, path: "/package/lumbini" }
@@ -142,7 +143,7 @@ const TrendingNepalDestinations = () => {
         
         <div className="mb-8">
           <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-2">
-            Trending <span className="text-blue-600">Nepal</span> Destinations
+            Trending <span className="text-blue-600">Nepal</span> Tour Packages
           </h2>
           <p className="text-gray-500 text-sm md:text-base font-medium">
             Explore the most visited locations in Nepal with our curated tour packages.
@@ -183,7 +184,7 @@ const TrendingNepalDestinations = () => {
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-800 shadow-sm z-20">
                     {dest.region}
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100 z-10"></div>
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100 z-10"></div> */}
                 </div>
                 <div className="absolute bottom-0 left-0 w-full p-5 md:p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 z-20">
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-1">

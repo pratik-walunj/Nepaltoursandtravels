@@ -152,6 +152,7 @@ const App=()=>{
 
       <Route index element={<Home/>}/>
       <Route path="home" element={<Home/>}/>
+      
       <Route path="testimonials" element={<Testimonials/>}/>
       <Route path="checkout" element={<Checkout/>}/>
       
@@ -207,7 +208,7 @@ const App=()=>{
       <Route path="package/prayagraj-nepal-border" element={<PrayagrajNepalTour/>}/>
       <Route path="package/prayagraj-lucknow" element={<PrayagrajLucknowTour/>}/>              
 
-      {/* Bodhgayapackages */}
+      {/* Bodhgayapackages */}  
       <Route path="package/bodhgaya-varanasi" element={<Varanasi/>}/>
       <Route path="package/rajgir" element={<BodhgayaRajgir/>}/>
  <Route path="package/bodhgaya-nalanda" element={<BodhgyaNalanda/>}/>
@@ -215,7 +216,7 @@ const App=()=>{
   <Route path="package/bodhgaya-khushinagar" element={<BodhgyaToKhushinagar/>}/>     
     <Route path="package/bodhgaya-lumbini" element={<BodhgyaToLumbini/>}/> 
 
-        {/* Gorakhpur Packages */}
+        {/* Gorakhpur Packages */} 
 
         <Route path="package/gorakhpur-kashi" element={<GorakhpurToKashi/>}/> 
         <Route path="package/gorakhpur-ayodhya" element={<GorakhpurToAyodhya/>}/> 

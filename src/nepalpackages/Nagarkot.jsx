@@ -195,6 +195,20 @@ const GorakhpurToNagarkot = () => {
     setIsCalculated(true);
   };
 
+
+const handleBookNowClick = () => {
+    setActiveMainTab('calculate price'); // Switch to calculate price tab
+    
+    // Smooth scroll down to the tabs area (you can adjust the element ID or offset if needed)
+    window.scrollTo({
+      top: 500, // Adjust this value based on where the tabs actually sit on your screen
+      behavior: 'smooth'
+    });
+  };
+
+
+
+
   return (
     <div className="font-sans bg-[#f8f9fa] min-h-screen pb-20">
       
@@ -621,7 +635,7 @@ const GorakhpurToNagarkot = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded shadow-md transition-colors text-lg mb-4">
+              <button       onClick={handleBookNowClick} className="w-full bg-red-600 hover:bg-red-700  cursor-pointer text-white font-bold py-3.5 rounded shadow-md transition-colors text-lg mb-4">
                 Book Now
               </button>
               
