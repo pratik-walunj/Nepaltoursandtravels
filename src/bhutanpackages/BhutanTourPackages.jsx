@@ -178,6 +178,7 @@ const BhutanTourPackages = () => {
   const createSlug = (name) => {
     return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
   };
+  
 
   return (
     <div className="w-full font-sans bg-gray-50 min-h-screen pb-16">

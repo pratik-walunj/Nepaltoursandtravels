@@ -199,6 +199,7 @@
 
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Mountain, Wind, Bike, Map, Activity, 
   ChevronRight, Compass, ArrowDownCircle 
@@ -299,6 +300,10 @@ const AdventureSportsPage = () => {
     }
   };
 
+  const createSlug = (name) => {
+    return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
+  };
+
   return (
     <div className="w-full font-sans bg-gray-50 min-h-screen pb-20 pt-10">
       
@@ -372,10 +377,14 @@ const AdventureSportsPage = () => {
                       {adv.description}
                     </p>
                     
-                    <button className="flex items-center text-sm font-bold text-white bg-orange-500 hover:bg-orange-600 px-5 py-2.5 rounded-lg transition-colors w-full justify-center shadow-lg">
-                      View Details
-                      <ChevronRight size={16} className="ml-1" />
-                    </button>
+                    <Link 
+  // Change pkg.title to adv.title
+  to={`/package/${createSlug(adv.title)}`} 
+  className="bg-orange-500 hover:bg-indigo-950 text-white px-5 py-2.5 rounded-xl font-bold transition-colors duration-300 shadow-lg shadow-orange-500/20 text-sm flex items-center"
+>
+  View Details
+  <ChevronRight size={16} className="ml-1" />
+</Link>
                   </div>
 
                 </div>
