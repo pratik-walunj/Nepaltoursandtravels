@@ -154,6 +154,17 @@ const AyodhyaPrayagraj = () => {
     setIsCalculated(true);
   };
 
+
+  const handleBookNowClick = () => {
+    setActiveMainTab('calculate price'); // Switch to calculate price tab
+    
+    // Smooth scroll down to the tabs area (you can adjust the element ID or offset if needed)
+    window.scrollTo({
+      top: 500, // Adjust this value based on where the tabs actually sit on your screen
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className="font-sans bg-[#f8f9fa] min-h-screen pb-20">
       <div className="w-full h-[250px] md:h-[350px] lg:h-[400px] mb-6 relative"><img src={packageData.topBannerImage} alt="Banner" className="w-full h-full object-cover" /><div className="absolute inset-0 bg-black/20"></div></div>
