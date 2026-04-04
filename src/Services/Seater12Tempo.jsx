@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 // Placeholders: Aap apni actual 12-Seater Tempo Traveller images yahan import karein
-import seater12view from "../images/seater12view.png"; 
-import seater12frontview from "../images/seater12frontview.png"; 
-import seater12backview from "../images/seater12backview.png"; 
+import seater12tempoview from "../images/seater12tempoview.png"; 
+import seater12tempofrontview from "../images/seater12tempofrontview.png"; 
+import seater12tempobackview from "../images/seater12tempobackview.png"; 
 
 // Master Data specifically configured for 12-Seater Tempo Traveller
 const masterFleetData = [
@@ -18,7 +18,7 @@ const masterFleetData = [
     pricePerKm: 22, // Slightly cheaper than 13-seater
     rating: 4.8, 
     isAc: true, 
-    img: seater12view,
+    img: seater12tempoview,
     description: "The 12-Seater Luxury Tempo Traveller is perfectly crafted for intimate group travel, family vacations, and corporate team outings. Offering the ideal balance between spaciousness and easy mobility, this vehicle features premium pushback reclining seats, expansive legroom, and a powerful dual-AC system for optimal climate control. With ample luggage capacity and a heavy-duty suspension designed for Indian terrains, it ensures that your entire group travels together in absolute safety, comfort, and luxury."
   }
 ];
@@ -73,8 +73,8 @@ const CabDetails = () => {
     description: carData.description,
     images: [
       carData.img, 
-      seater12frontview, 
-      seater12backview 
+      seater12tempofrontview, 
+      seater12tempobackview
     ],
     features: [
       `${carData.seats}`,
