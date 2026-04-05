@@ -155,6 +155,17 @@ const KashiPrayagrajTour = () => {
     setIsCalculated(true);
   };
 
+
+  const handleBookNowClick = () => {
+    setActiveMainTab('calculate price'); // Switch to calculate price tab
+    
+    // Smooth scroll down to the tabs area (you can adjust the element ID or offset if needed)
+    window.scrollTo({
+      top: 500, // Adjust this value based on where the tabs actually sit on your screen
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className="font-sans bg-[#f8f9fa] min-h-screen pb-20">
       <div className="w-full h-[250px] md:h-[350px] lg:h-[400px] mb-6 relative">
@@ -296,7 +307,7 @@ const KashiPrayagrajTour = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded shadow-md transition-colors text-lg mb-4">Book Now</button>
+              <button onClick={handleBookNowClick} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded shadow-md transition-colors text-lg mb-4">Book Now</button>
               <button className="w-full flex items-center justify-center py-2.5 border border-gray-300 text-gray-700 font-semibold rounded hover:bg-gray-50 transition-colors mb-4 text-sm"><Heart size={16} className="mr-2 text-gray-500" /> Add to Wishlist</button>
               <div className="flex justify-center items-center space-x-6 text-sm text-gray-600 font-medium pt-2 border-t border-gray-100">
                 <button className="flex items-center hover:text-blue-600"><Download size={16} className="mr-1.5" /> PDF</button>
