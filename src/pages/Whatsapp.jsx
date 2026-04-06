@@ -107,17 +107,11 @@
 
 
 
-
-
-
-
 import React from 'react';
 
 const WhatsAppButton = () => {
     const phoneNumber = "919918001088";
 
-    // Maine yahan explicit \n (new line) ka use kiya hai taaki koi hidden invalid space ya question mark na aaye.
-    // Aur extra emojis bhi set kar diye hain.
     const message = "नमस्ते!\nNepal Tours and Travels में आपका स्वागत है। \n\nहम आपकी कैसे मदद कर सकते हैं? हमारे टूर पैकेजेस के बारे में अधिक जानने के लिए आप हमारी वेबसाइट देख सकते हैं:\nविजिट करें: https://nepaltoursandtravels.in/\n\nहम जल्द ही आपसे बात करेंगे! \nआपका दिन शुभ हो।\nहमसे संपर्क करने के लिए धन्यवाद!";
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -128,12 +122,12 @@ const WhatsAppButton = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
-            // FIX: 'top-146' ko sach mein hata diya gaya hai taaki button corner me hi rahe
-            className="fixed bottom-6 right-6 top-146  w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_10px_20px_rgba(37,211,102,0.4)] flex items-center justify-center hover:scale-110 hover:shadow-[0_15px_25px_rgba(37,211,102,0.5)] transition-all duration-300 z-50"
+            // CHANGED: 'right-4' -> 'left-4' and 'md:right-6' -> 'md:left-6'
+            className="fixed bottom-7 left-4 md:bottom-7 md:left-6 w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full shadow-[0_10px_20px_rgba(37,211,102,0.4)] flex items-center justify-center hover:scale-110 hover:shadow-[0_15px_25px_rgba(37,211,102,0.5)] transition-all duration-300 z-[60]"
         >
             {/* Official WhatsApp SVG Icon */}
             <svg
-                className="w-8 h-8 fill-current"
+                className="w-7 h-7 md:w-8 md:h-8 fill-current"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
             >

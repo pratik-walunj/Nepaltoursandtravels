@@ -8,6 +8,10 @@ import {
 } from 'lucide-react';
  import kathmandu from "../images/kathmandu.jpg"
 import kathmandubanner from "../images/kathmandubanner.png"
+
+import chitwanbanner from "../images/chitwanbanner.png"
+import gorakhpur from "../images/gorakhpur.png"
+import reptiriver from "../images/reptiriver.png"
 // --- PURE NEPAL MOCK DATA (SOTC Style Design) ---
 const packageData = {
   title: "Majestic Nepal: Kathmandu",
@@ -36,13 +40,13 @@ const packageData = {
     {
       day: 2,
       title: "Drive to Chitwan National Park",
-      image: "https://images.unsplash.com/photo-1610423018151-61014e7aebaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: chitwanbanner,
       description: "After breakfast, check out and enjoy a scenic drive along the Trishuli River towards Chitwan National Park. Arrive and check in to your jungle resort. In the evening, enjoy a cultural Tharu stick dance performance. Overnight stay in Chitwan."
     },
     {
       day: 3,
       title: "Chitwan Jungle Safari",
-      image: "https://images.unsplash.com/photo-1534430480872-3498384e54e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: reptiriver,
       description: "Get ready for an adventurous day! Experience a thrilling Jeep Safari deep into the national park to spot one-horned rhinoceros, deer, and if lucky, the Royal Bengal Tiger. Later, enjoy a peaceful canoe ride on the Rapti river. Overnight stay in Chitwan."
     }
   ],
