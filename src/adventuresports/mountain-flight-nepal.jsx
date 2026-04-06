@@ -60,10 +60,7 @@ const MountainFlightNepalDetailed = () => {
 
         <div className="relative max-w-7xl mx-auto h-full flex flex-col justify-center px-4 sm:px-6 lg:px-12 pt-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-orange-600 text-white px-3 py-1 lg:px-4 lg:py-1.5 rounded-full mb-4 lg:mb-6 shadow-lg">
-              <Award size={14} className="lg:w-4 lg:h-4" />
-              <span className="text-[9px] lg:text-[11px] font-bold uppercase tracking-[0.2em]">World Class Aerial Tour</span>
-            </div>
+            
             
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-4 lg:mb-6 uppercase">
               Face to Face with <br />
@@ -76,11 +73,7 @@ const MountainFlightNepalDetailed = () => {
               "Experience Nepal's Himalayas like never before with a one-hour panoramic flight from Kathmandu."
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
-               <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
-                 Book My Window Seat <Zap size={18} fill="currentColor"/>
-               </button>
-            </div>
+            
           </div>
         </div>
       </section>
