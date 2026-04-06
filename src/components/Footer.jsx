@@ -26,16 +26,16 @@ const Footer = () => {
             </p>
             {/* Social Icons */}
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white hover:bg-orange-500 transition-colors duration-300">
+              <a href="https://www.facebook.com/nepaltoursandtravels/" className="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white hover:bg-orange-500 transition-colors duration-300">
                 <Facebook size={18} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white hover:bg-orange-500 transition-colors duration-300">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white hover:bg-orange-500 transition-colors duration-300">
+              <a href="https://www.instagram.com/travel_nepal_club?igsh=ZHp1enBub3B6ZDJ5" className="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white hover:bg-orange-500 transition-colors duration-300">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white hover:bg-orange-500 transition-colors duration-300">
+              <a href="https://www.youtube.com/@nepaltoursandtravelsofficial" className="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white hover:bg-orange-500 transition-colors duration-300">
                 <Youtube size={18} />
               </a>
             </div>
