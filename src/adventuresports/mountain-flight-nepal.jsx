@@ -51,7 +51,7 @@ const MountainFlightNepalDetailed = () => {
         <video 
           autoPlay loop muted playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          poster={caption}
+          // poster={caption}
         >
           <source src={Everest_Video} type="video/mp4" />
         </video>
