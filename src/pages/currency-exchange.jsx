@@ -63,7 +63,7 @@ const CurrencyExchangeNepal = () => {
       {/* --- HERO BANNER SECTION --- */}
       <div className="relative w-full h-[400px] md:h-[550px] flex items-center overflow-hidden">
         <img src={currency_exchange_banner} alt="Nepal Currency Banner" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#003580]/95 via-[#003580]/70 to-transparent"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-[#003580]/95 via-[#003580]/70 to-transparent"></div> */}
         <div className="relative z-10 max-w-[1200px] w-full mx-auto px-6">
           <div className="inline-flex items-center gap-2 bg-[#ffb700] text-[#003580] px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6 shadow-xl animate-bounce">
             <Zap size={14} fill="currentColor" /> Best Exchange Rates in India

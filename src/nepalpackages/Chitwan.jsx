@@ -218,7 +218,7 @@ const Chitwan = () => {
       {/* --- FULL WIDTH TOP BANNER IMAGE --- */}
       <div className="w-full h-[250px] md:h-[350px] lg:h-[400px] mb-6 relative">
         <img src={packageData.topBannerImage} alt="Gorakhpur to Chitwan Banner" className="w-full h-full object-cover" />
-        {/* <div className="absolute inset-0 bg-black/20"></div> */}
+        
       </div>
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">

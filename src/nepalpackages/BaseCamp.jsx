@@ -6,7 +6,8 @@ import {
 } from 'lucide-react';
 import pokhara from "../images/pokhara.jpg";
 import gorakhpur from "../images/gorakhpur.png";
-
+import bacecampbanner from "../images/basecampbanner.png";
+import nayapul from "../images/nayapul.jpg"
 // --- GORAKHPUR TO BASE CAMP TREK MOCK DATA ---
 const packageData = {
   title: "Epic Trail: Gorakhpur to Annapurna Base Camp Trek",
@@ -18,7 +19,7 @@ const packageData = {
   basePriceAdult: "...",
   basePriceChildWithBed: "...",
   basePriceChildWithoutBed: "...",
-  topBannerImage: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=400&q=80", 
+  topBannerImage: bacecampbanner, 
   images: [
     "https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // ABC Mountains
     "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", // Trekking Trail
@@ -52,7 +53,7 @@ const packageData = {
     {
       day: 5,
       title: "Trek to Annapurna Base Camp (ABC) via MBC",
-      image: "https://images.unsplash.com/photo-1589802787167-393ff80e6088?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: bacecampbanner,
       description: "The ultimate day! Trek past the Hinku Cave to reach Machhapuchhre Base Camp (MBC). After a short break, continue the gentle climb into the Annapurna Sanctuary to finally arrive at Annapurna Base Camp (4,130m). Witness a dramatic 360-degree panorama of the Himalayan giants. Overnight stay at ABC."
     },
     {
@@ -70,7 +71,7 @@ const packageData = {
     {
       day: 8,
       title: "Trek to Nayapul & Drive back to Pokhara",
-      image: "https://images.unsplash.com/photo-1605640840469-60ce8f05eeac?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: nayapul,
       description: "Enjoy your final morning walk through picturesque landscapes to reach Nayapul. Your trekking journey ends here. Board your vehicle and drive back to Pokhara. Check into your hotel, enjoy a hot shower, and celebrate your successful expedition at Lakeside. Overnight stay in Pokhara."
     },
     {
@@ -245,7 +246,7 @@ const GorakhpurToBaseCampTrek = () => {
       {/* --- FULL WIDTH TOP BANNER IMAGE --- */}
       <div className="w-full h-[250px] md:h-[350px] lg:h-[400px] mb-6 relative">
         <img src={packageData.topBannerImage} alt="Base Camp Trek Banner" className="w-full h-full object-cover" />
-        {/* <div className="absolute inset-0 bg-black/20"></div> */}
+       
       </div>
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
