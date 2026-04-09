@@ -47,7 +47,7 @@ const AboutUs = () => {
             />
             {/* FIX: Changed mobile positioning from right-2 to right-0 and translated it slightly, keeping it inside the padding. Desktop remains -right-10. */}
             <div className="absolute -bottom-6 right-0 md:-right-10 bg-orange-500 text-white p-4 md:p-6 rounded-xl shadow-2xl flex flex-col items-center justify-center border-4 border-white z-10 translate-x-[10%] md:translate-x-0">
-              <span className="text-3xl md:text-4xl font-black">10+</span>
+              <span className="text-3xl md:text-4xl font-black">36+</span>
               <span className="text-xs md:text-sm font-bold uppercase tracking-wider text-center">Years<br/>Experience</span>
             </div>
           </div>
