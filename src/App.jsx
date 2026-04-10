@@ -143,7 +143,8 @@ import VintageLuxuryDetails from "./Services/Vintage-Luxury-Car"
 import Checkout from "./pages/Checkout";
 import AboutUs from "./pages/AboutUs";
 import Faq from "./pages/Faq";
-import Contact from "./pages/Contact"
+import Contact from "./pages/Contact";
+
 const App=()=>{
   return(
     <>
@@ -160,6 +161,7 @@ const App=()=>{
       <Route path="faq" element={<Faq/>}/>
       <Route path="testimonials" element={<Testimonials/>}/>
       <Route path="checkout" element={<Checkout/>}/>
+    
       
       <Route path="ayodhya-packages" element={<AyodhyaPackages/>}/>
       <Route path="kathmandu-tour-2n3d" element={<KathmanduTour2N3D/>}/>

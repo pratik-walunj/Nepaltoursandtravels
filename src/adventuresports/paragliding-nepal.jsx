@@ -62,7 +62,7 @@ const ResponsiveParaglidingNepal = () => {
           <source src={Nepal_Paragliding} type="video/mp4" />
         </video>
         
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/50 to-transparent"></div>
+
 
         <div className="relative max-w-7xl mx-auto h-full flex flex-col justify-center px-4 sm:px-6 lg:px-12 pt-10">
           <div className="max-w-3xl">
