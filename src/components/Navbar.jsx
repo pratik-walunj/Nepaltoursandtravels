@@ -364,7 +364,8 @@ import {
   Mail, Lock, Eye, EyeOff, ArrowRight, User, UserPlus // Added User and UserPlus icons
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
+import BackEndUrl from '../config/BackEndUrl';
+import axios from "axios"
 // --- 1. LOGIN MODAL COMPONENT ---
 const LoginModal = ({ isOpen, onClose, onOpenRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -498,16 +499,41 @@ const RegisterModal = ({ isOpen, onClose, onOpenLogin }) => {
     if (error) setError('');
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match!");
-      return;
+
+
+
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // ✅ Password validation
+  if (formData.password !== formData.confirmPassword) {
+    setError("Passwords do not match!");
+    return;
+  }
+
+  try {
+    let api = `${BackEndUrl}/user/registration`;
+
+    const response = await axios.post(api, formData);
+
+    console.log(response.data);
+
+    alert("Registration Successful!");
+     onClose();        // ✅ close register modal
+    onOpenLogin();
+
+  } catch (error) {
+    console.error(error);
+
+    // ✅ Show backend error if exists
+    if (error.response && error.response.data) {
+      setError(error.response.data.message || "Something went wrong!");
+    } else {
+      setError("Server error. Try again later.");
     }
-    console.log("Registration Attempt:", formData);
-    alert("Registration Successful! Welcome to Nepal Tours.");
-    onClose(); 
-  };
+  }
+};
 
   return (
     <div 
@@ -729,7 +755,7 @@ const TravelNavbar = () => {
         }`}>
           <div className="flex items-center space-x-6">
             <a href="#" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
-              <PhoneCall size={12} className="mr-1.5" /> +91 85760 00084
+              <PhoneCall size={12} className="mr-1.5" /> +91 9422799108
             </a>
             <a href="https://www.google.com/maps/place/Nepal+Tours+and+Travels/@26.7596357,83.3791606,778m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3991448adb440bcf:0x3728ff2d4d69281f!8m2!3d26.7596357!4d83.3817355!16s%2Fg%2F11bw3djl2n?entry=ttu&g_ep=EgoyMDI2MDMxNy4wIKXMDSoASAFQAw%3D%3D" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
               <MapPin size={12} className="mr-1.5" /> Find Nearest Stores

@@ -22,7 +22,7 @@ import { Phone } from 'lucide-react'; // Phone icon import kiya hai
 
 const ContactButtons = () => {
     const whatsappNumber = "919918001088"; // WhatsApp ke liye (bina '+' ke)
-    const callNumber = "+919918001088"; // Call ke liye ('+' ke sath)
+    const callNumber = "919422799108"; // Call ke liye ('+' ke sath)
 
     const message = "नमस्ते!\nNepal Tours and Travels में आपका स्वागत है। \n\nहम आपकी कैसे मदद कर सकते हैं? हमारे टूर पैकेजेस के बारे में अधिक जानने के लिए आप हमारी वेबसाइट देख सकते हैं:\nविजिट करें: https://nepaltoursandtravels.in/\n\nहम जल्द ही आपसे बात करेंगे! \nआपका दिन शुभ हो।\nहमसे संपर्क करने के लिए धन्यवाद!";
 
