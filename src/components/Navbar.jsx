@@ -1,5 +1,10 @@
 
 
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { 
   Menu, X, Search, Globe, PhoneCall, MapPin, ChevronDown, 
@@ -122,9 +127,9 @@ const TravelNavbar = () => {
       }`}>
         <div className="flex items-center space-x-6">
           <a href="#" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
-            <PhoneCall size={12} className="mr-1.5" /> +91 85760 00084
+            <PhoneCall size={12} className="mr-1.5" /> +91 9422799108
           </a>
-          <a href="#" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
+          <a href="https://www.google.com/maps/place/Nepal+Tours+and+Travels/@26.7596357,83.3791606,778m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3991448adb440bcf:0x3728ff2d4d69281f!8m2!3d26.7596357!4d83.3817355!16s%2Fg%2F11bw3djl2n?entry=ttu&g_ep=EgoyMDI2MDMxNy4wIKXMDSoASAFQAw%3D%3D" className="flex items-center hover:text-blue-600 transition-colors duration-200 font-medium">
             <MapPin size={12} className="mr-1.5" /> Find Nearest Stores
           </a>
         </div>
@@ -240,7 +245,7 @@ const TravelNavbar = () => {
                   ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md' 
                   : 'bg-white text-blue-800 hover:bg-yellow-400 hover:text-blue-900'
               }`}>
-               Website Under Maintenance
+             Website Under Development
               </button>
             </div>
 
@@ -339,3 +344,9 @@ const TravelNavbar = () => {
 };
 
 export default TravelNavbar;
+
+
+
+
+
+

@@ -93,7 +93,7 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Phone Numbers</h3>
-                  <p className="text-sm text-gray-600">🇮🇳 +91 85760 00084 / 83</p>
+                  <p className="text-sm text-gray-600">🇮🇳 +91 85760 00084 /91 9422799108</p>
                   <p className="text-sm text-gray-600">🇳🇵 +977 98101 98000</p>
                 </div>
               </div>

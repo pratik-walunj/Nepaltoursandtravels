@@ -143,7 +143,8 @@ import VintageLuxuryDetails from "./Services/Vintage-Luxury-Car"
 import Checkout from "./pages/Checkout";
 import AboutUs from "./pages/AboutUs";
 import Faq from "./pages/Faq";
-import Contact from "./pages/Contact"
+import Contact from "./pages/Contact";
+
 const App=()=>{
   return(
     <>
@@ -160,7 +161,7 @@ const App=()=>{
       <Route path="faq" element={<Faq/>}/>
       <Route path="testimonials" element={<Testimonials/>}/>
       <Route path="checkout" element={<Checkout/>}/>
-      
+    
       <Route path="ayodhya-packages" element={<AyodhyaPackages/>}/>
       <Route path="kathmandu-tour-2n3d" element={<KathmanduTour2N3D/>}/>
       <Route path="kashi-tour-packages" element={<KashiTourPackages/>}/>
@@ -189,7 +190,6 @@ const App=()=>{
       <Route path="package/basecamp" element={<BaseCamp/>}/>
 
       <Route path="visa" element={<VisaPage/>}/>
-
       <Route path="package/trekking-in-nepal" element={<TrekkingInNepal/>}/>
        <Route path="trekking-in-nepal" element={<TrekkingInNepal/>}/>
        <Route path="package/hiking-in-nepal" element={<HikingInNepal/>}/>
@@ -236,7 +236,6 @@ const App=()=>{
          <Route path="package/gorakhpur-nepalborder" element={<GorakhpurToNepalBoder/>}/> 
           <Route path="package/gorakhpur-prayagraj" element={<GorakhpurToPrayagraj/>}/> 
             <Route path="package/gorakhpur-lucknow" element={<GorakhpurToLucknow/>}/> 
-
 
 {/* School Trip Packages  */}
 <Route path="package/gorakhpur-lumbini" element={<GorakhpurToLumbini/>}/> 
