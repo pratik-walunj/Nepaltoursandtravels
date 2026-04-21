@@ -57,7 +57,7 @@ const ResponsiveParaglidingNepal = () => {
         <video 
           autoPlay loop muted playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          poster={Paraglidinginnepal}
+          // poster={Paraglidinginnepal}
         >
           <source src={Nepal_Paragliding} type="video/mp4" />
         </video>

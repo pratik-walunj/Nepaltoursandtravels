@@ -69,7 +69,7 @@ const NepalSimCard = () => {
     <div className="bg-[#f8fafc] min-h-screen font-sans overflow-x-hidden relative">
       
       {/* --- FLOATING WHATSAPP SUPPORT --- */}
-      <div className="fixed bottom-6 left-6 z-[100]">
+      {/* <div className="fixed bottom-6 left-6 z-[100]">
         <a 
           href="https://wa.me/918576000084?text=Hi, I need assistance with a Nepal SIM Card." 
           target="_blank" 
@@ -78,7 +78,7 @@ const NepalSimCard = () => {
         >
           <MessageCircle size={32} />
         </a>
-      </div>
+      </div> */}
 
       {/* --- HERO BANNER SECTION --- */}
       <div className="relative w-full h-[350px] md:h-[500px] flex items-center overflow-hidden">
