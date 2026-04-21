@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { 
   Menu, X, Search, Globe, PhoneCall, MapPin, ChevronDown, 
